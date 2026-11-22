@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Choose Your Path · Maths & Physics</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at 15% 25%, #0a0a0a, #141414, #1f1f1f);
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      padding: 1.5rem;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at 80% 20%, rgba(255, 165, 0, 0.07), transparent 45%),
+                  radial-gradient(circle at 20% 80%, rgba(0, 200, 255, 0.05), transparent 45%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 860px;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.8rem;
+    }
+
+    .step-indicator {
+      display: flex;
+      gap: 0.7rem;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .step-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(255, 165, 0, 0.25);
+      border: 1px solid rgba(255, 165, 0, 0.4);
+      transition: all 0.35s ease;
+    }
+
+    .step-dot.active {
+      background: #ffa500;
+      box-shadow: 0 0 14px #ffa500;
+      transform: scale(1.25);
+    }
+
+    .step-label {
+      color: #aaa;
+      font-size: 0.82rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 500;
+      transition: color 0.35s ease;
+      margin-right: 0.3rem;
+    }
+
+    .step-label.active {
+      color: #ffb347;
+    }
+
+    .step-sep {
+      color: #333;
+      font-size: 1rem;
+      margin: 0 0.2rem;
+    }
+
+    .question {
+      text-align: center;
+      color: #f5ede4;
+      font-size: 1.8rem;
+      font-weight: 600;
+      letter-spacing: -0.3px;
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+      line-height: 1.3;
+      transition: opacity 0.35s ease, transform 0.35s ease;
+    }
+
+    .question span {
+      color: #ffb347;
+    }
+
+    .question-sub {
+      text-align: center;
+      color: #9a9a9a;
+      font-size: 0.98rem;
+      font-weight: 400;
+      letter-spacing: 0.5px;
+      margin-top: -0.6rem;
+    }
+
+    .options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.6rem;
+      justify-content: center;
+      width: 100%;
+      transition: opacity 0.3s ease;
+    }
+
+    .option-card {
+      flex: 1 1 220px;
+      max-width: 300px;
+      min-width: 160px;
+      background: rgba(25, 25, 25, 0.8);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1.5px solid rgba(255, 165, 0, 0.25);
+      border-radius: 1.8rem;
+      padding: 2.4rem 1.5rem;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      position: relative;
+      overflow: hidden;
+      user-select: none;
+    }
+
+    .option-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 0%, rgba(255, 165, 0, 0.12), transparent 70%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
+    }
+
+    .option-card:hover:not(.disabled) {
+      border-color: rgba(255, 165, 0, 0.7);
+      transform: translateY(-6px);
+      box-shadow: 0 25px 50px -15px rgba(255, 140, 0, 0.3), 0 0 0 1px rgba(255, 180, 40, 0.2) inset;
+      background: rgba(35, 35, 35, 0.9);
+    }
+
+    .option-card:hover:not(.disabled)::before {
+      opacity: 1;
+    }
+
+    .option-card:active:not(.disabled) {
+      transform: translateY(-2px) scale(0.98);
+    }
+
+    .option-card.selected {
+      border-color: #ffa500;
+      background: rgba(45, 35, 20, 0.9);
+      box-shadow: 0 0 0 2px #ffa500, 0 20px 45px -15px rgba(255, 165, 0, 0.4);
+      transform: translateY(-4px) scale(1.01);
+    }
+
+    .option-card.selected::after {
+      content: '✓';
+      position: absolute;
+      top: 14px;
+      right: 18px;
+      width: 28px;
+      height: 28px;
+      background: #ffa500;
+      color: #111;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.95rem;
+      font-weight: 800;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+      animation: popIn 0.25s ease;
+    }
+
+    .option-card.disabled {
+      cursor: not-allowed;
+      opacity: 0.45;
+      filter: grayscale(0.7);
+      border-style: dashed;
+      border-color: rgba(120, 120, 120, 0.3);
+    }
+
+    .option-card.disabled::after {
+      content: 'Coming Soon';
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: rgba(255, 165, 0, 0.15);
+      color: #ffb347;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      padding: 0.25rem 0.6rem;
+      border-radius: 2rem;
+      border: 1px solid rgba(255, 165, 0, 0.3);
+      animation: none;
+      width: auto;
+      height: auto;
+      box-shadow: none;
+    }
+
+    @keyframes popIn {
+      0% { transform: scale(0.4); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .option-icon {
+      font-size: 2.8rem;
+      line-height: 1;
+      filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.5));
+      transition: transform 0.3s ease;
+    }
+
+    .option-card:hover:not(.disabled) .option-icon {
+      transform: scale(1.12) rotate(-3deg);
+    }
+
+    .option-name {
+      color: #ffefd5;
+      font-size: 1.35rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-align: center;
+    }
+
+    .option-desc {
+      color: #888;
+      font-size: 0.82rem;
+      text-align: center;
+      letter-spacing: 0.3px;
+      line-height: 1.4;
+      transition: color 0.3s ease;
+    }
+
+    .option-card:hover:not(.disabled) .option-desc,
+    .option-card.selected .option-desc {
+      color: #b0b0b0;
+    }
+
+    .grade-options {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      width: 100%;
+      max-width: 620px;
+    }
+
+    .grade-card {
+      background: rgba(25, 25, 25, 0.8);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1.5px solid rgba(255, 165, 0, 0.25);
+      border-radius: 1.5rem;
+      padding: 1.8rem 0.8rem;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      position: relative;
+      overflow: hidden;
+      user-select: none;
+    }
+
+    .grade-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 0%, rgba(255, 165, 0, 0.12), transparent 70%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
+    }
+
+    .grade-card:hover {
+      border-color: rgba(255, 165, 0, 0.7);
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px -12px rgba(255, 140, 0, 0.3);
+      background: rgba(35, 35, 35, 0.9);
+    }
+
+    .grade-card:hover::before {
+      opacity: 1;
+    }
+
+    .grade-card:active {
+      transform: translateY(-1px) scale(0.98);
+    }
+
+    .grade-card.selected {
+      border-color: #ffa500;
+      background: rgba(45, 35, 20, 0.9);
+      box-shadow: 0 0 0 2px #ffa500, 0 16px 35px -12px rgba(255, 165, 0, 0.4);
+      transform: translateY(-3px) scale(1.01);
+    }
+
+    .grade-card.selected::after {
+      content: '✓';
+      position: absolute;
+      top: 10px;
+      right: 12px;
+      width: 22px;
+      height: 22px;
+      background: #ffa500;
+      color: #111;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 800;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
+      animation: popIn 0.25s ease;
+    }
+
+    .grade-number {
+      color: #ffefd5;
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+
+    .grade-label {
+      color: #888;
+      font-size: 0.75rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .grade-card:hover .grade-label,
+    .grade-card.selected .grade-label {
+      color: #b0b0b0;
+    }
+
+    .unit-options {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      width: 100%;
+      max-width: 720px;
+      max-height: 380px;
+      overflow-y: auto;
+      padding: 0.4rem 0.6rem 0.4rem 0.2rem;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255, 165, 0, 0.4) transparent;
+    }
+
+    .unit-options::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .unit-options::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .unit-options::-webkit-scrollbar-thumb {
+      background: rgba(255, 165, 0, 0.4);
+      border-radius: 3px;
+    }
+
+    .unit-card {
+      background: rgba(25, 25, 25, 0.8);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1.5px solid rgba(255, 165, 0, 0.2);
+      border-radius: 1.2rem;
+      padding: 1rem 1.3rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      transition: all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      position: relative;
+      user-select: none;
+      flex-shrink: 0;
+    }
+
+    .unit-card:hover {
+      border-color: rgba(255, 165, 0, 0.7);
+      transform: translateX(6px);
+      box-shadow: 0 12px 25px -10px rgba(255, 140, 0, 0.3);
+      background: rgba(35, 35, 35, 0.9);
+    }
+
+    .unit-card:active {
+      transform: translateX(3px) scale(0.99);
+    }
+
+    .unit-card.selected {
+      border-color: #ffa500;
+      background: rgba(45, 35, 20, 0.9);
+      box-shadow: 0 0 0 2px #ffa500, 0 12px 25px -10px rgba(255, 165, 0, 0.4);
+      transform: translateX(4px);
+    }
+
+    .unit-card.selected::after {
+      content: '✓';
+      position: absolute;
+      top: 50%;
+      right: 16px;
+      transform: translateY(-50%);
+      width: 24px;
+      height: 24px;
+      background: #ffa500;
+      color: #111;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 800;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
+      animation: popIn 0.25s ease;
+    }
+
+    .unit-number {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: rgba(255, 165, 0, 0.12);
+      border: 1px solid rgba(255, 165, 0, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffb347;
+      font-weight: 700;
+      font-size: 0.95rem;
+      flex-shrink: 0;
+      transition: all 0.25s ease;
+    }
+
+    .unit-card:hover .unit-number,
+    .unit-card.selected .unit-number {
+      background: rgba(255, 165, 0, 0.25);
+      border-color: #ffa500;
+      color: #ffefd5;
+    }
+
+    .unit-name {
+      color: #e8e2d8;
+      font-size: 1rem;
+      font-weight: 500;
+      letter-spacing: 0.2px;
+      line-height: 1.35;
+      padding-right: 2rem;
+    }
+
+    .actions {
+      display: flex;
+      gap: 1.2rem;
+      justify-content: center;
+      width: 100%;
+      margin-top: 0.3rem;
+      min-height: 54px;
+      align-items: center;
+    }
+
+    .btn {
+      padding: 0.85rem 2.4rem;
+      border: none;
+      border-radius: 3rem;
+      font-size: 1.05rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      font-family: inherit;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .btn-primary {
+      background: #ffa500;
+      color: #111;
+      box-shadow: 0 12px 25px -8px rgba(255, 140, 0, 0.5), 0 0 0 1px rgba(255, 200, 100, 0.5) inset;
+      border: 1px solid rgba(255, 215, 0, 0.4);
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      background: #ffb347;
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 22px 30px -12px #ff8c00;
+    }
+
+    .btn-primary:active:not(:disabled) {
+      transform: translateY(0) scale(0.98);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      color: #ccc;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(5px);
+    }
+
+    .btn-secondary:hover:not(:disabled) {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 165, 0, 0.4);
+      color: #ffb347;
+      transform: translateY(-3px);
+    }
+
+    .btn-secondary:active:not(:disabled) {
+      transform: translateY(0) scale(0.98);
+    }
+
+    .btn:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+      pointer-events: none;
+      filter: grayscale(0.4);
+    }
+
+    .btn.hidden {
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .fade-out {
+      opacity: 0 !important;
+      transform: translateY(8px) !important;
+      pointer-events: none;
+    }
+
+    .fade-in {
+      animation: fadeInUp 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(14px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .summary-bar {
+      display: flex;
+      gap: 0.8rem;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 0.2rem;
+    }
+
+    .summary-pill {
+      background: rgba(255, 165, 0, 0.12);
+      border: 1px solid rgba(255, 165, 0, 0.3);
+      color: #ffb347;
+      padding: 0.4rem 1.1rem;
+      border-radius: 2rem;
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      backdrop-filter: blur(4px);
+    }
+
+    .summary-pill .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #ffa500;
+      box-shadow: 0 0 8px #ffa500;
+    }
+
+    .summary-pill.empty {
+      opacity: 0.35;
+      border-style: dashed;
+    }
+
+    .summary-pill.empty .dot {
+      background: #555;
+      box-shadow: none;
+    }
+
+    .confetti {
+      position: fixed;
+      top: -10px;
+      font-size: 1.4rem;
+      pointer-events: none;
+      z-index: 999;
+      animation: fall linear forwards;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .question {
+        font-size: 1.4rem;
+      }
+
+      .options {
+        gap: 1rem;
+      }
+
+      .option-card {
+        padding: 1.8rem 1rem;
+        min-width: 140px;
+        flex: 1 1 160px;
+      }
+
+      .option-icon {
+        font-size: 2.2rem;
+      }
+
+      .option-name {
+        font-size: 1.1rem;
+      }
+
+      .grade-options {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.9rem;
+      }
+
+      .grade-card {
+        padding: 1.4rem 0.6rem;
+      }
+
+      .grade-number {
+        font-size: 1.5rem;
+      }
+
+      .btn {
+        padding: 0.75rem 1.6rem;
+        font-size: 0.9rem;
+      }
+
+      .unit-options {
+        max-height: 320px;
+      }
+
+      .unit-name {
+        font-size: 0.9rem;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .option-card {
+        flex: 1 1 100%;
+        max-width: 100%;
+        flex-direction: row;
+        padding: 1.2rem 1.2rem;
+        gap: 1rem;
+        border-radius: 1.4rem;
+      }
+
+      .option-icon {
+        font-size: 2rem;
+      }
+
+      .option-name {
+        font-size: 1.05rem;
+      }
+
+      .option-desc {
+        display: none;
+      }
+
+      .grade-number {
+        font-size: 1.4rem;
+      }
+
+      .grade-label {
+        font-size: 0.68rem;
+      }
+
+      .step-label {
+        font-size: 0.7rem;
+        letter-spacing: 1px;
+      }
+
+      .unit-card {
+        padding: 0.85rem 1rem;
+      }
+
+      .unit-name {
+        font-size: 0.85rem;
+      }
+
+      .unit-number {
+        width: 32px;
+        height: 32px;
+        font-size: 0.85rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="step-indicator">
+      <span class="step-label active" id="label-step1">Subject</span>
+      <div class="step-dot active" id="dot1"></div>
+      <span class="step-sep">·</span>
+      <span class="step-label" id="label-step2">Grade</span>
+      <div class="step-dot" id="dot2"></div>
+      <span class="step-sep">·</span>
+      <span class="step-label" id="label-step3">Unit</span>
+      <div class="step-dot" id="dot3"></div>
+    </div>
+
+    <div class="question" id="questionText">What do you want to <span>study</span>?</div>
+    <div class="question-sub" id="questionSub">Pick a subject to begin your journey</div>
+
+    <div class="options" id="subjectOptions">
+      <div class="option-card" data-subject="Maths" id="cardMaths">
+        <div class="option-icon">🧮</div>
+        <div class="option-name">Mathematics</div>
+        <div class="option-desc">Numbers, patterns & problem solving</div>
+      </div>
+      <div class="option-card disabled" data-subject="Physics" id="cardPhysics">
+        <div class="option-icon">⚛️</div>
+        <div class="option-name">Physics</div>
+        <div class="option-desc">Matter, energy & the universe</div>
+      </div>
+    </div>
+
+    <div class="grade-options fade-out hidden" id="gradeOptions" style="display: none;">
+      <div class="grade-card" data-grade="9"><span class="grade-number">9</span><span class="grade-label">Grade</span></div>
+      <div class="grade-card" data-grade="10"><span class="grade-number">10</span><span class="grade-label">Grade</span></div>
+      <div class="grade-card" data-grade="11"><span class="grade-number">11</span><span class="grade-label">Grade</span></div>
+      <div class="grade-card" data-grade="12"><span class="grade-number">12</span><span class="grade-label">Grade</span></div>
+    </div>
+
+    <div class="unit-options fade-out hidden" id="unitOptions" style="display: none;"></div>
+
+    <div class="actions">
+      <button class="btn btn-secondary hidden" id="backBtn">← Back</button>
+      <button class="btn btn-primary" id="nextBtn">Continue →</button>
+    </div>
+
+    <div class="summary-bar" id="summaryBar">
+      <div class="summary-pill empty" id="pillSubject"><span class="dot"></span> No subject</div>
+      <div class="summary-pill empty" id="pillGrade"><span class="dot"></span> No grade</div>
+      <div class="summary-pill empty" id="pillUnit"><span class="dot"></span> No unit</div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      const MATH_UNITS = {
+        "9": [
+          "Further on Sets",
+          "The Number System",
+          "Solving Equations",
+          "Solving Inequalities",
+          "Introduction to Trigonometry",
+          "Regular Polygons",
+          "Congruency and Similarity",
+          "Vectors in Two Dimensions",
+          "Statistics and Probability"
+        ],
+        "10": [
+          "Relations and Functions",
+          "Polynomial Functions",
+          "Exponential and Logarithmic Functions",
+          "Trigonometric Functions",
+          "Circles",
+          "Solid Figures",
+          "Coordinate Geometry"
+        ],
+        "11": [
+          "Relations and Functions",
+          "Rational Expressions and Rational Functions",
+          "Matrices",
+          "Determinants and Their Properties",
+          "Vectors",
+          "Transformations of the Plane",
+          "Statistics",
+          "Probability"
+        ],
+        "12": [
+          "Sequences and Series",
+          "Introduction to Limits and Continuity",
+          "Introduction to Differential Calculus",
+          "Applications of Differential Calculus",
+          "Introduction to Integral Calculus",
+          "Three-Dimensional Geometry and Vectors in Space",
+          "Mathematical Proofs",
+          "Further on Statistics",
+          "Mathematical Applications for Business and Consumers"
+        ]
+      };
+
+      const SUBJECT_CODES = { Maths: "M", Physics: "P" };
+
+      let currentStep = 1;
+      let selectedSubject = null;
+      let selectedGrade = null;
+      let selectedUnit = null;
+      let selectedUnitIndex = null;
+
+      const questionText = document.getElementById('questionText');
+      const questionSub = document.getElementById('questionSub');
+      const subjectOptions = document.getElementById('subjectOptions');
+      const gradeOptions = document.getElementById('gradeOptions');
+      const unitOptions = document.getElementById('unitOptions');
+      const backBtn = document.getElementById('backBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      const summaryBar = document.getElementById('summaryBar');
+      const pillSubject = document.getElementById('pillSubject');
+      const pillGrade = document.getElementById('pillGrade');
+      const pillUnit = document.getElementById('pillUnit');
+      const dot1 = document.getElementById('dot1');
+      const dot2 = document.getElementById('dot2');
+      const dot3 = document.getElementById('dot3');
+      const labelStep1 = document.getElementById('label-step1');
+      const labelStep2 = document.getElementById('label-step2');
+      const labelStep3 = document.getElementById('label-step3');
+
+      const subjectCards = document.querySelectorAll('.option-card');
+      const gradeCards = document.querySelectorAll('.grade-card');
+
+      function updateSummary() {
+        if (selectedSubject) {
+          pillSubject.classList.remove('empty');
+          pillSubject.innerHTML = '<span class="dot"></span> ' + selectedSubject;
+        } else {
+          pillSubject.classList.add('empty');
+          pillSubject.innerHTML = '<span class="dot"></span> No subject';
+        }
+
+        if (selectedGrade) {
+          pillGrade.classList.remove('empty');
+          pillGrade.innerHTML = '<span class="dot"></span> Grade ' + selectedGrade;
+        } else {
+          pillGrade.classList.add('empty');
+          pillGrade.innerHTML = '<span class="dot"></span> No grade';
+        }
+
+        if (selectedUnit) {
+          pillUnit.classList.remove('empty');
+          pillUnit.innerHTML = '<span class="dot"></span> Unit ' + selectedUnitIndex + ': ' + (selectedUnit.length > 22 ? selectedUnit.slice(0, 22) + '…' : selectedUnit);
+        } else {
+          pillUnit.classList.add('empty');
+          pillUnit.innerHTML = '<span class="dot"></span> No unit';
+        }
+      }
+
+      function renderUnits() {
+        unitOptions.innerHTML = '';
+        if (!selectedSubject || !selectedGrade) return;
+        const units = MATH_UNITS[selectedGrade] || [];
+        units.forEach((unit, i) => {
+          const card = document.createElement('div');
+          card.className = 'unit-card';
+          card.dataset.unit = unit;
+          card.dataset.index = i + 1;
+          card.innerHTML = '<div class="unit-number">' + (i + 1) + '</div><div class="unit-name">' + unit + '</div>';
+          card.addEventListener('click', () => {
+            document.querySelectorAll('.unit-card').forEach(c => c.classList.remove('selected'));
+            card.classList.add('selected');
+            selectedUnit = unit;
+            selectedUnitIndex = i + 1;
+            nextBtn.disabled = false;
+            updateSummary();
+          });
+          unitOptions.appendChild(card);
+        });
+        selectedUnit = null;
+        selectedUnitIndex = null;
+        updateSummary();
+      }
+
+      function goToStep(step) {
+        currentStep = step;
+
+        dot1.classList.toggle('active', step >= 1);
+        dot2.classList.toggle('active', step >= 2);
+        dot3.classList.toggle('active', step >= 3);
+        labelStep1.classList.toggle('active', step >= 1);
+        labelStep2.classList.toggle('active', step >= 2);
+        labelStep3.classList.toggle('active', step >= 3);
+
+        if (step === 1) {
+          questionText.innerHTML = 'What do you want to <span>study</span>?';
+          questionSub.textContent = 'Pick a subject to begin your journey';
+          subjectOptions.style.display = 'flex';
+          subjectOptions.classList.remove('fade-out');
+          gradeOptions.style.display = 'none';
+          gradeOptions.classList.add('fade-out');
+          unitOptions.style.display = 'none';
+          unitOptions.classList.add('fade-out');
+          backBtn.classList.add('hidden');
+          nextBtn.textContent = 'Continue →';
+          nextBtn.disabled = !selectedSubject;
+        } else if (step === 2) {
+          questionText.innerHTML = 'Which <span>grade</span> are you in?';
+          questionSub.textContent = 'You chose ' + selectedSubject + ' · select your grade';
+          subjectOptions.style.display = 'none';
+          subjectOptions.classList.add('fade-out');
+          gradeOptions.style.display = 'grid';
+          gradeOptions.classList.remove('fade-out');
+          gradeOptions.classList.add('fade-in');
+          unitOptions.style.display = 'none';
+          unitOptions.classList.add('fade-out');
+          backBtn.classList.remove('hidden');
+          nextBtn.textContent = 'Continue →';
+          nextBtn.disabled = !selectedGrade;
+        } else if (step === 3) {
+          questionText.innerHTML = 'Select a <span>unit</span>';
+          questionSub.textContent = selectedSubject + ' · Grade ' + selectedGrade + ' · choose your unit';
+          subjectOptions.style.display = 'none';
+          subjectOptions.classList.add('fade-out');
+          gradeOptions.style.display = 'none';
+          gradeOptions.classList.add('fade-out');
+          unitOptions.style.display = 'flex';
+          unitOptions.classList.remove('fade-out');
+          unitOptions.classList.add('fade-in');
+          backBtn.classList.remove('hidden');
+          nextBtn.textContent = 'Start Learning →';
+          nextBtn.disabled = !selectedUnit;
+          renderUnits();
+        }
+        updateSummary();
+      }
+
+      function launchConfetti() {
+        const emojis = ['✨', '⭐', '🌟', '💫', '🎉', '🧮', '🔥', '📐', '📊'];
+        for (let i = 0; i < 30; i++) {
+          setTimeout(() => {
+            const conf = document.createElement('div');
+            conf.classList.add('confetti');
+            conf.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+            conf.style.left = Math.random() * 100 + 'vw';
+            conf.style.animationDuration = (2 + Math.random() * 2) + 's';
+            conf.style.fontSize = (1 + Math.random() * 1.6) + 'rem';
+            document.body.appendChild(conf);
+            setTimeout(() => conf.remove(), 4000);
+          }, i * 60);
+        }
+      }
+
+      function redirectToFile() {
+        const code = SUBJECT_CODES[selectedSubject];
+        const fileName = code + ' ' + selectedGrade + ' ' + selectedUnitIndex + '.html';
+        window.location.href = encodeURIComponent(fileName).replace(/%20/g, ' ');
+      }
+
+      subjectCards.forEach(card => {
+        card.addEventListener('click', () => {
+          if (card.classList.contains('disabled')) return;
+          subjectCards.forEach(c => c.classList.remove('selected'));
+          card.classList.add('selected');
+          selectedSubject = card.dataset.subject;
+          selectedGrade = null;
+          selectedUnit = null;
+          selectedUnitIndex = null;
+          gradeCards.forEach(c => c.classList.remove('selected'));
+          nextBtn.disabled = false;
+          updateSummary();
+        });
+      });
+
+      gradeCards.forEach(card => {
+        card.addEventListener('click', () => {
+          gradeCards.forEach(c => c.classList.remove('selected'));
+          card.classList.add('selected');
+          selectedGrade = card.dataset.grade;
+          selectedUnit = null;
+          selectedUnitIndex = null;
+          nextBtn.disabled = false;
+          updateSummary();
+        });
+      });
+
+      nextBtn.addEventListener('click', () => {
+        if (currentStep === 1 && selectedSubject) {
+          goToStep(2);
+        } else if (currentStep === 2 && selectedGrade) {
+          goToStep(3);
+        } else if (currentStep === 3 && selectedUnit) {
+          launchConfetti();
+          nextBtn.textContent = 'Opening...';
+          nextBtn.disabled = true;
+          setTimeout(() => {
+            redirectToFile();
+            nextBtn.textContent = 'Start Learning →';
+            nextBtn.disabled = false;
+          }, 800);
+        }
+      });
+
+      backBtn.addEventListener('click', () => {
+        if (currentStep === 2) {
+          goToStep(1);
+        } else if (currentStep === 3) {
+          goToStep(2);
+        }
+      });
+
+      goToStep(1);
+    })();
+  </script>
+</body>
+</html>

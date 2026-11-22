@@ -1,0 +1,1193 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grade 10 Mathematics - Unit 1</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: #0b1020;
+    --panel: #141d32;
+    --panel2: #1b2942;
+    --text: #edf3ff;
+    --muted: #9aabc5;
+    --accent: #65d6c5;
+    --blue: #72a7ff;
+    --border: #293955;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+}
+
+header {
+    padding: 35px 22px;
+    background: linear-gradient(130deg, #142c49, #142039, #173b42);
+    border-bottom: 1px solid var(--border);
+}
+
+header .tag {
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+header h1 {
+    font-size: clamp(27px, 5vw, 42px);
+    margin: 10px 0;
+}
+
+header p {
+    color: #c1d0e5;
+    max-width: 650px;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 270px 1fr;
+    max-width: 1250px;
+    margin: auto;
+    gap: 25px;
+    padding: 25px;
+}
+
+.sidebar {
+    position: sticky;
+    top: 15px;
+    height: fit-content;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    padding: 18px;
+}
+
+.sidebar h3 {
+    margin-bottom: 15px;
+}
+
+.nav-btn {
+    width: 100%;
+    text-align: left;
+    padding: 12px;
+    border: 0;
+    border-radius: 9px;
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+    margin: 3px 0;
+    font-size: 14px;
+}
+
+.nav-btn:hover,
+.nav-btn.active {
+    background: var(--panel2);
+    color: var(--accent);
+}
+
+.progress-area {
+    margin-top: 25px;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.progress {
+    background: #26344c;
+    height: 7px;
+    border-radius: 20px;
+    margin-top: 8px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    width: 0%;
+    height: 100%;
+    background: var(--accent);
+    transition: .3s;
+}
+
+main {
+    min-width: 0;
+}
+
+.intro-card,
+.section,
+.lesson-content,
+.quiz-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 15px;
+}
+
+.intro-card {
+    padding: 23px;
+    margin-bottom: 25px;
+}
+
+.intro-card h2 {
+    margin-bottom: 10px;
+}
+
+.intro-card p,
+.section-description {
+    color: var(--muted);
+}
+
+.outcomes {
+    margin: 15px 0 0 20px;
+}
+
+.section {
+    padding: 20px;
+    margin-bottom: 25px;
+    scroll-margin-top: 15px;
+}
+
+.section-heading {
+    color: var(--accent);
+    font-size: 22px;
+    margin-bottom: 5px;
+}
+
+.section-description {
+    margin-bottom: 17px;
+}
+
+.topic {
+    margin: 12px 0;
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    overflow: hidden;
+}
+
+.topic-button {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 15px;
+    border: none;
+    background: var(--panel2);
+    color: var(--text);
+    cursor: pointer;
+    text-align: left;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.topic-button:hover {
+    color: var(--accent);
+}
+
+.arrow {
+    transition: transform .25s;
+    color: var(--accent);
+    font-size: 18px;
+}
+
+.topic.open .arrow {
+    transform: rotate(180deg);
+}
+
+.topic-content {
+    display: none;
+    padding: 20px;
+    background: #101a2c;
+}
+
+.topic.open .topic-content {
+    display: block;
+}
+
+.topic-content h3 {
+    color: var(--accent);
+    margin: 18px 0 7px;
+    font-size: 17px;
+}
+
+.topic-content h3:first-child {
+    margin-top: 0;
+}
+
+.topic-content p {
+    color: #d0dced;
+    margin: 8px 0;
+}
+
+.topic-content ul,
+.topic-content ol {
+    padding-left: 23px;
+    color: #d0dced;
+    margin: 8px 0;
+}
+
+.formula {
+    background: #1c3045;
+    border-left: 4px solid var(--accent);
+    padding: 13px;
+    border-radius: 7px;
+    margin: 12px 0;
+    overflow-x: auto;
+    color: #baf5e9;
+    font-family: Georgia, serif;
+    font-size: 17px;
+}
+
+.example {
+    background: #19283e;
+    padding: 15px;
+    margin: 13px 0;
+    border-radius: 9px;
+    border: 1px solid #30425e;
+}
+
+.example strong {
+    color: var(--blue);
+}
+
+.note {
+    background: #332d1c;
+    border-left: 4px solid #e6b95b;
+    padding: 13px;
+    border-radius: 7px;
+    margin: 12px 0;
+    color: #f5dfae;
+}
+
+.quiz-card {
+    padding: 22px;
+    margin: 25px 0;
+}
+
+.quiz-card h2 {
+    margin-bottom: 15px;
+}
+
+.question {
+    padding: 15px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.question p {
+    margin-bottom: 9px;
+}
+
+.question label {
+    display: block;
+    color: var(--muted);
+    padding: 5px;
+    cursor: pointer;
+}
+
+.question input {
+    margin-right: 8px;
+    accent-color: var(--accent);
+}
+
+.action-btn {
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    background: var(--accent);
+    color: #071b1b;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 18px;
+}
+
+.action-btn:hover {
+    opacity: .85;
+}
+
+#quiz-result {
+    margin-top: 15px;
+    font-weight: bold;
+    color: var(--accent);
+}
+
+footer {
+    text-align: center;
+    color: var(--muted);
+    padding: 25px;
+}
+
+@media(max-width: 800px) {
+    .container {
+        grid-template-columns: 1fr;
+        padding: 15px;
+    }
+
+    .sidebar {
+        position: static;
+    }
+
+    .sidebar nav {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 5px;
+    }
+
+    .section {
+        padding: 14px;
+    }
+}
+
+@media(max-width: 430px) {
+    .sidebar nav {
+        grid-template-columns: 1fr;
+    }
+
+    .topic-content {
+        padding: 14px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="tag">ETHIOPIAN MATHEMATICS • GRADE 10</div>
+    <h1>Unit 1: Relations and Functions</h1>
+    <p>Learn the concepts step by step, explore worked examples, and test your understanding.</p>
+</header>
+
+<div class="container">
+
+<aside class="sidebar">
+    <h3>Unit Navigation</h3>
+
+    <nav>
+        <button class="nav-btn active" onclick="goTo('overview', this)">Unit Overview</button>
+        <button class="nav-btn" onclick="goTo('relations', this)">1.1 Relations</button>
+        <button class="nav-btn" onclick="goTo('functions', this)">1.2 Functions</button>
+        <button class="nav-btn" onclick="goTo('applications', this)">1.3 Applications</button>
+        <button class="nav-btn" onclick="goTo('quiz', this)">Review Quiz</button>
+    </nav>
+
+    <div class="progress-area">
+        <span id="progress-text">0 of 17 lessons opened</span>
+        <div class="progress">
+            <div class="progress-fill" id="progress-fill"></div>
+        </div>
+    </div>
+</aside>
+
+<main>
+
+<div class="intro-card" id="overview">
+    <h2>Welcome to Unit 1</h2>
+    <p>
+        This unit introduces relations and functions, their graphs,
+        and how they are used to solve mathematical and real-life problems.
+    </p>
+
+    <h3 style="margin-top:18px">Unit Outcomes</h3>
+    <ul class="outcomes">
+        <li>Define relation.</li>
+        <li>Define function.</li>
+        <li>Identify types of functions.</li>
+        <li>Sketch graphs of various types of relations and functions.</li>
+    </ul>
+</div>
+
+<!-- SECTION 1.1 -->
+
+<section class="section" id="relations">
+    <h2 class="section-heading">1.1 Relations</h2>
+    <p class="section-description">
+        Learn about patterns, coordinate systems, relations, domain, range and graphs.
+    </p>
+
+    <div class="topic">
+        <button class="topic-button" onclick="toggle(this)">
+            1.1.1 Revision of Patterns <span class="arrow">⌄</span>
+        </button>
+        <div class="topic-content">
+
+            <h3>What is a pattern?</h3>
+            <p>
+                A pattern is a regularity in numbers, designs or ideas.
+                Its elements follow a predictable rule.
+            </p>
+
+            <h3>1. Arithmetic pattern</h3>
+            <p>
+                An arithmetic pattern is formed by adding or subtracting
+                the same number to obtain the next term.
+            </p>
+
+            <div class="example">
+                <strong>Example:</strong>
+                <p>2, 4, 6, 8, 10, ...</p>
+                <p>The rule is to add 2 to the previous term.</p>
+                <p>The next terms are 12 and 14.</p>
+            </div>
+
+            <h3>2. Geometric pattern</h3>
+            <p>
+                A geometric pattern is formed by multiplying or dividing
+                each term by the same number.
+            </p>
+
+            <div class="example">
+                <strong>Example:</strong>
+                <p>2, 4, 8, 16, 32, ...</p>
+                <p>The rule is to multiply each term by 2.</p>
+                <p>The next term is 64.</p>
+            </div>
+
+            <div class="note">
+                Remember: Arithmetic patterns use addition or subtraction.
+                Geometric patterns use multiplication or division.
+            </div>
+        </div>
+    </div>
+
+    <div class="topic">
+        <button class="topic-button" onclick="toggle(this)">
+            1.1.2 Cartesian Coordinate System in Two Dimensions
+            <span class="arrow">⌄</span>
+        </button>
+        <div class="topic-content">
+
+            <h3>What is a Cartesian coordinate system?</h3>
+            <p>
+                It is a system used to locate points on a plane using
+                two perpendicular number lines called the x-axis and y-axis.
+            </p>
+
+            <ul>
+                <li><strong>x-axis:</strong> The horizontal axis.</li>
+                <li><strong>y-axis:</strong> The vertical axis.</li>
+                <li><strong>Origin:</strong> The point where the axes meet, (0, 0).</li>
+                <li><strong>Abscissa:</strong> The first coordinate (x).</li>
+                <li><strong>Ordinate:</strong> The second coordinate (y).</li>
+            </ul>
+
+            <div class="formula">
+                A point is written as (x, y).
+            </div>
+
+            <h3>The four quadrants</h3>
+            <ul>
+                <li>Quadrant I: (+, +)</li>
+                <li>Quadrant II: (-, +)</li>
+                <li>Quadrant III: (-, -)</li>
+                <li>Quadrant IV: (+, -)</li>
+            </ul>
+
+            <div class="example">
+                <strong>Example:</strong>
+                <p>Consider point P(3, 2).</p>
+                <p>Move 3 units to the right and 2 units upward from the origin.</p>
+                <p>Therefore, P is in Quadrant I.</p>
+            </div>
+
+            <div class="note">
+                The order of coordinates is important.
+                (2, 3) and (3, 2) represent different points.
+            </div>
+        </div>
+    </div>
+
+    <div class="topic">
+        <button class="topic-button" onclick="toggle(this)">
+            1.1.3 Basic Concepts of Relations
+            <span class="arrow">⌄</span>
+        </button>
+        <div class="topic-content">
+
+            <h3>What is a relation?</h3>
+            <p>
+                A relation is a set of ordered pairs that shows a relationship
+                between elements.
+            </p>
+
+            <div class="formula">
+                R = {(x, y) : x and y satisfy a given condition}
+            </div>
+
+            <h3>Ordered pairs</h3>
+            <p>
+                An ordered pair consists of two elements written as (x, y).
+                The first element is the first component, and the second is
+                the second component.
+            </p>
+
+            <div class="example">
+                <strong>Example:</strong>
+                <p>R = {(1, 2), (2, 4), (3, 6)}</p>
+                <p>Each pair shows that the second number is twice the first.</p>
+            </div>
+
+            <h3>Domain of a relation</h3>
+            <p>
+                The domain is the set of all first components of the
+                ordered pairs in a relation.
+            </p>
+
+            <h3>Range of a relation</h3>
+            <p>
+                The range is the set of all second components of the
+                ordered pairs in a relation.
+            </p>
+
+            <div class="example">
+                <strong>Example:</strong>
+                <p>R = {(-2, 1), (-1, 0), (0, 0), (4, 2), (3, 5)}</p>
+                <p>Domain = {-2, -1, 0, 3, 4}</p>
+                <p>Range = {0, 1, 2, 5}</p>
+            </div>
+
+            <div class="note">
+                Repeated values are written only once when describing a
+                domain or range as a set.
+            </div>
+        </div>
+    </div>
+
+    <div class="topic">
+        <button class="topic-button" onclick="toggle(this)">
+            1.1.4 Graphs of Relations
+            <span class="arrow">⌄</span>
+        </button>
+        <div class="topic-content">
+
+            <h3>What is a graph of a relation?</h3>
+            <p>
+                A graph of a relation is a visual representation of its
+                ordered pairs on a Cartesian coordinate plane.
+            </p>
+
+            <h3>How to draw a relation</h3>
+            <ol>
+                <li>Identify the ordered pairs.</li>
+                <li>Draw the x-axis and y-axis.</li>
+                <li>Choose a suitable scale.</li>
+                <li>Locate each ordered pair.</li>
+                <li>Draw the required graph according to the relation.</li>
+            </ol>
+
+            <div class="example">
+                <strong>Example:</strong>
+                <p>R = {(1, 2), (2, 4), (3, 6)}</p>
+                <p>Plot the three points on the coordinate plane.</p>
+                <p>They lie on the straight line y = 2x.</p>
+            </div>
+
+            <h3>Graphs of quadratic relations</h3>
+            <p>
+                Some relations have curved graphs. A common example is
+                a parabola, which is the graph of a quadratic function.
+            </p>
+
+            <div class="formula">
+                y = ax² + bx + c, where a ≠ 0
+            </div>
+
+            <p>
+                The graph of a quadratic function has a vertex and an
+                axis of symmetry.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- SECTION 1.2 -->
+
+<section class="section" id="functions">
+    <h2 class="section-heading">1.2 Functions</h2>
+    <p class="section-description">
+        Understand functions, their properties, types and combinations.
+    </p>
+
+    <div class="topic">
+        <button class="topic-button" onclick="toggle(this)">
+            1.2.1 The Notion of Function
+            <span class="arrow">⌄</span>
+        </button>
+        <div class="topic-content">
+
+            <h3>What is a function?</h3>
+            <p>
+                A function is a special type of relation in which every
+                input is associated with exactly one output.
+            </p>
+
+            <div class="formula">
+                y = f(x)
+            </div>
+
+            <p>
+                Here, x represents the input and f(x) represents the output.
+            </p>
+
+            <div class="example">
+                <strong>Example 1: Function</strong>
+                <p>R = {(1, 2), (2, 4), (3, 6)}</p>
+                <p>Every input has exactly one output. Therefore, it is a function.</p>
+            </div>
+
+            <div class="example">
+                <strong>Example 2: Not a function</strong>
+                <p>R = {(1, 2), (1, 3), (2, 4)}</p>
+                <p>
+                    The input 1 has two different outputs, 2 and 3.
+                    Therefore, it is not a function.
+                </p>
+            </div>
+
+            <h3>Domain and range of a function</h3>
+            <ul>
+                <li>Domain: The set of all allowed input values.</li>
+                <li>Range: The set of all resulting output values.</li>
+            </ul>
+
+            <div class="example">
+                <strong>Example:</strong>
+                <p>Let f(x) = 2x + 1 and domain = {1, 2, 3}.</p>
+                <p>f(1) = 2(1) + 1 = 3</p>
+                <p>f(2) = 2(2) + 1 = 5</p>
+                <p>f(3) = 2(3) + 1 = 7</p>
+                <p>Range = {3, 5, 7}</p>
+            </div>
+
+            <h3>Vertical Line Test</h3>
+            <p>
+                The vertical line test is used to determine whether a
+                graph represents a function.
+            </p>
+
+            <ul>
+                <li>If every vertical line intersects the graph at most once, it is a function.</li>
+                <li>If any vertical line intersects the graph more than once, it is not a function.</li>
+            </ul>
+
+            <h3>Types of functions covered in the textbook</h3>
+
+            <p><strong>1. Constant function</strong></p>
+            <div class="formula">f(x) = b</div>
+            <p>
+                The output remains the same for every input.
+                Its graph is a horizontal line.
+            </p>
+
+            <div class="example">
+                Example: f(x) = 3
+            </div>
+
+            <p><strong>2. Linear function</strong></p>
+            <div class="formula">f(x) = ax + b</div>
+            <p>
+                Its graph is a straight line. The value of a determines
+                whether the graph increases or decreases.
+            </p>
+            <ul>
+                <li>If a &gt; 0, the function is increasing.</li>
+                <li>If a &lt; 0, the function is decreasing.</li>
+                <li>If a = 0, the function is constant.</li>
+            </ul>
+
+            <div class="example">
+                Example: f(x) = 2x + 1
+            </div>
+
+            <h3>Slope and intercept</h3>
+            <p>
+                In the linear function f(x) = ax + b:
+            </p>
+            <ul>
+                <li>a is the slope.</li>
+                <li>b is the y-intercept.</li>
+            </ul>
+
+            <div class="formula">
+                Slope = (y₂ - y₁) / (x₂ - x₁)
+            </div>
+
+            <p><strong>3. Quadratic function</strong></p>
+            <div class="formula">
+                f(x) = ax² + bx + c, a ≠ 0
+            </div>
+            <p>
+                Its graph is a parabola. The graph opens upward when
+                a is positive and downward when a is negative.
+            </p>
+
+            <h3>Important quadratic graph terms</h3>
+            <ul>
+                <li><strong>Vertex:</strong> The turning point of the parabola.</li>
+                <li><strong>Axis of symmetry:</strong> The vertical line passing through the vertex.</li>
+                <li><strong>x-intercept:</strong> Where the graph crosses the x-axis.</li>
+                <li><strong>y-intercept:</strong> Where the graph crosses the y-axis.</li>
+                <li><strong>Leading coefficient:</strong> The coefficient of x².</li>
+            </ul>
+
+            <div class="formula">
+                For f(x) = a(x - h)² + k, the vertex is (h, k).
+            </div>
+        </div>
+    </div>
+
+    <div class="topic">
+        <button class="topic-button" onclick="toggle(this)">
+            1.2.2 Combination of Functions
+            <span class="arrow">⌄</span>
+        </button>
+        <div class="topic-content">
+
+            <h3>What is a combination of functions?</h3>
+            <p>
+                A combination of functions means creating a new function
+                by performing operations on two or more functions.
+            </p>
+
+            <p>Let f and g be two functions.</p>
+
+            <h3>1. Addition</h3>
+            <div class="formula">
+                (f + g)(x) = f(x) + g(x)
+            </div>
+
+            <h3>2. Subtraction</h3>
+            <div class="formula">
+                (f - g)(x) = f(x) - g(x)
+            </div>
+
+            <h3>3. Multiplication</h3>
+            <div class="formula">
+                (fg)(x) = f(x) × g(x)
+            </div>
+
+            <h3>4. Division</h3>
+            <div class="formula">
+                (f/g)(x) = f(x) / g(x), where g(x) ≠ 0
+            </div>
+
+            <div class="example">
+                <strong>Worked Example:</strong>
+                <p>Let f(x) = x + 2 and g(x) = 3x.</p>
+
+                <p><strong>Addition:</strong></p>
+                <p>(f + g)(x) = (x + 2) + 3x = 4x + 2</p>
+
+                <p><strong>Subtraction:</strong></p>
+                <p>(f - g)(x) = (x + 2) - 3x = 2 - 2x</p>
+
+                <p><strong>Multiplication:</strong></p>
+                <p>(fg)(x) = (x + 2)(3x) = 3x² + 6x</p>
+
+                <p><strong>Division:</strong></p>
+                <p>(f/g)(x) = (x + 2)/(3x), x ≠ 0</p>
+            </div>
+
+            <h3>Domain of combination of functions</h3>
+            <p>
+                The domain of the sum, difference and product is the
+                common domain of the two functions.
+            </p>
+            <p>
+                For division, the denominator must also be nonzero.
+            </p>
+
+            <div class="note">
+                Always check the domain before performing operations
+                on functions.
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SECTION 1.3 -->
+
+<section class="section" id="applications">
+    <h2 class="section-heading">1.3 Applications of Relations and Functions</h2>
+    <p class="section-description">
+        Apply relations and functions to practical problems and quadratic graphs.
+    </p>
+
+    <div class="topic">
+        <button class="topic-button" onclick="toggle(this)">
+            1.3.1 Applications Involving Relations and Functions
+            <span class="arrow">⌄</span>
+        </button>
+        <div class="topic-content">
+
+            <h3>Using mathematical relationships</h3>
+            <p>
+                Relations and functions can describe how one quantity
+                depends on another quantity.
+            </p>
+
+            <div class="example">
+                <strong>Example 1: Estimating height</strong>
+                <p>
+                    Suppose a relationship between femur length x (in cm)
+                    and height y (in cm) is:
+                </p>
+                <div class="formula">y = 2.47x + 54</div>
+                <p>Find the estimated height when x = 44.</p>
+                <p>y = 2.47(44) + 54</p>
+                <p>y = 108.68 + 54</p>
+                <p><strong>y = 162.68 cm</strong></p>
+            </div>
+
+            <div class="example">
+                <strong>Example 2: Area and perimeter</strong>
+                <p>
+                    Suppose the area of a square is (x + 9)².
+                    Find its perimeter when x = 10.
+                </p>
+                <p>Side length = x + 9</p>
+                <p>Side length = 10 + 9 = 19</p>
+                <p>Perimeter = 4 × 19</p>
+                <p><strong>Perimeter = 76 units</strong></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="topic">
+        <button class="topic-button" onclick="toggle(this)">
+            1.3.2 Minimum and Maximum Values of Quadratic Functions
+            <span class="arrow">⌄</span>
+        </button>
+        <div class="topic-content">
+
+            <h3>Maximum and minimum values</h3>
+            <p>
+                A quadratic function has a turning point called its vertex.
+                Depending on the direction of the parabola, the vertex
+                represents either a minimum or a maximum value.
+            </p>
+
+            <h3>When the parabola opens upward</h3>
+            <p>
+                If a is positive, the graph opens upward.
+                Its vertex gives the minimum value.
+            </p>
+
+            <h3>When the parabola opens downward</h3>
+            <p>
+                If a is negative, the graph opens downward.
+                Its vertex gives the maximum value.
+            </p>
+
+            <div class="formula">
+                f(x) = a(x - h)² + k
+                <br>
+                Vertex = (h, k)
+            </div>
+
+            <div class="example">
+                <strong>Example:</strong>
+                <p>Find the maximum value of:</p>
+                <p>f(x) = -x² + 6x - 8</p>
+
+                <p>Complete the square:</p>
+                <p>f(x) = -(x² - 6x) - 8</p>
+                <p>f(x) = -(x² - 6x + 9) + 9 - 8</p>
+                <p>f(x) = -(x - 3)² + 1</p>
+
+                <p>Vertex = (3, 1)</p>
+                <p><strong>Maximum value = 1</strong></p>
+            </div>
+
+            <div class="note">
+                Completing the square helps us identify the vertex
+                and determine the maximum or minimum value.
+            </div>
+        </div>
+    </div>
+
+    <div class="topic">
+        <button class="topic-button" onclick="toggle(this)">
+            1.3.3 Graphical Method of Solving Quadratic Equations
+            <span class="arrow">⌄</span>
+        </button>
+        <div class="topic-content">
+
+            <h3>What is a graphical solution?</h3>
+            <p>
+                A quadratic equation can be solved by drawing the graph
+                of its corresponding quadratic function and identifying
+                where it intersects the x-axis.
+            </p>
+
+            <h3>Steps</h3>
+            <ol>
+                <li>Rearrange the equation so one side is equal to zero.</li>
+                <li>Write the corresponding quadratic function.</li>
+                <li>Draw its graph.</li>
+                <li>Find where the graph crosses or touches the x-axis.</li>
+                <li>Read the x-coordinates. These are the solutions.</li>
+            </ol>
+
+            <div class="example">
+                <strong>Example:</strong>
+                <p>Solve x² - 4 = 0 graphically.</p>
+                <p>Consider y = x² - 4.</p>
+                <p>Set y = 0:</p>
+                <p>x² - 4 = 0</p>
+                <p>(x - 2)(x + 2) = 0</p>
+                <p><strong>x = -2 or x = 2</strong></p>
+                <p>The graph intersects the x-axis at (-2, 0) and (2, 0).</p>
+            </div>
+
+            <div class="note">
+                The x-intercepts of the graph give the real solutions
+                of the corresponding quadratic equation.
+            </div>
+        </div>
+    </div>
+
+    <div class="topic">
+        <button class="topic-button" onclick="toggle(this)">
+            1.3.4 Graphical Method of Solving Quadratic Inequalities
+            <span class="arrow">⌄</span>
+        </button>
+        <div class="topic-content">
+
+            <h3>What is a quadratic inequality?</h3>
+            <p>
+                A quadratic inequality compares a quadratic expression
+                with zero using inequality symbols.
+            </p>
+
+            <div class="formula">
+                ax² + bx + c &gt; 0
+                <br>
+                ax² + bx + c &lt; 0
+                <br>
+                ax² + bx + c ≥ 0
+                <br>
+                ax² + bx + c ≤ 0
+            </div>
+
+            <h3>Graphical method</h3>
+            <ol>
+                <li>Draw the graph of the corresponding quadratic function.</li>
+                <li>Identify its x-intercepts.</li>
+                <li>Observe where the graph is above the x-axis.</li>
+                <li>Observe where the graph is below the x-axis.</li>
+                <li>Select the intervals that satisfy the inequality.</li>
+            </ol>
+
+            <div class="example">
+                <strong>Example:</strong>
+                <p>Solve x² - 4 &gt; 0.</p>
+                <p>Consider y = x² - 4.</p>
+                <p>The x-intercepts are -2 and 2.</p>
+                <p>The parabola opens upward.</p>
+                <p>It is above the x-axis when x &lt; -2 or x &gt; 2.</p>
+                <p><strong>Solution: (-∞, -2) ∪ (2, ∞)</strong></p>
+            </div>
+
+            <div class="note">
+                For strict inequalities (&gt; or &lt;), the roots are not
+                included. For inequalities with equality (≥ or ≤),
+                the roots are included.
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- QUIZ -->
+
+<section class="quiz-card" id="quiz">
+    <h2>Unit 1 Review Quiz</h2>
+    <p style="color:var(--muted);margin-bottom:15px">
+        Answer the questions and check your understanding.
+    </p>
+
+    <form id="quiz-form">
+
+        <div class="question">
+            <p><strong>1. What is an arithmetic pattern?</strong></p>
+            <label><input type="radio" name="q1" value="a"> A pattern formed by multiplication</label>
+            <label><input type="radio" name="q1" value="b"> A pattern formed by adding or subtracting a fixed number</label>
+            <label><input type="radio" name="q1" value="c"> A random sequence</label>
+        </div>
+
+        <div class="question">
+            <p><strong>2. What is the origin of a Cartesian coordinate system?</strong></p>
+            <label><input type="radio" name="q2" value="a"> (1, 1)</label>
+            <label><input type="radio" name="q2" value="b"> (0, 1)</label>
+            <label><input type="radio" name="q2" value="c"> (0, 0)</label>
+        </div>
+
+        <div class="question">
+            <p><strong>3. Which quadrant contains (-2, 3)?</strong></p>
+            <label><input type="radio" name="q3" value="a"> Quadrant I</label>
+            <label><input type="radio" name="q3" value="b"> Quadrant II</label>
+            <label><input type="radio" name="q3" value="c"> Quadrant IV</label>
+        </div>
+
+        <div class="question">
+            <p><strong>4. What is the domain of {(1,2), (3,4), (5,6)}?</strong></p>
+            <label><input type="radio" name="q4" value="a"> {2, 4, 6}</label>
+            <label><input type="radio" name="q4" value="b"> {1, 3, 5}</label>
+            <label><input type="radio" name="q4" value="c"> {1, 2, 3}</label>
+        </div>
+
+        <div class="question">
+            <p><strong>5. What makes a relation a function?</strong></p>
+            <label><input type="radio" name="q5" value="a"> Every input has exactly one output</label>
+            <label><input type="radio" name="q5" value="b"> Every output has exactly one input</label>
+            <label><input type="radio" name="q5" value="c"> Every input has two outputs</label>
+        </div>
+
+        <div class="question">
+            <p><strong>6. What is the graph of a linear function?</strong></p>
+            <label><input type="radio" name="q6" value="a"> Circle</label>
+            <label><input type="radio" name="q6" value="b"> Straight line</label>
+            <label><input type="radio" name="q6" value="c"> Parabola</label>
+        </div>
+
+        <div class="question">
+            <p><strong>7. What is the slope in f(x) = 5x + 2?</strong></p>
+            <label><input type="radio" name="q7" value="a"> 2</label>
+            <label><input type="radio" name="q7" value="b"> 5</label>
+            <label><input type="radio" name="q7" value="c"> 7</label>
+        </div>
+
+        <div class="question">
+            <p><strong>8. What is the graph of a quadratic function called?</strong></p>
+            <label><input type="radio" name="q8" value="a"> Parabola</label>
+            <label><input type="radio" name="q8" value="b"> Straight line</label>
+            <label><input type="radio" name="q8" value="c"> Circle</label>
+        </div>
+
+        <div class="question">
+            <p><strong>9. If a quadratic graph opens downward, its vertex represents:</strong></p>
+            <label><input type="radio" name="q9" value="a"> Minimum value</label>
+            <label><input type="radio" name="q9" value="b"> Maximum value</label>
+            <label><input type="radio" name="q9" value="c"> The origin</label>
+        </div>
+
+        <div class="question">
+            <p><strong>10. What are the solutions of x² - 9 = 0?</strong></p>
+            <label><input type="radio" name="q10" value="a"> x = 0, 9</label>
+            <label><input type="radio" name="q10" value="b"> x = 3 only</label>
+            <label><input type="radio" name="q10" value="c"> x = -3 or x = 3</label>
+        </div>
+
+        <button type="button" class="action-btn" onclick="checkQuiz()">
+            Submit Answers
+        </button>
+    </form>
+
+    <div id="quiz-result"></div>
+</section>
+
+</main>
+</div>
+
+<footer>
+    Grade 10 Mathematics • Unit 1: Relations and Functions
+</footer>
+
+<script>
+const topics = document.querySelectorAll(".topic");
+const progressText = document.getElementById("progress-text");
+const progressFill = document.getElementById("progress-fill");
+
+// Only one subtopic can be open at a time.
+function toggle(button) {
+    const selectedTopic = button.parentElement;
+    const wasOpen = selectedTopic.classList.contains("open");
+
+    topics.forEach(topic => {
+        topic.classList.remove("open");
+    });
+
+    if (!wasOpen) {
+        selectedTopic.classList.add("open");
+    }
+
+    updateProgress();
+}
+
+// This indicator counts the currently opened lesson,
+// not completed lessons.
+function updateProgress() {
+    const opened = document.querySelectorAll(".topic.open").length;
+    const total = topics.length;
+
+    progressText.textContent = `${opened} of ${total} lessons opened`;
+    progressFill.style.width = `${(opened / total) * 100}%`;
+}
+
+function goTo(id, button) {
+    document.querySelectorAll(".nav-btn").forEach(btn => {
+        btn.classList.remove("active");
+    });
+
+    button.classList.add("active");
+
+    document.getElementById(id).scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+}
+
+function checkQuiz() {
+    const answers = {
+        q1: "b",
+        q2: "c",
+        q3: "b",
+        q4: "b",
+        q5: "a",
+        q6: "b",
+        q7: "b",
+        q8: "a",
+        q9: "b",
+        q10: "c"
+    };
+
+    let score = 0;
+    let unanswered = 0;
+
+    for (let question in answers) {
+        const selected = document.querySelector(
+            `input[name="${question}"]:checked`
+        );
+
+        if (!selected) {
+            unanswered++;
+        } else if (selected.value === answers[question]) {
+            score++;
+        }
+    }
+
+    const result = document.getElementById("quiz-result");
+
+    if (unanswered > 0) {
+        result.textContent =
+            `You answered ${score} correctly. Please answer all ${unanswered} remaining question(s).`;
+        return;
+    }
+
+    result.textContent =
+        `Your score: ${score}/10 — ${
+            score >= 8 ? "Excellent work!" :
+            score >= 5 ? "Good effort! Keep practicing." :
+            "Review the lessons and try again."
+        }`;
+}
+</script>
+
+</body>
+</html>

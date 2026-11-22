@@ -1,0 +1,1494 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grade 10 Mathematics - Unit 2</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: #0b1120;
+    --panel: #141f33;
+    --panel2: #1d2b43;
+    --border: #2b3c57;
+    --text: #edf4ff;
+    --muted: #a2b2c9;
+    --accent: #66ddc7;
+    --blue: #80aaff;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Arial, sans-serif;
+    line-height: 1.75;
+}
+
+header {
+    padding: 32px 22px;
+    background: linear-gradient(130deg, #142e4d, #14213b, #16413f);
+    border-bottom: 1px solid var(--border);
+}
+
+.tag {
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+header h1 {
+    font-size: clamp(27px, 5vw, 42px);
+    margin: 8px 0;
+}
+
+header p {
+    color: #c3d1e5;
+    max-width: 650px;
+}
+
+.top-navigation {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: #101a2b;
+    border-bottom: 1px solid var(--border);
+    padding: 12px;
+    overflow-x: auto;
+    white-space: nowrap;
+    display: flex;
+    gap: 8px;
+}
+
+.nav-btn {
+    flex-shrink: 0;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    background: var(--panel);
+    padding: 9px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.nav-btn.active,
+.nav-btn:hover {
+    color: #061c19;
+    background: var(--accent);
+    border-color: var(--accent);
+}
+
+.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 25px 18px;
+}
+
+.overview {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    padding: 22px;
+    margin-bottom: 22px;
+}
+
+.overview h2 {
+    margin-bottom: 8px;
+}
+
+.overview p {
+    color: var(--muted);
+}
+
+.overview ul {
+    padding-left: 22px;
+    margin-top: 12px;
+}
+
+.lesson-info {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    color: var(--muted);
+    font-size: 13px;
+    margin-bottom: 12px;
+}
+
+.progress {
+    height: 6px;
+    background: #26364e;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 22px;
+}
+
+.progress-fill {
+    width: 0%;
+    height: 100%;
+    background: var(--accent);
+    transition: width .3s;
+}
+
+.lesson-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    padding: clamp(18px, 4vw, 30px);
+    min-height: 450px;
+}
+
+.section-label {
+    color: var(--accent);
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.lesson-card h2 {
+    font-size: clamp(23px, 4vw, 30px);
+    margin: 8px 0 20px;
+}
+
+.lesson-card h3 {
+    color: var(--accent);
+    margin: 22px 0 8px;
+    font-size: 18px;
+}
+
+.lesson-card h3:first-of-type {
+    margin-top: 0;
+}
+
+.lesson-card p {
+    color: #d1dced;
+    margin: 9px 0;
+}
+
+.lesson-card ul,
+.lesson-card ol {
+    padding-left: 23px;
+    color: #d1dced;
+    margin: 10px 0;
+}
+
+.formula {
+    background: #1d3349;
+    border-left: 4px solid var(--accent);
+    padding: 14px;
+    border-radius: 7px;
+    margin: 15px 0;
+    color: #baf5e9;
+    font-family: Georgia, serif;
+    font-size: 17px;
+    overflow-x: auto;
+}
+
+.example {
+    background: #192a40;
+    border: 1px solid #30445f;
+    padding: 16px;
+    border-radius: 10px;
+    margin: 15px 0;
+}
+
+.example strong {
+    color: var(--blue);
+}
+
+.note {
+    background: #352e1e;
+    border-left: 4px solid #e5b95b;
+    padding: 14px;
+    border-radius: 7px;
+    margin: 15px 0;
+    color: #f6dfad;
+}
+
+.lesson-controls {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 22px;
+}
+
+.control-btn {
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    padding: 12px 20px;
+    background: var(--panel2);
+    color: var(--text);
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.control-btn.next {
+    background: var(--accent);
+    color: #071b19;
+    border-color: var(--accent);
+}
+
+.control-btn:disabled {
+    opacity: .35;
+    cursor: not-allowed;
+}
+
+.quiz {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    padding: 22px;
+    border-radius: 15px;
+    margin-top: 25px;
+}
+
+.quiz h2 {
+    margin-bottom: 15px;
+}
+
+.question {
+    border-bottom: 1px solid var(--border);
+    padding: 15px 0;
+}
+
+.question p {
+    margin-bottom: 8px;
+}
+
+.question label {
+    display: block;
+    color: var(--muted);
+    padding: 5px 0;
+    cursor: pointer;
+}
+
+.question input {
+    accent-color: var(--accent);
+    margin-right: 8px;
+}
+
+.action-btn {
+    background: var(--accent);
+    color: #071b19;
+    padding: 12px 20px;
+    border: 0;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 18px;
+}
+
+#result {
+    color: var(--accent);
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+footer {
+    text-align: center;
+    color: var(--muted);
+    padding: 25px;
+}
+
+@media(max-width: 500px) {
+    .container {
+        padding: 15px 10px;
+    }
+
+    .lesson-controls button {
+        padding: 11px 13px;
+        font-size: 13px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="tag">ETHIOPIAN MATHEMATICS • GRADE 10</div>
+    <h1>Unit 2: Polynomial Functions</h1>
+    <p>
+        Learn polynomial functions, their operations, important theorems,
+        zeros, graphs and applications one lesson at a time.
+    </p>
+</header>
+
+<nav class="top-navigation" id="navigation">
+    <button class="nav-btn active" data-section="0">2.1 Definition</button>
+    <button class="nav-btn" data-section="1">2.2 Operations</button>
+    <button class="nav-btn" data-section="2">2.3 Theorems</button>
+    <button class="nav-btn" data-section="3">2.4 Zeros</button>
+    <button class="nav-btn" data-section="4">2.5 Graphs</button>
+    <button class="nav-btn" data-section="5">2.6 Applications</button>
+</nav>
+
+<div class="container">
+
+    <div class="overview">
+        <h2>Welcome to Unit 2</h2>
+        <p>
+            A polynomial function is a function made up of terms involving
+            a variable raised to non-negative integer powers.
+            In this unit, you will study the properties and behavior
+            of polynomial functions.
+        </p>
+
+        <h3 style="color:var(--accent);margin-top:15px">
+            Unit Outcomes
+        </h3>
+        <ul>
+            <li>Define polynomial functions.</li>
+            <li>Perform the four fundamental operations on polynomials.</li>
+            <li>Apply theorems on polynomial functions.</li>
+            <li>Determine rational and irrational zeros.</li>
+            <li>Sketch graphs of polynomial functions.</li>
+        </ul>
+    </div>
+
+    <div class="lesson-info">
+        <span id="lesson-number">Lesson 1</span>
+        <span id="lesson-count">1 of 19</span>
+    </div>
+
+    <div class="progress">
+        <div class="progress-fill" id="progress-fill"></div>
+    </div>
+
+    <main class="lesson-card" id="lesson">
+        <div class="section-label" id="section-label"></div>
+        <h2 id="lesson-title"></h2>
+        <div id="lesson-content"></div>
+
+        <div class="lesson-controls">
+            <button class="control-btn" id="previous-btn" onclick="previousLesson()">
+                ← Previous
+            </button>
+
+            <button class="control-btn next" id="next-btn" onclick="nextLesson()">
+                Next →
+            </button>
+        </div>
+    </main>
+
+    <section class="quiz" id="quiz">
+        <h2>Unit 2 Review Quiz</h2>
+        <p style="color:var(--muted)">
+            Test your understanding of polynomial functions.
+        </p>
+
+        <form id="quiz-form">
+
+            <div class="question">
+                <p><strong>1. Which of the following is a polynomial function?</strong></p>
+                <label><input type="radio" name="q1" value="a"> f(x) = 3x² + 2x - 5</label>
+                <label><input type="radio" name="q1" value="b"> f(x) = 2/x</label>
+                <label><input type="radio" name="q1" value="c"> f(x) = √x</label>
+            </div>
+
+            <div class="question">
+                <p><strong>2. What is the degree of 4x⁵ - 2x³ + 7?</strong></p>
+                <label><input type="radio" name="q2" value="a"> 3</label>
+                <label><input type="radio" name="q2" value="b"> 5</label>
+                <label><input type="radio" name="q2" value="c"> 7</label>
+            </div>
+
+            <div class="question">
+                <p><strong>3. What is the leading coefficient of -3x⁴ + 5x² + 2?</strong></p>
+                <label><input type="radio" name="q3" value="a"> 5</label>
+                <label><input type="radio" name="q3" value="b"> 2</label>
+                <label><input type="radio" name="q3" value="c"> -3</label>
+            </div>
+
+            <div class="question">
+                <p><strong>4. What is the remainder when f(x) = x² + 3 is divided by x - 2?</strong></p>
+                <label><input type="radio" name="q4" value="a"> 5</label>
+                <label><input type="radio" name="q4" value="b"> 7</label>
+                <label><input type="radio" name="q4" value="c"> 4</label>
+            </div>
+
+            <div class="question">
+                <p><strong>5. If f(2) = 0, what does the factor theorem tell us?</strong></p>
+                <label><input type="radio" name="q5" value="a"> x + 2 is a factor</label>
+                <label><input type="radio" name="q5" value="b"> x - 2 is a factor</label>
+                <label><input type="radio" name="q5" value="c"> x = 0 is a factor</label>
+            </div>
+
+            <div class="question">
+                <p><strong>6. What is a zero of a polynomial function?</strong></p>
+                <label><input type="radio" name="q6" value="a"> A value of x for which f(x) = 0</label>
+                <label><input type="radio" name="q6" value="b"> The leading coefficient</label>
+                <label><input type="radio" name="q6" value="c"> The degree</label>
+            </div>
+
+            <div class="question">
+                <p><strong>7. How many turning points can a degree 4 polynomial have at most?</strong></p>
+                <label><input type="radio" name="q7" value="a"> 4</label>
+                <label><input type="radio" name="q7" value="b"> 3</label>
+                <label><input type="radio" name="q7" value="c"> 5</label>
+            </div>
+
+            <div class="question">
+                <p><strong>8. What is the shape of the graph of x³?</strong></p>
+                <label><input type="radio" name="q8" value="a"> A straight line</label>
+                <label><input type="radio" name="q8" value="b"> A circle</label>
+                <label><input type="radio" name="q8" value="c"> A cubic curve</label>
+            </div>
+
+            <div class="question">
+                <p><strong>9. If f(a) and f(b) have opposite signs, what does the Location Theorem guarantee?</strong></p>
+                <label><input type="radio" name="q9" value="a"> At least one zero between a and b</label>
+                <label><input type="radio" name="q9" value="b"> No zeros between a and b</label>
+                <label><input type="radio" name="q9" value="c"> Exactly two zeros</label>
+            </div>
+
+            <div class="question">
+                <p><strong>10. A polynomial graph is always:</strong></p>
+                <label><input type="radio" name="q10" value="a"> Discontinuous</label>
+                <label><input type="radio" name="q10" value="b"> Smooth and continuous</label>
+                <label><input type="radio" name="q10" value="c"> A circle</label>
+            </div>
+
+            <button type="button" class="action-btn" onclick="checkQuiz()">
+                Submit Answers
+            </button>
+        </form>
+
+        <div id="result"></div>
+    </section>
+</div>
+
+<footer>
+    Grade 10 Mathematics • Unit 2: Polynomial Functions
+</footer>
+
+<script>
+const lessons = [
+
+/* 2.1 DEFINITION */
+
+{
+    section: "2.1 Definition of Polynomial Function",
+    title: "Introduction to Polynomial Functions",
+    content: `
+        <h3>What is a polynomial function?</h3>
+        <p>
+            A polynomial function is a function involving a variable x,
+            where each term consists of a real number coefficient multiplied
+            by x raised to a non-negative integer power.
+        </p>
+
+        <div class="formula">
+            p(x) = aₙxⁿ + aₙ₋₁xⁿ⁻¹ + ... + a₂x² + a₁x + a₀
+        </div>
+
+        <p>
+            Here, n is a non-negative integer and aₙ is not zero.
+            The coefficients are real numbers.
+        </p>
+
+        <h3>Examples of polynomial functions</h3>
+        <div class="example">
+            <p>f(x) = 2x + 4</p>
+            <p>g(x) = 3x² - x + 5</p>
+            <p>h(x) = x⁴ + 2x - 5</p>
+            <p>k(x) = 7</p>
+        </div>
+
+        <h3>Examples that are not polynomial functions</h3>
+        <div class="example">
+            <p>f(x) = 1/x</p>
+            <p>g(x) = √x</p>
+            <p>h(x) = x⁻² + 3</p>
+        </div>
+
+        <div class="note">
+            The powers of the variable in a polynomial must be
+            non-negative integers: 0, 1, 2, 3, and so on.
+        </div>
+    `
+},
+
+{
+    section: "2.1 Definition of Polynomial Function",
+    title: "Degree, Coefficients and Leading Term",
+    content: `
+        <h3>Parts of a polynomial</h3>
+        <p>Consider the polynomial:</p>
+
+        <div class="formula">
+            f(x) = 4x⁵ - 3x³ + 2x² + 7
+        </div>
+
+        <ul>
+            <li><strong>Coefficients:</strong> 4, -3, 2 and 7.</li>
+            <li><strong>Leading term:</strong> 4x⁵.</li>
+            <li><strong>Leading coefficient:</strong> 4.</li>
+            <li><strong>Degree:</strong> 5.</li>
+            <li><strong>Constant term:</strong> 7.</li>
+        </ul>
+
+        <h3>Degree</h3>
+        <p>
+            The degree of a nonzero polynomial is the highest exponent
+            of the variable after simplifying the polynomial.
+        </p>
+
+        <div class="example">
+            <strong>Example:</strong>
+            <p>f(x) = 3x³ + 2x⁵ - 7x + 4</p>
+            <p>Arrange in descending powers:</p>
+            <p>f(x) = 2x⁵ + 3x³ - 7x + 4</p>
+            <p>Degree = 5</p>
+            <p>Leading coefficient = 2</p>
+            <p>Constant term = 4</p>
+        </div>
+
+        <h3>Special cases</h3>
+        <ul>
+            <li>A nonzero constant polynomial has degree zero.</li>
+            <li>The zero polynomial has no degree assigned to it.</li>
+        </ul>
+
+        <h3>Domain</h3>
+        <div class="formula">
+            Domain of every polynomial function = all real numbers.
+        </div>
+    `
+},
+
+{
+    section: "2.1 Definition of Polynomial Function",
+    title: "Polynomial Expressions and Classification",
+    content: `
+        <h3>Polynomial expression</h3>
+        <p>
+            A polynomial expression is an expression of the form:
+        </p>
+
+        <div class="formula">
+            aₙxⁿ + aₙ₋₁xⁿ⁻¹ + ... + a₁x + a₀
+        </div>
+
+        <p>
+            Each individual expression aₖxᵏ that makes up the
+            polynomial is called a term.
+        </p>
+
+        <h3>How to classify a polynomial</h3>
+        <ol>
+            <li>Check whether the variable has only non-negative integer powers.</li>
+            <li>Check whether the expression can be written in polynomial form.</li>
+            <li>Arrange the terms in descending powers.</li>
+            <li>Identify the degree, leading coefficient and constant term.</li>
+        </ol>
+
+        <div class="example">
+            <strong>Example 1:</strong>
+            <p>f(x) = 5x³ - 2x + 7</p>
+            <p>This is a polynomial function.</p>
+            <p>Degree = 3, leading coefficient = 5, constant term = 7.</p>
+        </div>
+
+        <div class="example">
+            <strong>Example 2:</strong>
+            <p>g(x) = 3x⁻² + 5</p>
+            <p>This is not a polynomial function because it has a negative exponent.</p>
+        </div>
+
+        <div class="example">
+            <strong>Example 3:</strong>
+            <p>h(x) = (x + 2)(x - 2)</p>
+            <p>Expand: h(x) = x² - 4.</p>
+            <p>It is a polynomial of degree 2.</p>
+        </div>
+    `
+},
+
+/* 2.2 OPERATIONS */
+
+{
+    section: "2.2 Operations on Polynomial Functions",
+    title: "Addition of Polynomial Functions",
+    content: `
+        <h3>What is addition of polynomials?</h3>
+        <p>
+            Addition means combining two or more polynomial functions
+            by adding their corresponding terms.
+        </p>
+
+        <div class="formula">
+            (f + g)(x) = f(x) + g(x)
+        </div>
+
+        <h3>Like terms</h3>
+        <p>
+            Like terms have the same variable raised to the same power.
+            Only like terms can be directly combined.
+        </p>
+
+        <div class="example">
+            <strong>Example:</strong>
+            <p>Let f(x) = 3x² + 2x + 1</p>
+            <p>And g(x) = 2x² - 5x + 4</p>
+
+            <p>(f + g)(x) = (3x² + 2x + 1) + (2x² - 5x + 4)</p>
+            <p>= 5x² - 3x + 5</p>
+        </div>
+
+        <div class="note">
+            Remember to combine the coefficients of like terms
+            and keep their variable powers unchanged.
+        </div>
+    `
+},
+
+{
+    section: "2.2 Operations on Polynomial Functions",
+    title: "Subtraction of Polynomial Functions",
+    content: `
+        <h3>Subtraction</h3>
+        <p>
+            Subtraction of polynomials means subtracting one polynomial
+            from another by changing the signs of the second polynomial's terms.
+        </p>
+
+        <div class="formula">
+            (f - g)(x) = f(x) - g(x)
+        </div>
+
+        <div class="example">
+            <strong>Example:</strong>
+            <p>f(x) = 4x² + 3x - 2</p>
+            <p>g(x) = x² - 2x + 5</p>
+
+            <p>(f - g)(x)</p>
+            <p>= 4x² + 3x - 2 - (x² - 2x + 5)</p>
+            <p>= 4x² + 3x - 2 - x² + 2x - 5</p>
+            <p>= 3x² + 5x - 7</p>
+        </div>
+
+        <div class="note">
+            Be careful with negative signs. When removing brackets
+            after subtraction, change the sign of every term inside.
+        </div>
+    `
+},
+
+{
+    section: "2.2 Operations on Polynomial Functions",
+    title: "Multiplication of Polynomial Functions",
+    content: `
+        <h3>Multiplication</h3>
+        <p>
+            Multiplication means multiplying every term of one polynomial
+            by every term of the other polynomial.
+        </p>
+
+        <div class="formula">
+            (fg)(x) = f(x) × g(x)
+        </div>
+
+        <h3>Distributive property</h3>
+        <div class="formula">
+            a(b + c) = ab + ac
+        </div>
+
+        <div class="example">
+            <strong>Example 1:</strong>
+            <p>Multiply (x + 2)(x + 3).</p>
+            <p>= x(x + 3) + 2(x + 3)</p>
+            <p>= x² + 3x + 2x + 6</p>
+            <p><strong>= x² + 5x + 6</strong></p>
+        </div>
+
+        <div class="example">
+            <strong>Example 2:</strong>
+            <p>Multiply 2x(x² + 3x - 4).</p>
+            <p>= 2x³ + 6x² - 8x</p>
+        </div>
+
+        <div class="note">
+            Multiply each term carefully, including its coefficient
+            and variable power.
+        </div>
+    `
+},
+
+{
+    section: "2.2 Operations on Polynomial Functions",
+    title: "Division of Polynomial Functions",
+    content: `
+        <h3>Division</h3>
+        <p>
+            Polynomial division is the process of dividing one polynomial
+            by another polynomial.
+        </p>
+
+        <div class="formula">
+            f(x) ÷ g(x) = f(x) / g(x), where g(x) ≠ 0
+        </div>
+
+        <h3>Polynomial long division</h3>
+        <ol>
+            <li>Arrange both polynomials in descending powers.</li>
+            <li>Divide the first term of the dividend by the first term of the divisor.</li>
+            <li>Multiply the divisor by the result.</li>
+            <li>Subtract and bring down the next term.</li>
+            <li>Repeat until the remaining polynomial has lower degree than the divisor.</li>
+        </ol>
+
+        <div class="example">
+            <strong>Example:</strong>
+            <p>Divide x² + 5x + 6 by x + 2.</p>
+            <p>Factor the numerator:</p>
+            <p>x² + 5x + 6 = (x + 2)(x + 3)</p>
+            <p>Therefore:</p>
+            <p>(x² + 5x + 6) ÷ (x + 2) = x + 3</p>
+        </div>
+
+        <div class="note">
+            The divisor cannot be the zero polynomial.
+            The textbook also introduces the division theorem
+            in the next section.
+        </div>
+    `
+},
+
+/* 2.3 THEOREMS */
+
+{
+    section: "2.3 Theorems on Polynomials",
+    title: "Polynomial Division Theorem",
+    content: `
+        <h3>The division theorem</h3>
+        <p>
+            When a polynomial f(x) is divided by a nonzero polynomial d(x),
+            there are unique polynomials q(x) and r(x) such that:
+        </p>
+
+        <div class="formula">
+            f(x) = d(x)q(x) + r(x)
+        </div>
+
+        <p>Where:</p>
+        <ul>
+            <li>f(x) is the dividend.</li>
+            <li>d(x) is the divisor.</li>
+            <li>q(x) is the quotient.</li>
+            <li>r(x) is the remainder.</li>
+        </ul>
+
+        <p>
+            The remainder is zero or has a degree less than
+            the degree of the divisor.
+        </p>
+
+        <div class="example">
+            <strong>Example:</strong>
+            <p>Divide x³ - 1 by x - 1.</p>
+            <p>x³ - 1 = (x - 1)(x² + x + 1)</p>
+            <p>Quotient = x² + x + 1</p>
+            <p>Remainder = 0</p>
+        </div>
+    `
+},
+
+{
+    section: "2.3 Theorems on Polynomials",
+    title: "Remainder Theorem",
+    content: `
+        <h3>Remainder theorem</h3>
+        <p>
+            If a polynomial f(x) is divided by a linear polynomial
+            (x - c), the remainder is f(c).
+        </p>
+
+        <div class="formula">
+            Remainder = f(c)
+        </div>
+
+        <h3>How to use it</h3>
+        <ol>
+            <li>Identify the value of c from the divisor x - c.</li>
+            <li>Substitute c into the polynomial.</li>
+            <li>Simplify the result.</li>
+            <li>The result is the remainder.</li>
+        </ol>
+
+        <div class="example">
+            <strong>Example:</strong>
+            <p>Find the remainder when f(x) = x² + 3x + 2 is divided by x - 2.</p>
+            <p>Here c = 2.</p>
+            <p>f(2) = 2² + 3(2) + 2</p>
+            <p>= 4 + 6 + 2</p>
+            <p><strong>Remainder = 12</strong></p>
+        </div>
+
+        <div class="note">
+            If the divisor is x + 3, write it as x - (-3).
+            Therefore, substitute -3 into the function.
+        </div>
+    `
+},
+
+{
+    section: "2.3 Theorems on Polynomials",
+    title: "Factor Theorem",
+    content: `
+        <h3>Factor theorem</h3>
+        <p>
+            The factor theorem helps us determine whether a linear
+            polynomial is a factor of another polynomial.
+        </p>
+
+        <div class="formula">
+            If f(c) = 0, then (x - c) is a factor of f(x).
+        </div>
+
+        <p>The reverse is also true:</p>
+
+        <div class="formula">
+            If (x - c) is a factor of f(x), then f(c) = 0.
+        </div>
+
+        <div class="example">
+            <strong>Example:</strong>
+            <p>Show that x - 2 is a factor of f(x) = x² - 5x + 6.</p>
+            <p>Substitute x = 2:</p>
+            <p>f(2) = 2² - 5(2) + 6</p>
+            <p>= 4 - 10 + 6 = 0</p>
+            <p>Therefore, x - 2 is a factor.</p>
+        </div>
+
+        <h3>Finding an unknown coefficient</h3>
+        <div class="example">
+            <strong>Example:</strong>
+            <p>Find k if x - 1 is a factor of f(x) = x² + kx - 2.</p>
+            <p>Since x - 1 is a factor, f(1) = 0.</p>
+            <p>1 + k - 2 = 0</p>
+            <p>k - 1 = 0</p>
+            <p><strong>k = 1</strong></p>
+        </div>
+    `
+},
+
+/* 2.4 ZEROS */
+
+{
+    section: "2.4 Zeros of a Polynomial Function",
+    title: "Zeros of a Polynomial Function",
+    content: `
+        <h3>What is a zero?</h3>
+        <p>
+            A zero of a polynomial function is a value of x that makes
+            the value of the polynomial equal to zero.
+        </p>
+
+        <div class="formula">
+            f(c) = 0
+        </div>
+
+        <p>
+            The zeros are also called roots or solutions of the equation
+            f(x) = 0.
+        </p>
+
+        <div class="example">
+            <strong>Example:</strong>
+            <p>Find the zeros of f(x) = x² - 9.</p>
+            <p>Set f(x) = 0:</p>
+            <p>x² - 9 = 0</p>
+            <p>(x - 3)(x + 3) = 0</p>
+            <p><strong>x = 3 or x = -3</strong></p>
+        </div>
+
+        <h3>Connection to factors</h3>
+        <p>
+            If c is a zero of f(x), then x - c is a factor
+            of the polynomial.
+        </p>
+    `
+},
+
+{
+    section: "2.4 Zeros of a Polynomial Function",
+    title: "Zeros and Their Multiplicities",
+    content: `
+        <h3>What is multiplicity?</h3>
+        <p>
+            The multiplicity of a zero tells us how many times
+            its corresponding linear factor occurs in the polynomial.
+        </p>
+
+        <div class="formula">
+            If (x - c)ᵏ is a factor, but (x - c)ᵏ⁺¹ is not,
+            then c has multiplicity k.
+        </div>
+
+        <div class="example">
+            <strong>Example:</strong>
+            <p>f(x) = (x - 2)²(x + 1)³</p>
+            <p>Zero x = 2 has multiplicity 2.</p>
+            <p>Zero x = -1 has multiplicity 3.</p>
+        </div>
+
+        <h3>Why multiplicity matters</h3>
+        <p>
+            Multiplicity helps describe the behavior of a polynomial
+            graph near its zeros.
+        </p>
+        <ul>
+            <li>An even multiplicity generally means the graph touches the x-axis and turns.</li>
+            <li>An odd multiplicity generally means the graph crosses the x-axis.</li>
+        </ul>
+    `
+},
+
+{
+    section: "2.4 Zeros of a Polynomial Function",
+    title: "Location Theorem",
+    content: `
+        <h3>Location theorem</h3>
+        <p>
+            The Location Theorem helps us locate real zeros of a polynomial
+            between two numbers.
+        </p>
+
+        <div class="formula">
+            If a &lt; b and f(a), f(b) have opposite signs,
+            then there is at least one zero between a and b.
+        </div>
+
+        <div class="example">
+            <strong>Example:</strong>
+            <p>Consider f(x) = x² - 3.</p>
+            <p>f(1) = 1 - 3 = -2</p>
+            <p>f(2) = 4 - 3 = 1</p>
+            <p>
+                The values have opposite signs.
+                Therefore, at least one zero lies between 1 and 2.
+            </p>
+        </div>
+
+        <h3>Important idea</h3>
+        <p>
+            The theorem tells us that a zero exists in the interval.
+            It does not necessarily tell us the exact value of that zero.
+        </p>
+    `
+},
+
+{
+    section: "2.4 Zeros of a Polynomial Function",
+    title: "Rational Zero Test",
+    content: `
+        <h3>Rational zero test</h3>
+        <p>
+            The Rational Zero Test helps us find possible rational zeros
+            of a polynomial with integer coefficients.
+        </p>
+
+        <div class="formula">
+            Possible rational zero = p / q
+        </div>
+
+        <p>Where:</p>
+        <ul>
+            <li>p is an integer factor of the constant term.</li>
+            <li>q is an integer factor of the leading coefficient.</li>
+            <li>The fraction is written in lowest terms.</li>
+        </ul>
+
+        <h3>Steps</h3>
+        <ol>
+            <li>Identify the constant term.</li>
+            <li>Find its integer factors.</li>
+            <li>Identify the leading coefficient.</li>
+            <li>Find its integer factors.</li>
+            <li>Form all possible p/q values.</li>
+            <li>Test the possible values using substitution or the factor theorem.</li>
+        </ol>
+
+        <div class="example">
+            <strong>Example:</strong>
+            <p>Find the possible rational zeros of:</p>
+            <p>f(x) = 2x² - 5x + 2</p>
+            <p>Factors of the constant term 2: ±1, ±2.</p>
+            <p>Factors of the leading coefficient 2: ±1, ±2.</p>
+            <p>Possible rational zeros: ±1, ±2, ±1/2.</p>
+            <p>Testing the values gives actual zeros 2 and 1/2.</p>
+        </div>
+
+        <div class="note">
+            The Rational Zero Test gives possible rational zeros.
+            You must test them to determine which are actual zeros.
+        </div>
+    `
+},
+
+/* 2.5 GRAPHS */
+
+{
+    section: "2.5 Graphs of Polynomial Functions",
+    title: "Sketching Graphs of Polynomial Functions",
+    content: `
+        <h3>What is a polynomial graph?</h3>
+        <p>
+            The graph of a polynomial function is a smooth and continuous
+            curve that represents the relationship between x and f(x).
+        </p>
+
+        <h3>Steps to sketch a graph</h3>
+        <ol>
+            <li>Identify the polynomial's degree and leading coefficient.</li>
+            <li>Find the zeros of the polynomial.</li>
+            <li>Find the y-intercept by calculating f(0).</li>
+            <li>Identify important turning points when possible.</li>
+            <li>Study the end behavior.</li>
+            <li>Plot points and draw a smooth curve.</li>
+        </ol>
+
+        <div class="example">
+            <strong>Example:</strong>
+            <p>Consider f(x) = x² - 4.</p>
+            <p>Zeros: x = -2 and x = 2.</p>
+            <p>y-intercept: f(0) = -4.</p>
+            <p>The graph is an upward-opening parabola.</p>
+        </div>
+
+        <h3>Important graph properties</h3>
+        <ul>
+            <li>x-intercepts are the real zeros.</li>
+            <li>y-intercept is f(0).</li>
+            <li>Turning points are places where the graph changes direction.</li>
+        </ul>
+    `
+},
+
+{
+    section: "2.5 Graphs of Polynomial Functions",
+    title: "End Behavior of Polynomial Graphs",
+    content: `
+        <h3>What is end behavior?</h3>
+        <p>
+            End behavior describes what happens to the graph when x
+            becomes very large positive or very large negative.
+        </p>
+
+        <p>
+            The degree and leading coefficient determine the end behavior.
+        </p>
+
+        <h3>Even degree, positive leading coefficient</h3>
+        <p>Both ends of the graph point upward.</p>
+
+        <h3>Even degree, negative leading coefficient</h3>
+        <p>Both ends of the graph point downward.</p>
+
+        <h3>Odd degree, positive leading coefficient</h3>
+        <p>The left end points downward and the right end points upward.</p>
+
+        <h3>Odd degree, negative leading coefficient</h3>
+        <p>The left end points upward and the right end points downward.</p>
+
+        <div class="note">
+            Remember: even degree gives the same direction at both ends.
+            Odd degree gives opposite directions.
+        </div>
+    `
+},
+
+{
+    section: "2.5 Graphs of Polynomial Functions",
+    title: "Turning Points and Intercepts",
+    content: `
+        <h3>Turning points</h3>
+        <p>
+            A turning point is a point where a graph changes from
+            increasing to decreasing or from decreasing to increasing.
+        </p>
+
+        <div class="formula">
+            Maximum number of turning points = n - 1
+        </div>
+
+        <p>Here n is the degree of the polynomial.</p>
+
+        <div class="example">
+            <strong>Examples:</strong>
+            <ul>
+                <li>Degree 2: at most 1 turning point.</li>
+                <li>Degree 3: at most 2 turning points.</li>
+                <li>Degree 4: at most 3 turning points.</li>
+                <li>Degree 5: at most 4 turning points.</li>
+            </ul>
+        </div>
+
+        <h3>x-intercepts</h3>
+        <p>
+            The x-intercepts are the points where the graph intersects
+            the x-axis. They correspond to real zeros.
+        </p>
+
+        <h3>y-intercept</h3>
+        <p>
+            The y-intercept is found by substituting x = 0 into the function.
+        </p>
+
+        <div class="formula">
+            y-intercept = f(0)
+        </div>
+
+        <div class="note">
+            A polynomial of degree n can have at most n real x-intercepts.
+        </div>
+    `
+},
+
+{
+    section: "2.5 Graphs of Polynomial Functions",
+    title: "Properties of Polynomial Graphs",
+    content: `
+        <h3>Important properties</h3>
+        <ul>
+            <li>The graph of a polynomial function is continuous.</li>
+            <li>It has no sharp corners.</li>
+            <li>A polynomial of degree n has at most n x-intercepts.</li>
+            <li>A polynomial of degree n has at most n - 1 turning points.</li>
+            <li>The leading coefficient and degree determine end behavior.</li>
+        </ul>
+
+        <h3>Examples of different degrees</h3>
+
+        <div class="example">
+            <strong>Degree 1:</strong>
+            <p>f(x) = 2x + 1</p>
+            <p>Its graph is a straight line.</p>
+        </div>
+
+        <div class="example">
+            <strong>Degree 2:</strong>
+            <p>f(x) = x² - 4</p>
+            <p>Its graph is a parabola.</p>
+        </div>
+
+        <div class="example">
+            <strong>Degree 3:</strong>
+            <p>f(x) = x³ - 1</p>
+            <p>Its graph is a cubic curve.</p>
+        </div>
+
+        <div class="note">
+            Not every polynomial graph has the maximum possible
+            number of turning points or x-intercepts.
+        </div>
+    `
+},
+
+/* 2.6 APPLICATIONS */
+
+{
+    section: "2.6 Applications",
+    title: "Applications of Polynomial Functions",
+    content: `
+        <h3>Real-life applications</h3>
+        <p>
+            Polynomial functions can be used to model problems involving
+            areas, volumes and other quantities.
+        </p>
+
+        <h3>Example: Area of a rectangle</h3>
+        <p>
+            Suppose a rectangle has length x + 3 and width x + 2.
+        </p>
+
+        <div class="formula">
+            A = length × width
+            <br>
+            A = (x + 3)(x + 2)
+            <br>
+            A = x² + 5x + 6
+        </div>
+
+        <p>
+            The area is represented by a quadratic polynomial.
+        </p>
+
+        <h3>Example: Volume</h3>
+        <p>
+            The volume of a box can be expressed as a polynomial
+            when its dimensions are polynomial expressions.
+        </p>
+
+        <div class="formula">
+            V = length × width × height
+        </div>
+
+        <div class="note">
+            The main idea is to translate a real-life situation into
+            a mathematical expression or function.
+        </div>
+    `
+},
+
+{
+    section: "2.6 Applications",
+    title: "Maximum Area of a Rectangle",
+    content: `
+        <h3>Application of maximum values</h3>
+        <p>
+            Polynomial functions can help us find the maximum area
+            that can be enclosed using a fixed amount of material.
+        </p>
+
+        <div class="example">
+            <strong>Textbook-style example:</strong>
+            <p>
+                A wire of length 56 m is bent into a rectangle.
+                Find the maximum area and the dimensions of the rectangle.
+            </p>
+
+            <p>Let the rectangle's dimensions be x and y.</p>
+
+            <p>Perimeter:</p>
+            <div class="formula">
+                2x + 2y = 56
+            </div>
+
+            <p>Solving for y:</p>
+            <div class="formula">
+                y = 28 - x
+            </div>
+
+            <p>Area:</p>
+            <div class="formula">
+                A = xy
+                <br>
+                A = x(28 - x)
+                <br>
+                A = -x² + 28x
+            </div>
+
+            <p>Complete the square:</p>
+            <div class="formula">
+                A = 196 - (x - 14)²
+            </div>
+
+            <p>
+                Since a square cannot be negative, the maximum area is 196 m².
+            </p>
+
+            <p><strong>Dimensions:</strong> 14 m by 14 m.</p>
+        </div>
+
+        <div class="note">
+            The rectangle with the maximum area for a fixed perimeter
+            is a square.
+        </div>
+    `
+},
+
+{
+    section: "2.6 Applications",
+    title: "Minimum and Maximum Product Problems",
+    content: `
+        <h3>Using quadratic functions in number problems</h3>
+        <p>
+            Polynomial functions can also be used to find the maximum
+            or minimum product of two numbers.
+        </p>
+
+        <div class="example">
+            <strong>Example:</strong>
+            <p>
+                Find two real numbers whose difference is 16
+                and whose product is minimum.
+            </p>
+
+            <p>Let the numbers be x and y.</p>
+            <div class="formula">
+                x - y = 16
+            </div>
+
+            <p>Therefore:</p>
+            <div class="formula">
+                y = x - 16
+            </div>
+
+            <p>Their product is:</p>
+            <div class="formula">
+                A = xy
+                <br>
+                A = x(x - 16)
+                <br>
+                A = x² - 16x
+                <br>
+                A = (x - 8)² - 64
+            </div>
+
+            <p>
+                Since (x - 8)² is always non-negative,
+                the minimum product is -64.
+            </p>
+
+            <p><strong>The numbers are 8 and -8.</strong></p>
+        </div>
+
+        <h3>General approach</h3>
+        <ol>
+            <li>Define the unknown quantities.</li>
+            <li>Write the given relationship as an equation.</li>
+            <li>Express the required quantity as a polynomial function.</li>
+            <li>Rewrite the quadratic by completing the square.</li>
+            <li>Identify the maximum or minimum value.</li>
+        </ol>
+    `
+}
+
+];
+
+let currentLesson = 0;
+
+const lessonTitle = document.getElementById("lesson-title");
+const lessonContent = document.getElementById("lesson-content");
+const sectionLabel = document.getElementById("section-label");
+const lessonNumber = document.getElementById("lesson-number");
+const lessonCount = document.getElementById("lesson-count");
+const progressFill = document.getElementById("progress-fill");
+
+const previousBtn = document.getElementById("previous-btn");
+const nextBtn = document.getElementById("next-btn");
+
+function showLesson(index) {
+    if (index < 0 || index >= lessons.length) return;
+
+    currentLesson = index;
+
+    const lesson = lessons[currentLesson];
+
+    sectionLabel.textContent = lesson.section;
+    lessonTitle.textContent = lesson.title;
+    lessonContent.innerHTML = lesson.content;
+
+    lessonNumber.textContent = `Lesson ${currentLesson + 1}`;
+    lessonCount.textContent = `${currentLesson + 1} of ${lessons.length}`;
+
+    progressFill.style.width =
+        `${((currentLesson + 1) / lessons.length) * 100}%`;
+
+    previousBtn.disabled = currentLesson === 0;
+
+    nextBtn.textContent =
+        currentLesson === lessons.length - 1
+        ? "Finish Lessons ✓"
+        : "Next →";
+
+    // Highlight the matching main section in the top navigation.
+    const sectionIndex = lessons[currentLesson].section.startsWith("2.1") ? 0 :
+        lessons[currentLesson].section.startsWith("2.2") ? 1 :
+        lessons[currentLesson].section.startsWith("2.3") ? 2 :
+        lessons[currentLesson].section.startsWith("2.4") ? 3 :
+        lessons[currentLesson].section.startsWith("2.5") ? 4 : 5;
+
+    document.querySelectorAll(".nav-btn").forEach((btn, index) => {
+        btn.classList.toggle("active", index === sectionIndex);
+    });
+
+    document.getElementById("lesson").scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+}
+
+function nextLesson() {
+    if (currentLesson < lessons.length - 1) {
+        showLesson(currentLesson + 1);
+    } else {
+        document.getElementById("quiz").scrollIntoView({
+            behavior: "smooth"
+        });
+    }
+}
+
+function previousLesson() {
+    if (currentLesson > 0) {
+        showLesson(currentLesson - 1);
+    }
+}
+
+// Top navigation jumps to the first lesson in a selected section.
+document.querySelectorAll(".nav-btn").forEach(button => {
+    button.addEventListener("click", () => {
+        const sectionIndex = Number(button.dataset.section);
+
+        const prefixes = [
+            "2.1", "2.2", "2.3", "2.4", "2.5", "2.6"
+        ];
+
+        const firstLesson = lessons.findIndex(lesson =>
+            lesson.section.startsWith(prefixes[sectionIndex])
+        );
+
+        if (firstLesson !== -1) {
+            showLesson(firstLesson);
+        }
+    });
+});
+
+function checkQuiz() {
+    const answers = {
+        q1: "a",
+        q2: "b",
+        q3: "c",
+        q4: "b",
+        q5: "b",
+        q6: "a",
+        q7: "b",
+        q8: "c",
+        q9: "a",
+        q10: "b"
+    };
+
+    let score = 0;
+    let unanswered = 0;
+
+    for (const question in answers) {
+        const selected = document.querySelector(
+            `input[name="${question}"]:checked`
+        );
+
+        if (!selected) {
+            unanswered++;
+        } else if (selected.value === answers[question]) {
+            score++;
+        }
+    }
+
+    const result = document.getElementById("result");
+
+    if (unanswered > 0) {
+        result.textContent =
+            `You have ${unanswered} unanswered question(s). Your current correct answers: ${score}.`;
+        return;
+    }
+
+    result.textContent =
+        `Your score: ${score}/10 — ${
+            score >= 8 ? "Excellent work!" :
+            score >= 5 ? "Good effort! Review and practice more." :
+            "Keep studying and try again!"
+        }`;
+}
+
+// Start with the first lesson only.
+showLesson(0);
+</script>
+
+</body>
+</html>

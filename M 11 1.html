@@ -1,0 +1,843 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grade 11 Mathematics - Unit 1</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+ --bg:#0b1120;--panel:#111c30;--panel2:#17243b;
+ --text:#e8eef9;--muted:#9aaac2;--blue:#60a5fa;
+ --cyan:#22d3ee;--border:#263750;--green:#34d399;
+ --yellow:#fbbf24;
+}
+body{font-family:Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.7}
+header{padding:28px 6%;background:linear-gradient(120deg,#142747,#102d4b,#123c51);border-bottom:1px solid var(--border)}
+header small{color:var(--cyan);letter-spacing:2px;font-weight:bold}
+header h1{font-size:clamp(25px,5vw,40px);margin:8px 0}
+header p{color:#c1d4ed}
+.layout{display:grid;grid-template-columns:280px 1fr;min-height:calc(100vh - 150px)}
+.sidebar{padding:25px 18px;border-right:1px solid var(--border);background:#0e192b}
+.sidebar h3{margin-bottom:15px;color:var(--cyan)}
+.sidebar button{
+ display:block;width:100%;text-align:left;padding:12px;margin:6px 0;
+ border:1px solid var(--border);border-radius:9px;background:var(--panel);
+ color:var(--text);cursor:pointer;font-size:14px;
+}
+.sidebar button:hover,.sidebar button.active{border-color:var(--blue);background:#1b3452}
+.progress{height:7px;background:#263750;border-radius:10px;margin:12px 0}
+.progress div{height:100%;width:0;background:var(--green);border-radius:10px;transition:.3s}
+main{padding:30px 5%;max-width:1050px;width:100%;margin:auto}
+.welcome{background:linear-gradient(120deg,#172d4c,#12394b);padding:25px;border-radius:15px;margin-bottom:25px;border:1px solid var(--border)}
+.welcome h2{font-size:25px;margin-bottom:8px}
+.welcome p{color:#c4d5e9}
+.section-title{color:var(--cyan);margin:28px 0 12px;font-size:20px}
+.topic{
+ border:1px solid var(--border);border-radius:12px;margin:12px 0;
+ overflow:hidden;background:var(--panel);
+}
+.topic-btn{
+ width:100%;display:flex;justify-content:space-between;align-items:center;
+ gap:12px;padding:17px;background:transparent;color:var(--text);
+ border:0;text-align:left;cursor:pointer;font-size:16px;font-weight:bold;
+}
+.topic-btn:hover{background:var(--panel2)}
+.topic-btn .number{color:var(--cyan);margin-right:8px}
+.arrow{color:var(--cyan);font-size:20px;transition:.2s}
+.topic.open .arrow{transform:rotate(180deg)}
+.topic-content{display:none;padding:22px;border-top:1px solid var(--border)}
+.topic.open .topic-content{display:block}
+.topic-content h3{color:var(--cyan);margin:20px 0 8px}
+.topic-content h3:first-child{margin-top:0}
+.topic-content p{margin:9px 0;color:#d2dced}
+.topic-content ul,.topic-content ol{margin:10px 0 10px 25px;color:#d2dced}
+.formula{
+ background:#09182b;border-left:4px solid var(--cyan);
+ padding:15px;margin:15px 0;border-radius:7px;
+ font-family:Arial,sans-serif;overflow-x:auto;
+}
+.example{background:#17283e;border:1px solid #29415d;padding:15px;border-radius:10px;margin:15px 0}
+.example strong{color:var(--yellow)}
+.note{background:#18352f;border-left:4px solid var(--green);padding:13px;margin:15px 0;border-radius:7px}
+.warning{background:#3b2c19;border-left:4px solid var(--yellow);padding:13px;margin:15px 0;border-radius:7px}
+.tag{display:inline-block;padding:4px 9px;border-radius:20px;background:#173b55;color:var(--cyan);font-size:12px;margin-bottom:10px}
+button{font-family:inherit}
+.action{
+ padding:10px 16px;border:0;border-radius:8px;background:#2563eb;
+ color:white;cursor:pointer;margin-top:10px;
+}
+.action:hover{background:#1d4ed8}
+.practice{background:var(--panel);padding:20px;border-radius:12px;margin-top:25px;border:1px solid var(--border)}
+.question{padding:15px 0;border-bottom:1px solid var(--border)}
+.question p{font-weight:bold;margin-bottom:10px}
+.question label{display:block;padding:7px;color:#cbd5e1;cursor:pointer}
+.result{margin-top:15px;color:var(--green);font-weight:bold}
+footer{text-align:center;color:var(--muted);padding:30px}
+@media(max-width:750px){
+ .layout{grid-template-columns:1fr}
+ .sidebar{border-right:0;border-bottom:1px solid var(--border)}
+ main{padding:22px 15px}
+ header{padding:24px 18px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+ <small>MATHEMATICS • ETHIOPIAN CURRICULUM</small>
+ <h1>Grade 11 Mathematics</h1>
+ <p>Unit 1 — Relations and Functions</p>
+</header>
+
+<div class="layout">
+
+<aside class="sidebar">
+ <h3>Unit Navigation</h3>
+ <p style="font-size:13px;color:var(--muted)">Your learning progress</p>
+ <div class="progress"><div id="progressBar"></div></div>
+ <p id="progressText" style="font-size:12px;color:var(--muted)">0 of 16 lessons completed</p>
+
+ <button onclick="goTo('intro')">🏠 Unit Introduction</button>
+ <button onclick="goTo('relations')">1.1 Relations</button>
+ <button onclick="goTo('inverse')">1.2 Inverses of Relations</button>
+ <button onclick="goTo('types')">1.3 Types of Functions</button>
+ <button onclick="goTo('composition')">1.4 Composition of Functions</button>
+ <button onclick="goTo('practice')">📝 Unit Review Quiz</button>
+</aside>
+
+<main>
+
+<div class="welcome" id="intro">
+ <span class="tag">UNIT 1</span>
+ <h2>Relations and Functions</h2>
+ <p>
+ In this unit, you will revise relations and functions, study inverse
+ relations, explore special types of functions, and learn how to
+ combine functions using composition.
+ </p>
+ <p style="margin-top:12px">Take your time and study each subtopic one at a time.</p>
+</div>
+
+<h2 class="section-title" id="relations">1.1 Relations</h2>
+
+<div class="topic" data-lesson>
+ <button class="topic-btn" onclick="toggle(this)">
+ <span><span class="number">1.1.1</span> Meaning of Relations</span><span class="arrow">⌄</span>
+ </button>
+ <div class="topic-content">
+ <h3>What is a relation?</h3>
+ <p>
+ A relation is a connection between elements of two sets.
+ In mathematics, a relation can be represented using ordered pairs.
+ </p>
+ <div class="formula">An ordered pair: (x, y)</div>
+ <p>Any set of ordered pairs is a relation.</p>
+
+ <div class="example">
+ <strong>Example:</strong>
+ <p>Let A = {1, 2, 3} and B = {4, 5, 6}.</p>
+ <p>R = {(1, 4), (2, 5), (3, 6)}</p>
+ <p>This is a relation from A to B.</p>
+ </div>
+
+ <h3>Important idea</h3>
+ <p>
+ In an ordered pair (x, y), x is the first component and y is
+ the second component.
+ </p>
+ <div class="note">Remember: A relation does not necessarily mean that each input has only one output.</div>
+ </div>
+</div>
+
+<div class="topic" data-lesson>
+ <button class="topic-btn" onclick="toggle(this)">
+ <span><span class="number">1.1.2</span> Domain and Range of Relations</span><span class="arrow">⌄</span>
+ </button>
+ <div class="topic-content">
+ <h3>Domain</h3>
+ <p>The domain is the set of all first components of the ordered pairs in a relation.</p>
+ <h3>Range</h3>
+ <p>The range is the set of all second components of the ordered pairs in a relation.</p>
+
+ <div class="formula">
+ For R = {(1, 3), (2, 4), (3, 5)}<br><br>
+ Domain(R) = {1, 2, 3}<br>
+ Range(R) = {3, 4, 5}
+ </div>
+
+ <div class="example">
+ <strong>Example:</strong>
+ <p>Find the domain and range of:</p>
+ <p>R = {(2, 5), (4, 7), (6, 9), (8, 7)}</p>
+ <p><b>Solution:</b></p>
+ <p>Domain = {2, 4, 6, 8}</p>
+ <p>Range = {5, 7, 9}</p>
+ </div>
+ <div class="note">Repeated values are written only once when listing a set.</div>
+ </div>
+</div>
+
+<div class="topic" data-lesson>
+ <button class="topic-btn" onclick="toggle(this)">
+ <span><span class="number">1.1.3</span> Representations of Relations</span><span class="arrow">⌄</span>
+ </button>
+ <div class="topic-content">
+ <p>A relation can be represented in different ways.</p>
+ <h3>1. Ordered pairs</h3>
+ <div class="formula">R = {(1, 2), (2, 4), (3, 6)}</div>
+
+ <h3>2. Mapping diagrams</h3>
+ <p>Elements of one set are connected to elements of another set using arrows.</p>
+ <div class="formula">
+ A: 1, 2, 3<br>
+ B: 2, 4, 6<br><br>
+ 1 → 2<br>
+ 2 → 4<br>
+ 3 → 6
+ </div>
+
+ <h3>3. Tables</h3>
+ <p>Values of x and y can be organized in a table.</p>
+ <div class="formula">
+ x: 1 &nbsp; 2 &nbsp; 3<br>
+ y: 2 &nbsp; 4 &nbsp; 6
+ </div>
+
+ <h3>4. Graphs</h3>
+ <p>Ordered pairs can be plotted on the Cartesian coordinate plane.</p>
+ <div class="example">
+ <strong>Example:</strong>
+ <p>For y = 2x, some ordered pairs are:</p>
+ <p>(1, 2), (2, 4), (3, 6).</p>
+ <p>Plotting these points gives a straight-line graph.</p>
+ </div>
+ </div>
+</div>
+
+<h2 class="section-title" id="inverse">1.2 Inverses of Relations and Their Graphs</h2>
+
+<div class="topic" data-lesson>
+ <button class="topic-btn" onclick="toggle(this)">
+ <span><span class="number">1.2.1</span> Inverse of a Relation</span><span class="arrow">⌄</span>
+ </button>
+ <div class="topic-content">
+ <h3>Meaning</h3>
+ <p>
+ The inverse of a relation is obtained by reversing the order of
+ the components in each ordered pair.
+ </p>
+ <div class="formula">
+ If R = {(a, b), (c, d)}<br>
+ Then R⁻¹ = {(b, a), (d, c)}
+ </div>
+ <div class="example">
+ <strong>Example:</strong>
+ <p>Find the inverse of:</p>
+ <p>R = {(1, 3), (2, 4), (5, 6)}</p>
+ <p><b>Solution:</b></p>
+ <p>R⁻¹ = {(3, 1), (4, 2), (6, 5)}</p>
+ </div>
+ <div class="note">To find the inverse, interchange x and y in every ordered pair.</div>
+ </div>
+</div>
+
+<div class="topic" data-lesson>
+ <button class="topic-btn" onclick="toggle(this)">
+ <span><span class="number">1.2.2</span> Domain and Range of Inverse Relations</span><span class="arrow">⌄</span>
+ </button>
+ <div class="topic-content">
+ <p>The domain and range of an inverse relation exchange their positions.</p>
+ <div class="formula">
+ Domain(R⁻¹) = Range(R)<br>
+ Range(R⁻¹) = Domain(R)
+ </div>
+ <div class="example">
+ <strong>Example:</strong>
+ <p>Given R = {(1, 4), (2, 5), (3, 6)}</p>
+ <p>Domain(R) = {1, 2, 3}</p>
+ <p>Range(R) = {4, 5, 6}</p>
+ <p>For the inverse:</p>
+ <p>Domain(R⁻¹) = {4, 5, 6}</p>
+ <p>Range(R⁻¹) = {1, 2, 3}</p>
+ </div>
+ </div>
+</div>
+
+<div class="topic" data-lesson>
+ <button class="topic-btn" onclick="toggle(this)">
+ <span><span class="number">1.2.3</span> Graphs of Inverse Relations</span><span class="arrow">⌄</span>
+ </button>
+ <div class="topic-content">
+ <h3>Relationship between the graphs</h3>
+ <p>
+ The graph of the inverse of a relation is the reflection of the
+ original graph across the line y = x.
+ </p>
+ <div class="formula">
+ Original point: (a, b)<br>
+ Inverse point: (b, a)
+ </div>
+ <div class="example">
+ <strong>Example:</strong>
+ <p>If a graph contains the point (2, 5), its inverse graph contains (5, 2).</p>
+ </div>
+ <div class="note">
+ The line y = x acts as the mirror line between a relation and its inverse.
+ </div>
+ </div>
+</div>
+
+<h2 class="section-title" id="types">1.3 Types of Functions</h2>
+
+<div class="topic" data-lesson>
+ <button class="topic-btn" onclick="toggle(this)">
+ <span><span class="number">1.3.1</span> Functions and the Vertical Line Test</span><span class="arrow">⌄</span>
+ </button>
+ <div class="topic-content">
+ <h3>What is a function?</h3>
+ <p>
+ A function is a relation in which every element of the domain is
+ related to exactly one element of the range.
+ </p>
+ <div class="formula">Each input has exactly one output.</div>
+
+ <div class="example">
+ <strong>Example 1:</strong>
+ <p>R = {(1, 2), (2, 4), (3, 6)}</p>
+ <p>This is a function because every first component has exactly one output.</p>
+ </div>
+
+ <div class="example">
+ <strong>Example 2:</strong>
+ <p>R = {(1, 2), (1, 3), (2, 4)}</p>
+ <p>This is not a function because input 1 has two different outputs.</p>
+ </div>
+
+ <h3>Function notation</h3>
+ <div class="formula">y = f(x)</div>
+ <p>Here, f represents the function and x represents the input.</p>
+
+ <div class="example">
+ <strong>Example:</strong>
+ <p>If f(x) = 2x + 3, find f(4).</p>
+ <p>f(4) = 2(4) + 3 = 11</p>
+ </div>
+
+ <h3>Vertical line test</h3>
+ <p>
+ A graph represents a function if every vertical line intersects
+ the graph at most once.
+ </p>
+ <div class="note">
+ If a vertical line crosses a graph at more than one point,
+ that graph does not represent a function.
+ </div>
+ </div>
+</div>
+
+<div class="topic" data-lesson>
+ <button class="topic-btn" onclick="toggle(this)">
+ <span><span class="number">1.3.2</span> Power Functions and Their Graphs</span><span class="arrow">⌄</span>
+ </button>
+ <div class="topic-content">
+ <h3>Power functions</h3>
+ <p>
+ A power function is a function that can be written in the form
+ below, where a is a constant exponent.
+ </p>
+ <div class="formula">f(x) = xᵃ</div>
+
+ <p>Examples of power functions include:</p>
+ <div class="formula">
+ f(x) = x²<br>
+ g(x) = x³<br>
+ h(x) = x⁴<br>
+ p(x) = x⁻¹
+ </div>
+
+ <h3>Basic properties of power functions</h3>
+ <p>The behavior of a power function depends on its exponent.</p>
+
+ <h3>Even positive powers</h3>
+ <div class="formula">f(x) = x²</div>
+ <ul>
+ <li>The graph is U-shaped.</li>
+ <li>It is symmetric about the y-axis.</li>
+ <li>Its domain is all real numbers.</li>
+ <li>Its range is [0, ∞).</li>
+ </ul>
+
+ <h3>Odd positive powers</h3>
+ <div class="formula">f(x) = x³</div>
+ <ul>
+ <li>The graph passes through the origin.</li>
+ <li>It is symmetric about the origin.</li>
+ <li>Its domain and range are all real numbers.</li>
+ </ul>
+
+ <h3>Finding domain and range</h3>
+ <div class="example">
+ <strong>Example 1:</strong>
+ <p>Find the domain and range of f(x) = x².</p>
+ <p>Domain = ℝ</p>
+ <p>Range = [0, ∞)</p>
+ </div>
+ <div class="example">
+ <strong>Example 2:</strong>
+ <p>Find the domain and range of f(x) = x³.</p>
+ <p>Domain = ℝ</p>
+ <p>Range = ℝ</p>
+ </div>
+ <div class="note">
+ Study the graphs and properties of different exponents carefully.
+ The textbook discusses the basic properties of power functions in several parts.
+ </div>
+ </div>
+</div>
+
+<div class="topic" data-lesson>
+ <button class="topic-btn" onclick="toggle(this)">
+ <span><span class="number">1.3.3</span> Modulus (Absolute Value) Function</span><span class="arrow">⌄</span>
+ </button>
+ <div class="topic-content">
+ <h3>Absolute value</h3>
+ <p>
+ The absolute value of a real number is its distance from zero
+ on the number line.
+ </p>
+ <div class="formula">
+ |x| = x, &nbsp; if x ≥ 0<br>
+ |x| = -x, &nbsp; if x &lt; 0
+ </div>
+
+ <div class="example">
+ <strong>Examples:</strong>
+ <p>|5| = 5</p>
+ <p>|-5| = 5</p>
+ <p>|0| = 0</p>
+ </div>
+
+ <h3>Properties of absolute value</h3>
+ <div class="formula">
+ |a| ≥ 0<br>
+ |-a| = |a|<br>
+ |ab| = |a||b|<br>
+ |a/b| = |a|/|b|, b ≠ 0
+ </div>
+
+ <h3>Modulus function</h3>
+ <div class="formula">f(x) = |x|</div>
+ <p>The graph is V-shaped and its vertex is at (0, 0).</p>
+ <ul>
+ <li>Domain = ℝ</li>
+ <li>Range = [0, ∞)</li>
+ <li>The graph is symmetric about the y-axis.</li>
+ </ul>
+
+ <div class="example">
+ <strong>Example:</strong>
+ <p>Find f(-7) if f(x) = |x|.</p>
+ <p>f(-7) = |-7| = 7</p>
+ </div>
+ </div>
+</div>
+
+<div class="topic" data-lesson>
+ <button class="topic-btn" onclick="toggle(this)">
+ <span><span class="number">1.3.4</span> Signum Function</span><span class="arrow">⌄</span>
+ </button>
+ <div class="topic-content">
+ <h3>Meaning</h3>
+ <p>
+ The signum function gives the sign of a real number.
+ It tells whether the number is negative, zero, or positive.
+ </p>
+ <div class="formula">
+ sgn(x) = -1, if x &lt; 0<br>
+ sgn(x) = 0, if x = 0<br>
+ sgn(x) = 1, if x &gt; 0
+ </div>
+
+ <h3>Examples</h3>
+ <div class="example">
+ <strong>Example 1:</strong>
+ <p>sgn(-8) = -1</p>
+ <strong>Example 2:</strong>
+ <p>sgn(0) = 0</p>
+ <strong>Example 3:</strong>
+ <p>sgn(12) = 1</p>
+ </div>
+
+ <h3>Domain and range</h3>
+ <div class="formula">
+ Domain = ℝ<br>
+ Range = {-1, 0, 1}
+ </div>
+
+ <h3>Graph</h3>
+ <p>
+ The graph has a horizontal part at y = -1 for negative x,
+ a point at (0, 0), and a horizontal part at y = 1 for
+ positive x.
+ </p>
+ </div>
+</div>
+
+<div class="topic" data-lesson>
+ <button class="topic-btn" onclick="toggle(this)">
+ <span><span class="number">1.3.5</span> Greatest Integer (Floor) Function</span><span class="arrow">⌄</span>
+ </button>
+ <div class="topic-content">
+ <h3>Meaning</h3>
+ <p>
+ The greatest integer function gives the greatest integer
+ less than or equal to a given real number.
+ </p>
+ <div class="formula">f(x) = ⌊x⌋</div>
+
+ <h3>Examples</h3>
+ <div class="example">
+ <strong>Example 1:</strong>
+ <p>⌊3.7⌋ = 3</p>
+ <strong>Example 2:</strong>
+ <p>⌊5⌋ = 5</p>
+ <strong>Example 3:</strong>
+ <p>⌊-2.3⌋ = -3</p>
+ </div>
+
+ <div class="warning">
+ Be careful with negative numbers. The greatest integer less than
+ or equal to -2.3 is -3, not -2.
+ </div>
+
+ <h3>Domain and range</h3>
+ <div class="formula">
+ Domain = ℝ<br>
+ Range = ℤ
+ </div>
+
+ <h3>Important interval relationship</h3>
+ <div class="formula">
+ ⌊x⌋ = m if and only if m ≤ x &lt; m + 1
+ </div>
+ <div class="example">
+ <strong>Example:</strong>
+ <p>Solve ⌊x⌋ = 4.</p>
+ <p>4 ≤ x &lt; 5</p>
+ <p>Therefore, x ∈ [4, 5).</p>
+ </div>
+ </div>
+</div>
+
+<h2 class="section-title" id="composition">1.4 Composition of Functions</h2>
+
+<div class="topic" data-lesson>
+ <button class="topic-btn" onclick="toggle(this)">
+ <span><span class="number">1.4.1</span> Meaning of Composition of Functions</span><span class="arrow">⌄</span>
+ </button>
+ <div class="topic-content">
+ <h3>What is composition?</h3>
+ <p>
+ Composition means applying one function to the result of another function.
+ </p>
+ <div class="formula">
+ (f ∘ g)(x) = f(g(x))
+ </div>
+ <p>
+ First apply g to x. Then use the result as the input of f.
+ </p>
+
+ <div class="example">
+ <strong>Example:</strong>
+ <p>Let f(x) = 2x + 1 and g(x) = x².</p>
+ <p>Find (f ∘ g)(x).</p>
+ <p><b>Solution:</b></p>
+ <p>f(g(x)) = f(x²)</p>
+ <p>= 2(x²) + 1</p>
+ <p>= 2x² + 1</p>
+ </div>
+
+ <div class="note">
+ The order matters. In general, f ∘ g is not equal to g ∘ f.
+ </div>
+ </div>
+</div>
+
+<div class="topic" data-lesson>
+ <button class="topic-btn" onclick="toggle(this)">
+ <span><span class="number">1.4.2</span> Finding the Composition of Two Functions</span><span class="arrow">⌄</span>
+ </button>
+ <div class="topic-content">
+ <h3>Composition in both orders</h3>
+ <div class="formula">
+ (f ∘ g)(x) = f(g(x))<br>
+ (g ∘ f)(x) = g(f(x))
+ </div>
+
+ <div class="example">
+ <strong>Example:</strong>
+ <p>Let f(x) = x + 3 and g(x) = 2x.</p>
+ <p>Find f ∘ g and g ∘ f.</p>
+ <p><b>First:</b></p>
+ <p>(f ∘ g)(x) = f(2x) = 2x + 3</p>
+ <p><b>Second:</b></p>
+ <p>(g ∘ f)(x) = g(x + 3) = 2(x + 3)</p>
+ <p>= 2x + 6</p>
+ </div>
+
+ <div class="note">
+ Notice that 2x + 3 is different from 2x + 6.
+ Therefore, composition is not generally commutative.
+ </div>
+ </div>
+</div>
+
+<div class="topic" data-lesson>
+ <button class="topic-btn" onclick="toggle(this)">
+ <span><span class="number">1.4.3</span> Domain of a Composition of Functions</span><span class="arrow">⌄</span>
+ </button>
+ <div class="topic-content">
+ <h3>Finding the domain</h3>
+ <p>
+ When finding the domain of a composition, make sure that:
+ </p>
+ <ul>
+ <li>The input belongs to the domain of the inside function.</li>
+ <li>The output of the inside function belongs to the domain of the outside function.</li>
+ </ul>
+
+ <div class="example">
+ <strong>Example:</strong>
+ <p>Let f(x) = √x and g(x) = x - 2.</p>
+ <p>Find (f ∘ g)(x) and its domain.</p>
+ <p><b>Solution:</b></p>
+ <p>f(g(x)) = √(x - 2)</p>
+ <p>For a real square root:</p>
+ <p>x - 2 ≥ 0</p>
+ <p>x ≥ 2</p>
+ <p>Domain = [2, ∞).</p>
+ </div>
+ </div>
+</div>
+
+<div class="topic" data-lesson>
+ <button class="topic-btn" onclick="toggle(this)">
+ <span><span class="number">1.4.4</span> Identity and Inverse Functions</span><span class="arrow">⌄</span>
+ </button>
+ <div class="topic-content">
+ <h3>Identity function</h3>
+ <p>
+ An identity function maps every element to itself.
+ </p>
+ <div class="formula">I(x) = x</div>
+
+ <h3>Inverse function</h3>
+ <p>
+ The inverse function reverses the operation of the original function.
+ It is denoted by f⁻¹(x).
+ </p>
+ <div class="formula">
+ f(f⁻¹(x)) = x<br>
+ f⁻¹(f(x)) = x
+ </div>
+
+ <div class="example">
+ <strong>Example:</strong>
+ <p>Find the inverse of f(x) = 2x + 4.</p>
+ <p><b>Step 1:</b> Write y = 2x + 4.</p>
+ <p><b>Step 2:</b> Interchange x and y.</p>
+ <p>x = 2y + 4</p>
+ <p><b>Step 3:</b> Solve for y.</p>
+ <p>x - 4 = 2y</p>
+ <p>y = (x - 4)/2</p>
+ <p><b>Answer:</b></p>
+ <p>f⁻¹(x) = (x - 4)/2</p>
+ </div>
+
+ <h3>Graph of inverse functions</h3>
+ <p>
+ The graph of an inverse function is the reflection of the original
+ function across the line y = x.
+ </p>
+ <div class="note">
+ A function must be one-to-one on its domain to have an inverse
+ that is also a function.
+ </div>
+ </div>
+</div>
+
+<div class="practice" id="practice">
+ <span class="tag">UNIT REVIEW</span>
+ <h2>Test Your Understanding</h2>
+ <p style="color:var(--muted)">Answer the questions and check your result.</p>
+
+ <form id="quiz">
+
+ <div class="question">
+ <p>1. What is a relation?</p>
+ <label><input type="radio" name="q1" value="a"> A set of ordered pairs</label>
+ <label><input type="radio" name="q1" value="b"> Only a straight line</label>
+ <label><input type="radio" name="q1" value="c"> A single number</label>
+ </div>
+
+ <div class="question">
+ <p>2. Find the domain of R = {(1, 4), (2, 5), (3, 6)}.</p>
+ <label><input type="radio" name="q2" value="a"> {4, 5, 6}</label>
+ <label><input type="radio" name="q2" value="b"> {1, 2, 3}</label>
+ <label><input type="radio" name="q2" value="c"> {1, 4, 6}</label>
+ </div>
+
+ <div class="question">
+ <p>3. What is the inverse of (2, 5)?</p>
+ <label><input type="radio" name="q3" value="a"> (2, 5)</label>
+ <label><input type="radio" name="q3" value="b"> (5, 2)</label>
+ <label><input type="radio" name="q3" value="c"> (-2, -5)</label>
+ </div>
+
+ <div class="question">
+ <p>4. Which condition makes a relation a function?</p>
+ <label><input type="radio" name="q4" value="a"> Every input has exactly one output</label>
+ <label><input type="radio" name="q4" value="b"> Every output has two inputs</label>
+ <label><input type="radio" name="q4" value="c"> Every input has two outputs</label>
+ </div>
+
+ <div class="question">
+ <p>5. What is |−9|?</p>
+ <label><input type="radio" name="q5" value="a"> -9</label>
+ <label><input type="radio" name="q5" value="b"> 0</label>
+ <label><input type="radio" name="q5" value="c"> 9</label>
+ </div>
+
+ <div class="question">
+ <p>6. What is sgn(7)?</p>
+ <label><input type="radio" name="q6" value="a"> -1</label>
+ <label><input type="radio" name="q6" value="b"> 0</label>
+ <label><input type="radio" name="q6" value="c"> 1</label>
+ </div>
+
+ <div class="question">
+ <p>7. What is ⌊4.8⌋?</p>
+ <label><input type="radio" name="q7" value="a"> 4</label>
+ <label><input type="radio" name="q7" value="b"> 5</label>
+ <label><input type="radio" name="q7" value="c"> 4.8</label>
+ </div>
+
+ <div class="question">
+ <p>8. If f(x) = x + 2 and g(x) = 3x, find (f ∘ g)(x).</p>
+ <label><input type="radio" name="q8" value="a"> 3x + 2</label>
+ <label><input type="radio" name="q8" value="b"> 3x + 6</label>
+ <label><input type="radio" name="q8" value="c"> x + 5</label>
+ </div>
+
+ <div class="question">
+ <p>9. What is the identity function?</p>
+ <label><input type="radio" name="q9" value="a"> I(x) = x²</label>
+ <label><input type="radio" name="q9" value="b"> I(x) = 2x</label>
+ <label><input type="radio" name="q9" value="c"> I(x) = x</label>
+ </div>
+
+ <div class="question">
+ <p>10. What is the inverse of f(x) = x + 5?</p>
+ <label><input type="radio" name="q10" value="a"> f⁻¹(x) = x - 5</label>
+ <label><input type="radio" name="q10" value="b"> f⁻¹(x) = x + 5</label>
+ <label><input type="radio" name="q10" value="c"> f⁻¹(x) = 5x</label>
+ </div>
+
+ <button type="button" class="action" onclick="checkQuiz()">Check Answers</button>
+ <button type="reset" class="action" style="background:#475569" onclick="resetQuiz()">Reset</button>
+ <div class="result" id="result"></div>
+ </form>
+</div>
+
+</main>
+</div>
+
+<footer>
+ Grade 11 Mathematics • Unit 1 • Relations and Functions
+</footer>
+
+<script>
+/* EXCLUSIVE ACCORDION:
+   Opening one lesson automatically closes every other lesson. */
+
+function toggle(button){
+ const current = button.parentElement;
+ const wasOpen = current.classList.contains("open");
+
+ document.querySelectorAll(".topic").forEach(topic=>{
+   topic.classList.remove("open");
+ });
+
+ if(!wasOpen){
+   current.classList.add("open");
+   current.scrollIntoView({behavior:"smooth",block:"nearest"});
+ }
+
+ updateProgress();
+}
+
+function goTo(id){
+ const element=document.getElementById(id);
+ if(!element)return;
+
+ if(element.classList.contains("topic")){
+   document.querySelectorAll(".topic").forEach(t=>t.classList.remove("open"));
+   element.classList.add("open");
+ }
+
+ element.scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+const completed=new Set();
+
+function updateProgress(){
+ const all=[...document.querySelectorAll(".topic")];
+ const opened=all.filter(t=>t.classList.contains("open")).length;
+ document.getElementById("progressBar").style.width=
+   (opened/all.length*100)+"%";
+ document.getElementById("progressText").textContent=
+   opened+" of "+all.length+" lessons currently open";
+}
+
+const answers={
+ q1:"a",q2:"b",q3:"b",q4:"a",q5:"c",
+ q6:"c",q7:"a",q8:"a",q9:"c",q10:"a"
+};
+
+function checkQuiz(){
+ let score=0;
+ let unanswered=0;
+
+ Object.keys(answers).forEach(q=>{
+   const selected=document.querySelector('input[name="'+q+'"]:checked');
+   if(!selected){
+     unanswered++;
+   }else if(selected.value===answers[q]){
+     score++;
+   }
+ });
+
+ const result=document.getElementById("result");
+
+ if(unanswered>0){
+   result.textContent="Please answer all questions. "+unanswered+" question(s) remaining.";
+   return;
+ }
+
+ result.textContent="Your score: "+score+"/10 — "+
+   (score>=8?"Excellent work!":score>=5?"Good effort! Keep practicing.":"Keep studying and try again!");
+}
+
+function resetQuiz(){
+ document.getElementById("result").textContent="";
+}
+
+updateProgress();
+</script>
+
+</body>
+</html>

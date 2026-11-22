@@ -1,0 +1,1074 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grade 12 Mathematics - Unit 2</title>
+<style>
+:root{
+ --bg:#0b1020;--panel:#141e33;--panel2:#1d2b45;
+ --text:#edf3ff;--muted:#a7b5cc;--accent:#64d8ff;
+ --green:#65e6ad;--border:#2b3b58;
+}
+*{box-sizing:border-box}
+body{
+ margin:0;background:var(--bg);color:var(--text);
+ font-family:Arial,sans-serif;line-height:1.75;
+}
+header{
+ padding:25px 6%;background:linear-gradient(120deg,#142744,#102033);
+ border-bottom:1px solid var(--border);
+}
+header h1{margin:0;font-size:27px}
+header p{margin:5px 0;color:var(--muted)}
+.container{max-width:1050px;margin:auto;padding:20px}
+.topnav{
+ display:flex;gap:9px;overflow-x:auto;padding:12px 0 18px;
+ position:sticky;top:0;background:var(--bg);z-index:5;
+}
+.topnav button{
+ flex-shrink:0;background:var(--panel);color:var(--text);
+ border:1px solid var(--border);padding:11px 15px;
+ border-radius:9px;cursor:pointer;
+}
+.topnav button.active{
+ background:var(--accent);color:#071522;
+ border-color:var(--accent);font-weight:bold;
+}
+.progress-wrap{
+ height:6px;background:var(--panel2);
+ border-radius:20px;overflow:hidden;margin-bottom:15px;
+}
+#progress{
+ height:100%;width:0;background:var(--green);
+ transition:width .3s;
+}
+.small{font-size:13px;color:var(--muted)}
+.lesson{
+ background:var(--panel);border:1px solid var(--border);
+ border-radius:16px;padding:25px;min-height:420px;
+}
+.lesson-number{color:var(--accent);font-size:13px;font-weight:bold}
+h2{font-size:25px;margin:8px 0 18px}
+h3{color:var(--accent);margin-top:25px}
+p{color:#d4def0}
+li{color:#d4def0;margin:6px 0}
+.formula{
+ background:#0b1629;border-left:4px solid var(--accent);
+ padding:15px;border-radius:8px;margin:17px 0;
+ font-size:18px;overflow-x:auto;
+}
+.example{
+ background:#102b2a;border:1px solid #24574b;
+ padding:16px;border-radius:10px;margin:18px 0;
+}
+.example strong{color:var(--green)}
+.note{
+ background:#29233d;border-left:4px solid #b99aff;
+ padding:14px;border-radius:8px;margin:18px 0;
+}
+.controls{
+ display:flex;justify-content:space-between;gap:12px;
+ margin:20px 0;
+}
+.controls button,.action{
+ padding:12px 20px;border:0;border-radius:9px;
+ cursor:pointer;font-weight:bold;
+}
+.primary{background:var(--accent);color:#071522}
+.secondary{background:var(--panel2);color:var(--text)}
+button:disabled{opacity:.35;cursor:not-allowed}
+.quiz,.practice{
+ background:var(--panel);border:1px solid var(--border);
+ padding:20px;border-radius:14px;margin-top:24px;
+}
+.quiz-option{
+ display:block;width:100%;text-align:left;
+ padding:12px;margin:9px 0;border-radius:8px;
+ background:var(--panel2);border:1px solid var(--border);
+ color:var(--text);cursor:pointer;
+}
+.quiz-option:hover{border-color:var(--accent)}
+input{
+ width:100%;max-width:250px;padding:11px;
+ border-radius:8px;border:1px solid var(--border);
+ background:#091426;color:white;font-size:16px;
+}
+.result{color:var(--green);font-weight:bold;margin-top:10px}
+@media(max-width:600px){
+ header h1{font-size:21px}
+ .container{padding:13px}
+ .lesson{padding:17px}
+ h2{font-size:21px}
+ .formula{font-size:16px}
+}
+</style>
+</head>
+<body>
+
+<header>
+ <h1>Grade 12 Mathematics</h1>
+ <p>Unit 2 — Introduction to Limits and Continuity</p>
+ <p class="small">Learn • Understand • Practice • Test yourself</p>
+</header>
+
+<div class="container">
+
+ <nav class="topnav" id="topnav"></nav>
+
+ <div class="progress-wrap">
+  <div id="progress"></div>
+ </div>
+
+ <p class="small" id="lessonCount"></p>
+
+ <main class="lesson" id="lesson"></main>
+
+ <div class="controls">
+  <button class="secondary" id="previous">← Previous</button>
+  <button class="primary" id="next">Next →</button>
+ </div>
+
+ <section class="quiz">
+  <h2>Unit 2 — Final Quiz</h2>
+  <p>Answer the questions to test your understanding.</p>
+  <div id="quizArea"></div>
+  <p id="feedback"></p>
+  <button class="action primary" onclick="restartQuiz()">Restart Quiz</button>
+ </section>
+
+</div>
+
+<script>
+const lessons = [
+
+/* ===================== 2.1 ===================== */
+
+{
+ section:0,
+ title:"Introduction to Limits of Sequences",
+ content:`
+ <h3>2.1 Limits of Sequences of Numbers</h3>
+ <p>A sequence is an ordered list of numbers. In this topic, we study what happens to the terms of a sequence as the term number increases without bound.</p>
+
+ <div class="formula">
+ a₁, a₂, a₃, a₄, ..., aₙ, ...
+ </div>
+
+ <p>The limit of a sequence describes the number that its terms approach as n becomes very large.</p>
+
+ <div class="example">
+ <strong>Example</strong>
+ <p>Consider the sequence:</p>
+ <div class="formula">1, 1/2, 1/3, 1/4, 1/5, ...</div>
+ <p>The terms become closer and closer to zero.</p>
+ <div class="formula">lim (1/n) = 0, as n → ∞</div>
+ </div>
+
+ <p>In this unit, you will learn how to determine whether a sequence has a limit and how to calculate that limit.</p>
+ `
+},
+
+{
+ section:0,
+ title:"Upper Bounds and Lower Bounds",
+ content:`
+ <h3>2.1.1 Upper Bounds and Lower Bounds</h3>
+
+ <p>An upper bound is a number that is greater than or equal to every term of a sequence.</p>
+ <p>A lower bound is a number that is less than or equal to every term of a sequence.</p>
+
+ <div class="formula">
+ Upper bound: aₙ ≤ M for all n<br>
+ Lower bound: aₙ ≥ m for all n
+ </div>
+
+ <p>A sequence is called bounded if it has both an upper bound and a lower bound.</p>
+
+ <div class="example">
+ <strong>Example 1</strong>
+ <p>Consider the sequence:</p>
+ <div class="formula">aₙ = 1/n</div>
+ <p>Its terms are:</p>
+ <p>1, 1/2, 1/3, 1/4, ...</p>
+ <p>Every term is greater than zero and less than or equal to one.</p>
+ <div class="formula">0 &lt; aₙ ≤ 1</div>
+ <p>Therefore, the sequence is bounded.</p>
+ </div>
+
+ <div class="example">
+ <strong>Example 2</strong>
+ <p>Consider aₙ = (−1)ⁿ.</p>
+ <p>The terms alternate between −1 and 1.</p>
+ <div class="formula">−1 ≤ aₙ ≤ 1</div>
+ <p>It is bounded above by 1 and below by −1.</p>
+ </div>
+
+ <div class="note">
+ A bounded sequence does not necessarily converge. For example, (−1)ⁿ is bounded but does not approach one unique number.
+ </div>
+ `
+},
+
+{
+ section:0,
+ title:"Limits of Sequences",
+ content:`
+ <h3>2.1.2 Limits of Sequences</h3>
+
+ <p>A sequence converges to L if its terms become closer and closer to L as n increases without bound.</p>
+
+ <div class="formula">
+ lim aₙ = L, as n → ∞
+ </div>
+
+ <h3>Example 1: A sequence approaching zero</h3>
+ <div class="formula">aₙ = 1/n</div>
+ <p>As n becomes larger, 1/n becomes smaller.</p>
+ <p>Therefore:</p>
+ <div class="formula">lim (1/n) = 0</div>
+
+ <h3>Example 2: A sequence approaching a constant</h3>
+ <div class="formula">aₙ = 3 + 2/n</div>
+ <p>As n approaches infinity, 2/n approaches zero.</p>
+ <div class="formula">
+ lim (3 + 2/n) = 3 + 0 = 3
+ </div>
+
+ <h3>Example 3: A sequence with a constant value</h3>
+ <div class="formula">aₙ = 7</div>
+ <p>Every term is 7. Therefore:</p>
+ <div class="formula">lim aₙ = 7</div>
+
+ <div class="note">
+ If the terms approach one real number, the sequence converges. If they do not approach one unique real number, the sequence diverges.
+ </div>
+ `
+},
+
+{
+ section:0,
+ title:"Convergence Properties of Sequences",
+ content:`
+ <h3>2.1.3 Convergence Properties of Sequences</h3>
+
+ <p>This section studies the relationship between boundedness, monotonicity and convergence.</p>
+
+ <h3>Monotonic sequences</h3>
+ <ul>
+ <li><b>Increasing:</b> Each term is greater than or equal to the previous term.</li>
+ <li><b>Decreasing:</b> Each term is less than or equal to the previous term.</li>
+ <li><b>Constant:</b> Every term has the same value.</li>
+ </ul>
+
+ <div class="formula">
+ Increasing: aₙ₊₁ ≥ aₙ<br>
+ Decreasing: aₙ₊₁ ≤ aₙ
+ </div>
+
+ <h3>Important convergence facts</h3>
+ <p>1. Every increasing sequence that is bounded above converges.</p>
+ <p>2. Every decreasing sequence that is bounded below converges.</p>
+ <p>3. A monotonic unbounded sequence diverges.</p>
+
+ <div class="example">
+ <strong>Example</strong>
+ <p>Consider:</p>
+ <div class="formula">aₙ = 1 − 1/n</div>
+ <p>The terms are 0, 1/2, 2/3, 3/4, ...</p>
+ <p>The sequence is increasing and bounded above by 1.</p>
+ <div class="formula">lim (1 − 1/n) = 1</div>
+ </div>
+
+ <h3>Properties of limits</h3>
+ <p>If lim aₙ = L and lim bₙ = M, then:</p>
+ <div class="formula">lim(aₙ + bₙ) = L + M</div>
+ <div class="formula">lim(aₙ − bₙ) = L − M</div>
+ <div class="formula">lim(aₙbₙ) = LM</div>
+ <div class="formula">lim(caₙ) = cL</div>
+ <div class="formula">lim(aₙ/bₙ) = L/M, M ≠ 0</div>
+ `
+},
+
+/* ===================== 2.2 ===================== */
+
+{
+ section:1,
+ title:"Introduction to Limits of Functions",
+ content:`
+ <h3>2.2 Limits of Functions</h3>
+
+ <p>A function limit describes the value that f(x) approaches as x gets closer to a particular number.</p>
+
+ <div class="formula">
+ lim f(x) = L<br>
+ x → a
+ </div>
+
+ <p>This means that as x approaches a, the values of f(x) approach L.</p>
+
+ <div class="example">
+ <strong>Example</strong>
+ <p>Let f(x) = 2x + 1. Find the limit as x approaches 3.</p>
+ <div class="formula">
+ lim (2x + 1) = 2(3) + 1 = 7
+ </div>
+ </div>
+
+ <h3>The function value and the limit</h3>
+ <p>The value f(a) and the limit as x approaches a are not always the same.</p>
+ <p>A function may even be undefined at x = a while its limit still exists.</p>
+
+ <div class="example">
+ <strong>Example</strong>
+ <div class="formula">f(x) = (x² − 1)/(x − 1)</div>
+ <p>Factor the numerator:</p>
+ <div class="formula">
+ f(x) = (x − 1)(x + 1)/(x − 1)
+ </div>
+ <p>For x ≠ 1, this simplifies to x + 1.</p>
+ <div class="formula">
+ lim f(x) = 2<br>
+ x → 1
+ </div>
+ <p>The original function is undefined at x = 1, but its limit exists.</p>
+ </div>
+ `
+},
+
+{
+ section:1,
+ title:"Limits at a Point and One-Sided Limits",
+ content:`
+ <h3>Limits from the Right and Left</h3>
+
+ <p>Sometimes we need to investigate what happens to a function when x approaches a point from only one direction.</p>
+
+ <h3>Right-hand limit</h3>
+ <p>The right-hand limit is the value approached when x approaches a from values greater than a.</p>
+ <div class="formula">
+ lim f(x) = L<br>
+ x → a⁺
+ </div>
+
+ <h3>Left-hand limit</h3>
+ <p>The left-hand limit is the value approached when x approaches a from values smaller than a.</p>
+ <div class="formula">
+ lim f(x) = L<br>
+ x → a⁻
+ </div>
+
+ <div class="example">
+ <strong>Example</strong>
+ <p>Consider the function:</p>
+ <div class="formula">
+ f(x) = { 1, if x &gt; 0<br>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;−1, if x &lt; 0
+ </div>
+ <p>Approaching zero from the right gives 1.</p>
+ <p>Approaching zero from the left gives −1.</p>
+ <div class="formula">
+ lim f(x) = 1<br>
+ x → 0⁺
+ </div>
+ <div class="formula">
+ lim f(x) = −1<br>
+ x → 0⁻
+ </div>
+ <p>Since these values are different, the two-sided limit does not exist.</p>
+ </div>
+
+ <h3>Two-sided limit</h3>
+ <div class="formula">
+ lim f(x) exists if<br>
+ lim f(x) = lim f(x)<br>
+ x→a⁺ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x→a⁻
+ </div>
+ `
+},
+
+{
+ section:1,
+ title:"Properties of Limits",
+ content:`
+ <h3>Properties of Limits</h3>
+
+ <p>Limit laws help us calculate limits without repeatedly using tables or graphs.</p>
+
+ <p>Suppose:</p>
+ <div class="formula">
+ lim f(x) = L<br>
+ lim g(x) = M<br>
+ x→a &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x→a
+ </div>
+
+ <h3>Sum rule</h3>
+ <div class="formula">lim [f(x)+g(x)] = L+M</div>
+
+ <h3>Difference rule</h3>
+ <div class="formula">lim [f(x)−g(x)] = L−M</div>
+
+ <h3>Constant multiple rule</h3>
+ <div class="formula">lim [cf(x)] = cL</div>
+
+ <h3>Product rule</h3>
+ <div class="formula">lim [f(x)g(x)] = LM</div>
+
+ <h3>Quotient rule</h3>
+ <div class="formula">lim [f(x)/g(x)] = L/M, M ≠ 0</div>
+
+ <div class="example">
+ <strong>Example</strong>
+ <p>Evaluate:</p>
+ <div class="formula">lim (x² + 3x + 2), x → 2</div>
+ <p>Substitute x = 2:</p>
+ <div class="formula">
+ = 2² + 3(2) + 2<br>
+ = 4 + 6 + 2<br>
+ = 12
+ </div>
+ </div>
+ `
+},
+
+{
+ section:1,
+ title:"Techniques for Evaluating Limits",
+ content:`
+ <h3>Techniques for Evaluating Limits</h3>
+
+ <p>Some limits can be evaluated by direct substitution. Others require algebraic simplification.</p>
+
+ <h3>1. Direct substitution</h3>
+ <div class="example">
+ <strong>Example</strong>
+ <div class="formula">lim (x² + 2x + 3), x → 2</div>
+ <p>= 2² + 2(2) + 3 = 11.</p>
+ </div>
+
+ <h3>2. Factorization and cancellation</h3>
+ <div class="example">
+ <strong>Example</strong>
+ <div class="formula">
+ lim (x² − 4)/(x − 2), x → 2
+ </div>
+ <p>Factorize:</p>
+ <div class="formula">
+ = lim [(x−2)(x+2)]/(x−2)
+ </div>
+ <p>Cancel the common factor for x ≠ 2:</p>
+ <div class="formula">= lim (x+2) = 4</div>
+ </div>
+
+ <h3>3. Rationalization</h3>
+ <p>When an expression contains square roots, multiplying by the conjugate may help simplify it.</p>
+ <div class="example">
+ <strong>Example</strong>
+ <div class="formula">
+ lim (√(x+1) − 1)/x, x → 0
+ </div>
+ <p>Multiply the numerator and denominator by the conjugate:</p>
+ <div class="formula">
+ = lim [(x+1)−1]/[x(√(x+1)+1)]
+ </div>
+ <div class="formula">
+ = lim 1/[√(x+1)+1] = 1/2
+ </div>
+ </div>
+
+ <div class="note">
+ If direct substitution produces 0/0, it is an indeterminate form. Simplify the expression before evaluating the limit.
+ </div>
+ `
+},
+
+{
+ section:1,
+ title:"Limits at Infinity",
+ content:`
+ <h3>Limits at Infinity</h3>
+
+ <p>A limit at infinity describes the behavior of a function as x increases or decreases without bound.</p>
+
+ <div class="formula">
+ lim f(x) = L<br>
+ x → ∞
+ </div>
+
+ <p>It can also describe what happens as x approaches negative infinity.</p>
+
+ <div class="example">
+ <strong>Example 1</strong>
+ <div class="formula">
+ lim (3x² − 5x + 4)/(2x² + 4), x → ∞
+ </div>
+ <p>Divide every term by x²:</p>
+ <div class="formula">
+ = lim (3 − 5/x + 4/x²)/(2 + 4/x²)
+ </div>
+ <p>As x approaches infinity, 1/x and 1/x² approach zero.</p>
+ <div class="formula">= 3/2</div>
+ </div>
+
+ <h3>Horizontal asymptotes</h3>
+ <p>If a function approaches a finite value L as x approaches infinity, the line y = L is a horizontal asymptote in that direction.</p>
+
+ <h3>Infinite limits</h3>
+ <p>Some functions increase or decrease without bound as x approaches a particular value.</p>
+ <div class="formula">
+ lim 1/(x−2)² = +∞<br>
+ x→2
+ </div>
+ <p>This indicates that the function grows without bound near x = 2.</p>
+ <div class="note">
+ A limit of +∞ or −∞ describes unbounded behavior. It is not a finite real-number limit.
+ </div>
+ `
+},
+
+/* ===================== 2.3 ===================== */
+
+{
+ section:2,
+ title:"Introduction to Continuity",
+ content:`
+ <h3>2.3 Continuity of a Function</h3>
+
+ <p>Continuity describes whether a function has an interruption at a particular point or over an interval.</p>
+
+ <p>Informally, a function is continuous when its graph has no break, hole or jump at the point being considered.</p>
+
+ <div class="example">
+ <strong>Examples of continuous functions</strong>
+ <ul>
+ <li>f(x) = x²</li>
+ <li>f(x) = 3x + 2</li>
+ <li>f(x) = sin x</li>
+ </ul>
+ </div>
+
+ <p>To determine continuity mathematically, we compare the function value with its limit.</p>
+
+ <div class="formula">
+ lim f(x) = f(a)<br>
+ x → a
+ </div>
+ `
+},
+
+{
+ section:2,
+ title:"Continuity at a Point",
+ content:`
+ <h3>2.3.1 Continuity of a Function at a Point</h3>
+
+ <p>A function f is continuous at x = a when all three conditions below are satisfied.</p>
+
+ <h3>Three conditions</h3>
+ <ol>
+ <li>f(a) is defined.</li>
+ <li>The limit lim f(x) as x approaches a exists.</li>
+ <li>The limit equals the function value.</li>
+ </ol>
+
+ <div class="formula">
+ lim f(x) = f(a)<br>
+ x → a
+ </div>
+
+ <div class="example">
+ <strong>Example 1</strong>
+ <p>Determine whether f(x) = x² is continuous at x = 2.</p>
+ <p>First, find the function value:</p>
+ <div class="formula">f(2) = 2² = 4</div>
+ <p>Next, find the limit:</p>
+ <div class="formula">lim x² = 4</div>
+ <p>The limit equals the function value. Therefore, f is continuous at x = 2.</p>
+ </div>
+
+ <h3>Discontinuity</h3>
+ <p>If any one of the three conditions is not satisfied, the function is discontinuous at that point.</p>
+
+ <div class="note">
+ A function can be defined at a point but still be discontinuous there if its limit does not exist or differs from its function value.
+ </div>
+ `
+},
+
+{
+ section:2,
+ title:"Continuity on an Interval",
+ content:`
+ <h3>2.3.2 Continuity of a Function on an Interval</h3>
+
+ <p>A function is continuous on an interval if it is continuous at every point in that interval, with suitable one-sided continuity at endpoints.</p>
+
+ <h3>Open interval</h3>
+ <p>A function is continuous on (a,b) if it is continuous at every point c inside the interval.</p>
+
+ <div class="formula">
+ lim f(x) = f(c), for every c ∈ (a,b)<br>
+ x → c
+ </div>
+
+ <h3>Closed interval</h3>
+ <p>A function is continuous on [a,b] if:</p>
+ <ul>
+ <li>It is continuous at every point inside (a,b).</li>
+ <li>It is continuous from the right at a.</li>
+ <li>It is continuous from the left at b.</li>
+ </ul>
+
+ <div class="formula">
+ lim f(x) = f(a) from the right<br>
+ x → a⁺
+ </div>
+ <div class="formula">
+ lim f(x) = f(b) from the left<br>
+ x → b⁻
+ </div>
+
+ <div class="note">
+ The endpoint conditions matter because a closed interval has endpoints that belong to the interval.
+ </div>
+ `
+},
+
+{
+ section:2,
+ title:"Properties of Continuous Functions",
+ content:`
+ <h3>Properties of Continuous Functions</h3>
+
+ <p>If f and g are continuous at x = a, then their combinations are also continuous at x = a, provided the quotient is defined.</p>
+
+ <div class="formula">
+ f + g<br>
+ f − g<br>
+ cf, where c is a constant<br>
+ fg<br>
+ f/g, if g(a) ≠ 0
+ </div>
+
+ <div class="example">
+ <strong>Example</strong>
+ <p>Let f(x) = x² and g(x) = x + 1.</p>
+ <p>Both are polynomial functions and are continuous everywhere.</p>
+ <p>Therefore, their sum is also continuous everywhere:</p>
+ <div class="formula">
+ (f+g)(x) = x² + x + 1
+ </div>
+ </div>
+
+ <h3>Composition of continuous functions</h3>
+ <p>If f is continuous at a and g is continuous at f(a), then the composition g∘f is continuous at a.</p>
+
+ <div class="formula">
+ (g∘f)(x) = g(f(x))
+ </div>
+
+ <div class="example">
+ <strong>Example</strong>
+ <p>Let f(x) = x² and g(x) = 3x + 1.</p>
+ <div class="formula">
+ (g∘f)(x) = g(x²) = 3x² + 1
+ </div>
+ <p>This composition is continuous because both functions are continuous.</p>
+ </div>
+ `
+},
+
+{
+ section:2,
+ title:"Intermediate Value Theorem",
+ content:`
+ <h3>Intermediate Value Theorem</h3>
+
+ <p>The Intermediate Value Theorem states that if a function is continuous on a closed interval [a,b], then it takes every value between f(a) and f(b) at least once.</p>
+
+ <div class="formula">
+ If f is continuous on [a,b], and<br>
+ f(a) ≤ k ≤ f(b),<br>
+ then there exists c ∈ [a,b] such that<br>
+ f(c) = k.
+ </div>
+
+ <div class="example">
+ <strong>Example</strong>
+ <p>Show that f(x) = x³ + x + 1 has a zero between −1 and 0.</p>
+ <p>Calculate the endpoints:</p>
+ <div class="formula">
+ f(−1) = −1 − 1 + 1 = −1
+ </div>
+ <div class="formula">
+ f(0) = 0 + 0 + 1 = 1
+ </div>
+ <p>Since f is continuous and 0 lies between −1 and 1, there is at least one value c between −1 and 0 such that f(c)=0.</p>
+ </div>
+
+ <div class="note">
+ The theorem guarantees that a value exists. It does not necessarily tell us the exact value of c.
+ </div>
+ `
+},
+
+{
+ section:2,
+ title:"Maximum and Minimum Values",
+ content:`
+ <h3>Extreme Value Theorem</h3>
+
+ <p>A continuous function on a closed interval [a,b] has both an absolute maximum value and an absolute minimum value on that interval.</p>
+
+ <div class="formula">
+ f(x₂) ≤ f(x) ≤ f(x₁)
+ </div>
+
+ <p>Here, f(x₁) is the maximum value and f(x₂) is the minimum value.</p>
+
+ <div class="example">
+ <strong>Example</strong>
+ <p>Find the maximum and minimum values of:</p>
+ <div class="formula">f(x) = 3x − 1 on [−2,3]</div>
+ <p>At x = −2:</p>
+ <div class="formula">f(−2) = −6 − 1 = −7</div>
+ <p>At x = 3:</p>
+ <div class="formula">f(3) = 9 − 1 = 8</div>
+ <p>Since this is an increasing linear function:</p>
+ <p><b>Minimum = −7</b></p>
+ <p><b>Maximum = 8</b></p>
+ </div>
+
+ <div class="note">
+ The Extreme Value Theorem requires both continuity and a closed, bounded interval.
+ </div>
+ `
+},
+
+/* ===================== 2.4 ===================== */
+
+{
+ section:3,
+ title:"Applications of Limits",
+ content:`
+ <h3>2.4 Exercises on Applications of Limits</h3>
+
+ <p>This section of the textbook applies limits to particular mathematical expressions and problems.</p>
+
+ <h3>Important trigonometric limit</h3>
+ <p>One important result in this section is:</p>
+
+ <div class="formula">
+ lim (sin x)/x = 1<br>
+ x → 0
+ </div>
+
+ <p>This formula is valid when x is measured in radians.</p>
+
+ <div class="example">
+ <strong>Example 1</strong>
+ <p>Evaluate:</p>
+ <div class="formula">
+ lim sin(3x)/x, x → 0
+ </div>
+ <p>Rewrite the expression:</p>
+ <div class="formula">
+ = 3 × lim sin(3x)/(3x)
+ </div>
+ <p>Using the standard limit:</p>
+ <div class="formula">= 3 × 1 = 3</div>
+ </div>
+
+ <h3>Another important limit</h3>
+ <div class="formula">
+ lim (1 + 1/x)ˣ = e<br>
+ x → ∞
+ </div>
+
+ <p>The number e is an important mathematical constant, approximately 2.71828.</p>
+
+ <div class="example">
+ <strong>Example 2</strong>
+ <p>Evaluate:</p>
+ <div class="formula">
+ lim (1 + 1/x)ˣ, x → ∞
+ </div>
+ <p>Using the standard limit, the answer is:</p>
+ <div class="formula">e ≈ 2.71828</div>
+ </div>
+ `
+},
+
+{
+ section:3,
+ title:"Practice with Trigonometric Limits",
+ content:`
+ <h3>Trigonometric Limits</h3>
+
+ <p>The standard limit can be used to solve several related problems.</p>
+
+ <div class="formula">
+ lim sin x/x = 1<br>
+ x → 0
+ </div>
+
+ <h3>Useful consequences</h3>
+ <div class="formula">
+ lim sin(ax)/x = a<br>
+ x → 0
+ </div>
+
+ <div class="formula">
+ lim tan x/x = 1<br>
+ x → 0
+ </div>
+
+ <div class="example">
+ <strong>Example 1</strong>
+ <p>Evaluate:</p>
+ <div class="formula">
+ lim sin(5x)/x, x → 0
+ </div>
+ <div class="formula">
+ = 5 × lim sin(5x)/(5x) = 5
+ </div>
+ </div>
+
+ <div class="example">
+ <strong>Example 2</strong>
+ <p>Evaluate:</p>
+ <div class="formula">
+ lim x/sin x, x → 0
+ </div>
+ <p>Since sin x/x approaches 1:</p>
+ <div class="formula">= 1/1 = 1</div>
+ </div>
+
+ <div class="note">
+ Remember: These standard trigonometric limits use radians, not degrees.
+ </div>
+ `
+},
+
+{
+ section:3,
+ title:"Review and Mixed Applications",
+ content:`
+ <h3>Review and Mixed Applications</h3>
+
+ <p>Use the methods from the previous sections to solve different limit problems.</p>
+
+ <h3>Example 1: Polynomial limit</h3>
+ <div class="formula">
+ lim (2x³ − 4x + 1), x → 2
+ </div>
+ <p>Direct substitution:</p>
+ <div class="formula">
+ = 2(2³) − 4(2) + 1<br>
+ = 16 − 8 + 1 = 9
+ </div>
+
+ <h3>Example 2: Rational expression</h3>
+ <div class="formula">
+ lim (x² − 9)/(x − 3), x → 3
+ </div>
+ <p>Factorize and simplify:</p>
+ <div class="formula">
+ = lim [(x−3)(x+3)]/(x−3)<br>
+ = lim (x+3) = 6
+ </div>
+
+ <h3>Example 3: Continuity</h3>
+ <p>To check continuity at x = a, verify:</p>
+ <ol>
+ <li>f(a) is defined.</li>
+ <li>The limit exists.</li>
+ <li>The limit equals f(a).</li>
+ </ol>
+
+ <div class="note">
+ When solving a limit question, first identify whether it is a sequence limit, a function limit, a one-sided limit, or a continuity problem.
+ </div>
+ `
+}
+
+];
+
+/* Navigation */
+
+const sections=[
+ "2.1 Limits of Sequences",
+ "2.2 Limits of Functions",
+ "2.3 Continuity",
+ "2.4 Applications"
+];
+
+let current=0;
+
+const lessonEl=document.getElementById("lesson");
+const navEl=document.getElementById("topnav");
+
+function renderNav(){
+ navEl.innerHTML="";
+ sections.forEach((name,index)=>{
+  const button=document.createElement("button");
+  button.textContent=name;
+  button.className=lessons[current].section===index?"active":"";
+  button.onclick=()=>{
+   const first=lessons.findIndex(item=>item.section===index);
+   showLesson(first);
+  };
+  navEl.appendChild(button);
+ });
+}
+
+function showLesson(index){
+ current=Math.max(0,Math.min(index,lessons.length-1));
+ const item=lessons[current];
+
+ lessonEl.innerHTML=`
+  <div class="lesson-number">
+   SUBTOPIC ${current+1} OF ${lessons.length}
+  </div>
+  <h2>${item.title}</h2>
+  ${item.content}
+ `;
+
+ document.getElementById("lessonCount").textContent=
+  `Lesson ${current+1} / ${lessons.length}`;
+
+ document.getElementById("progress").style.width=
+  `${((current+1)/lessons.length)*100}%`;
+
+ document.getElementById("previous").disabled=current===0;
+ document.getElementById("next").disabled=current===lessons.length-1;
+
+ renderNav();
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+
+document.getElementById("previous").onclick=()=>showLesson(current-1);
+document.getElementById("next").onclick=()=>showLesson(current+1);
+
+/* Final quiz */
+
+const questions=[
+ {
+  q:"What is an upper bound of a sequence?",
+  o:["A number greater than or equal to every term","A number smaller than every term","The first term","The last term"],
+  a:0
+ },
+ {
+  q:"Find the limit of 1/n as n approaches infinity.",
+  o:["1","0","Infinity","−1"],
+  a:1
+ },
+ {
+  q:"Which sequence is increasing?",
+  o:["5, 4, 3, 2","1, 2, 3, 4","−1, −2, −3","4, 4, 4, 4"],
+  a:1
+ },
+ {
+  q:"When does a two-sided limit exist?",
+  o:["When the right limit is zero","When both one-sided limits are equal","When f(a) is zero","When the function is constant"],
+  a:1
+ },
+ {
+  q:"Evaluate lim (x+3) as x approaches 2.",
+  o:["3","4","5","6"],
+  a:2
+ },
+ {
+  q:"What is the result of 0/0 when substituting directly?",
+  o:["Always zero","Always one","An indeterminate form","Infinity"],
+  a:2
+ },
+ {
+  q:"What are the three conditions for continuity at a point?",
+  o:["Function defined, limit exists, limit equals function value","Function is increasing","Function has a maximum","Function is positive"],
+  a:0
+ },
+ {
+  q:"What does the Intermediate Value Theorem guarantee?",
+  o:["Every function has a maximum","A continuous function takes intermediate values","Every limit equals zero","Every function is increasing"],
+  a:1
+ },
+ {
+  q:"What is lim sin(x)/x as x approaches zero in radians?",
+  o:["0","−1","1","Infinity"],
+  a:2
+ },
+ {
+  q:"What is the approximate value of e?",
+  o:["2.71828","3.14159","1.41421","1.61803"],
+  a:0
+ }
+];
+
+let qIndex=0,score=0,answered=false;
+
+function showQuestion(){
+ const area=document.getElementById("quizArea");
+
+ if(qIndex>=questions.length){
+  area.innerHTML=`
+   <h3>Quiz completed!</h3>
+   <p>Your score: ${score}/${questions.length}</p>
+  `;
+  document.getElementById("feedback").textContent=
+   score>=7?"Excellent work!":"Keep practicing and try again.";
+  return;
+ }
+
+ answered=false;
+ const q=questions[qIndex];
+
+ area.innerHTML=`
+  <p><b>Question ${qIndex+1} of ${questions.length}</b></p>
+  <h3>${q.q}</h3>
+  ${q.o.map((option,i)=>`
+   <button class="quiz-option" onclick="answer(${i})">${option}</button>
+  `).join("")}
+ `;
+
+ document.getElementById("feedback").textContent="";
+}
+
+function answer(choice){
+ if(answered)return;
+ answered=true;
+
+ const correct=questions[qIndex].a;
+
+ if(choice===correct){
+  score++;
+  document.getElementById("feedback").textContent="Correct! Well done.";
+ }else{
+  document.getElementById("feedback").textContent=
+   "Incorrect. Correct answer: "+questions[qIndex].o[correct];
+ }
+
+ const button=document.createElement("button");
+ button.className="action primary";
+ button.textContent=qIndex===questions.length-1?"Finish Quiz":"Next Question";
+ button.onclick=()=>{
+  qIndex++;
+  showQuestion();
+ };
+
+ document.getElementById("quizArea").appendChild(button);
+}
+
+function restartQuiz(){
+ qIndex=0;
+ score=0;
+ showQuestion();
+}
+
+showLesson(0);
+showQuestion();
+
+</script>
+</body>
+</html>

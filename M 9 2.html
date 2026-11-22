@@ -1,0 +1,1137 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grade 9 Mathematics - Unit 2</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#f4f6fb;--card:#fff;--text:#172033;--muted:#68738a;
+  --primary:#635bdb;--primary2:#8178f2;--border:#e5e8f1;
+  --green:#16865b;--red:#d94c59;--soft:#eeedff;
+}
+body{font-family:Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.7}
+header{
+ background:linear-gradient(120deg,#242052,#635bdb);
+ color:white;padding:35px 7%;position:relative;overflow:hidden
+}
+header:after{
+ content:"ℝ";position:absolute;right:8%;top:-35px;font-size:190px;
+ color:#ffffff12;font-weight:bold
+}
+header h1{font-size:30px;position:relative;z-index:1}
+header p{color:#dedcff;margin-top:8px;position:relative;z-index:1}
+.layout{display:grid;grid-template-columns:260px 1fr;max-width:1400px;margin:auto}
+aside{padding:25px 15px;position:sticky;top:0;height:100vh;overflow:auto}
+aside h3{margin:8px 12px 15px;color:var(--muted);font-size:13px;text-transform:uppercase}
+nav a{
+ display:block;padding:11px 13px;margin:4px 0;border-radius:9px;
+ text-decoration:none;color:var(--text);font-size:14px
+}
+nav a:hover,nav a.active{background:var(--soft);color:var(--primary);font-weight:bold}
+main{padding:30px;min-width:0}
+.progress-box{background:white;padding:15px;border-radius:13px;margin-bottom:22px}
+.progress-line{height:8px;background:#e9e9f3;border-radius:20px;margin-top:9px;overflow:hidden}
+.progress-fill{height:100%;background:var(--primary);width:0;transition:.3s}
+section{scroll-margin-top:20px;margin-bottom:28px}
+.card{
+ background:var(--card);padding:25px;border:1px solid var(--border);
+ border-radius:15px;margin-bottom:18px;box-shadow:0 4px 15px #20204006
+}
+h2{font-size:23px;margin-bottom:12px}
+h3{font-size:18px;margin:20px 0 10px}
+p{margin:9px 0}
+ul,ol{padding-left:24px;margin:10px 0}
+li{margin:6px 0}
+.muted{color:var(--muted)}
+.tag{display:inline-block;background:var(--soft);color:var(--primary);padding:4px 10px;border-radius:20px;font-size:12px;font-weight:bold}
+.formula{
+ background:#f0efff;border-left:4px solid var(--primary);
+ padding:15px;border-radius:8px;margin:13px 0;
+ font-size:17px;font-weight:bold;overflow-x:auto
+}
+.example{background:#f6f8fc;padding:15px;border-radius:10px;margin:12px 0}
+.example strong{color:var(--primary)}
+.tip{background:#e9f8f1;border-left:4px solid var(--green);padding:13px;border-radius:8px;margin:13px 0}
+.warning{background:#fff4e8;border-left:4px solid #e6a23c;padding:13px;border-radius:8px;margin:13px 0}
+button{
+ border:0;background:var(--primary);color:white;padding:11px 17px;
+ border-radius:8px;cursor:pointer;font-weight:bold;margin:5px 3px
+}
+button:hover{background:#4941bd}
+button.secondary{background:#e9e8ff;color:var(--primary)}
+input,select{
+ width:100%;padding:12px;border:1px solid var(--border);
+ border-radius:8px;margin:7px 0;font-size:15px;background:white;color:var(--text)
+}
+.result{padding:12px;border-radius:8px;margin-top:10px;background:#f0efff;min-height:40px}
+.correct{color:var(--green);font-weight:bold}
+.incorrect{color:var(--red);font-weight:bold}
+.question{padding:15px 0;border-bottom:1px solid var(--border)}
+.question label{display:block;padding:5px;cursor:pointer}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+table{width:100%;border-collapse:collapse;margin:12px 0}
+td,th{border:1px solid var(--border);padding:10px;text-align:left}
+th{background:#f0efff}
+.numberline{
+ display:flex;align-items:center;justify-content:space-around;
+ border-bottom:2px solid #555;margin:35px 15px 25px;position:relative;height:35px
+}
+.numberline span{position:relative}
+.numberline span:after{
+ content:"";position:absolute;width:2px;height:12px;background:#555;top:17px;left:50%
+}
+footer{text-align:center;padding:25px;color:var(--muted)}
+@media(max-width:800px){
+ .layout{display:block}
+ aside{position:relative;height:auto;padding:12px}
+ nav{display:flex;overflow-x:auto;gap:5px}
+ nav a{white-space:nowrap}
+ main{padding:15px}
+ header{padding:28px 20px}
+ .grid2{grid-template-columns:1fr}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+ <span class="tag">ETHIOPIAN CURRICULUM</span>
+ <h1>Grade 9 Mathematics</h1>
+ <p>Unit 2 — The Number System</p>
+ <p>Understand numbers, explore their properties, and solve mathematical problems.</p>
+</header>
+
+<div class="layout">
+
+<aside>
+ <h3>Unit navigation</h3>
+ <nav>
+  <a href="#intro">Introduction</a>
+  <a href="#natural">2.1 Natural Numbers & Integers</a>
+  <a href="#division">Euclid's Division Lemma</a>
+  <a href="#prime">Prime & Composite Numbers</a>
+  <a href="#divisibility">Divisibility Tests</a>
+  <a href="#gcf">GCF & LCM</a>
+  <a href="#rational">2.2 Rational Numbers</a>
+  <a href="#decimals">Decimal Representation</a>
+  <a href="#repeating">Repeating Decimals</a>
+  <a href="#irrational">2.3 Irrational Numbers</a>
+  <a href="#irrational-operations">Operations on Irrationals</a>
+  <a href="#real">2.4 Real Numbers</a>
+  <a href="#intervals">Intervals</a>
+  <a href="#absolute">Absolute Values</a>
+  <a href="#exponents">Exponents & Radicals</a>
+  <a href="#applications">2.5 Applications</a>
+  <a href="#calculator">Practice Calculator</a>
+  <a href="#quiz">Revision Quiz</a>
+ </nav>
+</aside>
+
+<main>
+
+<div class="progress-box">
+ <strong>Your learning progress</strong>
+ <div class="progress-line"><div class="progress-fill" id="progress"></div></div>
+ <small class="muted" id="progressText">0% completed</small>
+</div>
+
+<section id="intro">
+<div class="card">
+ <span class="tag">START HERE</span>
+ <h2>Welcome to Unit 2! 📚</h2>
+ <p>In this unit, we study different types of numbers and how they are related. We begin with natural numbers and integers, then move to rational, irrational, and real numbers.</p>
+
+ <h3>Unit outcomes</h3>
+ <ul>
+  <li>Describe rational numbers.</li>
+  <li>Locate rational numbers on a number line.</li>
+  <li>Describe irrational numbers.</li>
+  <li>Locate some irrational numbers on a number line.</li>
+  <li>Define real numbers.</li>
+  <li>Classify real numbers as rational and irrational.</li>
+  <li>Solve mathematical problems involving real numbers.</li>
+ </ul>
+
+ <h3>Unit contents</h3>
+ <ol>
+  <li>Revision on Natural Numbers and Integers</li>
+  <li>Rational Numbers</li>
+  <li>Irrational Numbers</li>
+  <li>Real Numbers</li>
+  <li>Applications</li>
+ </ol>
+</div>
+</section>
+
+<section id="natural">
+<div class="card">
+ <span class="tag">LESSON 2.1</span>
+ <h2>Revision on Natural Numbers and Integers</h2>
+
+ <h3>1. Natural Numbers (ℕ)</h3>
+ <p>Natural numbers are the counting numbers used to count objects.</p>
+ <div class="formula">ℕ = {1, 2, 3, 4, 5, ...}</div>
+ <div class="example">
+  <strong>Example:</strong> 1, 5, 10, 25 and 100 are natural numbers.
+ </div>
+
+ <h3>2. Integers (ℤ)</h3>
+ <p>Integers include positive whole numbers, negative whole numbers, and zero.</p>
+ <div class="formula">ℤ = {..., -3, -2, -1, 0, 1, 2, 3, ...}</div>
+ <div class="example">
+  <strong>Example:</strong> -15, -2, 0, 7 and 25 are integers.
+ </div>
+
+ <div class="tip">
+  Every natural number is an integer, but not every integer is a natural number.
+  <div class="formula">ℕ ⊂ ℤ</div>
+ </div>
+
+ <h3>Examples</h3>
+ <p>Classify the following numbers: 3, -2, 11, 0, -18, 15.</p>
+ <table>
+  <tr><th>Number</th><th>Natural?</th><th>Integer?</th></tr>
+  <tr><td>3</td><td>Yes</td><td>Yes</td></tr>
+  <tr><td>-2</td><td>No</td><td>Yes</td></tr>
+  <tr><td>11</td><td>Yes</td><td>Yes</td></tr>
+  <tr><td>0</td><td>No, according to this textbook's definition</td><td>Yes</td></tr>
+  <tr><td>-18</td><td>No</td><td>Yes</td></tr>
+  <tr><td>15</td><td>Yes</td><td>Yes</td></tr>
+ </table>
+</div>
+</section>
+
+<section id="division">
+<div class="card">
+ <h2>2.1.1 Euclid's Division Lemma</h2>
+ <p>When one non-negative integer is divided by a positive integer, we get a quotient and a remainder.</p>
+
+ <div class="formula">a = b × q + r</div>
+ <p>Where:</p>
+ <ul>
+  <li><b>a:</b> Dividend</li>
+  <li><b>b:</b> Divisor</li>
+  <li><b>q:</b> Quotient</li>
+  <li><b>r:</b> Remainder</li>
+ </ul>
+
+ <div class="formula">0 ≤ r &lt; b</div>
+
+ <div class="example">
+  <strong>Example:</strong> Divide 38 by 4.
+  <p>38 ÷ 4 = 9 remainder 2.</p>
+  <div class="formula">38 = 4 × 9 + 2</div>
+  <p>Dividend = 38, divisor = 4, quotient = 9, remainder = 2.</p>
+ </div>
+
+ <div class="example">
+  <strong>Another example:</strong> Divide 5 by 14.
+  <p>Since 5 is smaller than 14:</p>
+  <div class="formula">5 = 14 × 0 + 5</div>
+  <p>Quotient = 0 and remainder = 5.</p>
+ </div>
+
+ <div class="tip">
+  A number is divisible by another number if the remainder is zero.
+ </div>
+</div>
+</section>
+
+<section id="prime">
+<div class="card">
+ <h2>2.1.2 Prime and Composite Numbers</h2>
+
+ <h3>Factors and Multiples</h3>
+ <p>A factor divides a number exactly. A multiple is obtained by multiplying a number by a natural number.</p>
+
+ <div class="example">
+  <strong>Example:</strong> 3 × 4 = 12.
+  <ul>
+   <li>3 and 4 are factors of 12.</li>
+   <li>12 is a multiple of 3 and 4.</li>
+  </ul>
+ </div>
+
+ <h3>Prime Numbers</h3>
+ <p>A natural number with exactly two distinct factors, 1 and itself, is called a prime number.</p>
+ <div class="formula">Examples: 2, 3, 5, 7, 11, 13, 17</div>
+
+ <h3>Composite Numbers</h3>
+ <p>A natural number with more than two factors is called a composite number.</p>
+ <div class="formula">Examples: 4, 6, 8, 9, 10, 12, 15</div>
+
+ <div class="warning">
+  Remember:
+  <ul>
+   <li>1 is neither prime nor composite.</li>
+   <li>2 is the only even prime number.</li>
+   <li>Not every odd number is prime.</li>
+  </ul>
+ </div>
+
+ <div class="example">
+  <strong>Example:</strong> Is 18 prime or composite?
+  <p>Factors of 18: 1, 2, 3, 6, 9, 18.</p>
+  <p>It has more than two factors, so 18 is composite.</p>
+ </div>
+
+ <h3>Prime Factorization</h3>
+ <p>Prime factorization is expressing a composite number as a product of prime numbers.</p>
+ <div class="example">
+  <strong>Example:</strong> Express 72 as prime factors.
+  <p>72 = 2 × 36</p>
+  <p>= 2 × 2 × 18</p>
+  <p>= 2 × 2 × 2 × 9</p>
+  <p>= 2 × 2 × 2 × 3 × 3</p>
+  <div class="formula">72 = 2³ × 3²</div>
+ </div>
+
+ <h3>Fundamental Theorem of Arithmetic</h3>
+ <p>Every composite number can be expressed as a product of primes, and this factorization is unique apart from the order of the prime factors.</p>
+</div>
+</section>
+
+<section id="divisibility">
+<div class="card">
+ <h2>2.1.3 Divisibility Tests</h2>
+ <p>Divisibility tests help us check whether a number is divisible by another number without performing long division.</p>
+
+ <table>
+  <tr><th>Divisor</th><th>Divisibility rule</th></tr>
+  <tr><td>2</td><td>Last digit is 0, 2, 4, 6 or 8.</td></tr>
+  <tr><td>3</td><td>Sum of digits is divisible by 3.</td></tr>
+  <tr><td>4</td><td>Last two digits form a number divisible by 4.</td></tr>
+  <tr><td>5</td><td>Last digit is 0 or 5.</td></tr>
+  <tr><td>6</td><td>Divisible by both 2 and 3.</td></tr>
+  <tr><td>8</td><td>Last three digits form a number divisible by 8.</td></tr>
+  <tr><td>9</td><td>Sum of digits is divisible by 9.</td></tr>
+  <tr><td>10</td><td>Last digit is 0.</td></tr>
+ </table>
+
+ <div class="example">
+  <strong>Example:</strong> Is 765 divisible by 3?
+  <p>Sum of digits = 7 + 6 + 5 = 18.</p>
+  <p>18 is divisible by 3.</p>
+  <div class="formula">Therefore, 765 is divisible by 3.</div>
+ </div>
+
+ <div class="example">
+  <strong>Example:</strong> Is 384 divisible by 8?
+  <p>384 ÷ 8 = 48.</p>
+  <p>Therefore, 384 is divisible by 8.</p>
+ </div>
+</div>
+</section>
+
+<section id="gcf">
+<div class="card">
+ <h2>2.1.4 Greatest Common Factor and Least Common Multiple</h2>
+
+ <h3>Greatest Common Factor (GCF)</h3>
+ <p>The GCF of two or more natural numbers is the greatest number that is a factor of all the given numbers.</p>
+
+ <div class="example">
+  <strong>Example:</strong> Find GCF(12, 18).
+  <p>Factors of 12 = 1, 2, 3, 4, 6, 12.</p>
+  <p>Factors of 18 = 1, 2, 3, 6, 9, 18.</p>
+  <p>Common factors = 1, 2, 3, 6.</p>
+  <div class="formula">GCF(12, 18) = 6</div>
+ </div>
+
+ <h3>GCF using Prime Factorization</h3>
+ <p>Write each number as a product of prime factors. Multiply the common prime factors using their smallest powers.</p>
+
+ <div class="example">
+  <strong>Example:</strong>
+  <p>12 = 2² × 3</p>
+  <p>18 = 2 × 3²</p>
+  <p>Common factors with smallest powers = 2 × 3.</p>
+  <div class="formula">GCF = 2 × 3 = 6</div>
+ </div>
+
+ <h3>Least Common Multiple (LCM)</h3>
+ <p>The LCM of two or more natural numbers is the smallest positive number that is a multiple of all the given numbers.</p>
+
+ <div class="example">
+  <strong>Example:</strong> Find LCM(6, 9).
+  <p>Multiples of 6: 6, 12, 18, 24, 30, ...</p>
+  <p>Multiples of 9: 9, 18, 27, 36, ...</p>
+  <div class="formula">LCM(6, 9) = 18</div>
+ </div>
+
+ <h3>LCM using Prime Factorization</h3>
+ <p>Take every prime factor using its greatest power.</p>
+ <div class="example">
+  <p>6 = 2 × 3</p>
+  <p>9 = 3²</p>
+  <div class="formula">LCM = 2 × 3² = 18</div>
+ </div>
+
+ <div class="tip">
+  Important relationship:
+  <div class="formula">GCF(a,b) × LCM(a,b) = a × b</div>
+  <p>Example: 6 × 18 = 6 × 18 = 108 for the numbers 6 and 18.</p>
+ </div>
+</div>
+</section>
+
+<section id="rational">
+<div class="card">
+ <span class="tag">LESSON 2.2</span>
+ <h2>Rational Numbers</h2>
+
+ <p>A rational number is any number that can be written in the form of a fraction where the numerator and denominator are integers and the denominator is not zero.</p>
+
+ <div class="formula">a/b, where a,b ∈ ℤ and b ≠ 0</div>
+ <p>The set of rational numbers is represented by ℚ.</p>
+
+ <div class="example">
+  <strong>Examples:</strong>
+  <ul>
+   <li>1/2</li>
+   <li>-3/4</li>
+   <li>5 = 5/1</li>
+   <li>0 = 0/1</li>
+   <li>0.25 = 1/4</li>
+  </ul>
+ </div>
+
+ <div class="tip">
+  Every integer is a rational number because it can be written over 1.
+  <div class="formula">ℤ ⊂ ℚ</div>
+ </div>
+</div>
+</section>
+
+<section id="decimals">
+<div class="card">
+ <h2>2.2.1 Representation of Rational Numbers by Decimals</h2>
+ <p>We can convert a rational number into decimal form by dividing the numerator by the denominator.</p>
+
+ <h3>Terminating Decimals</h3>
+ <p>A decimal is terminating if the division process ends with a remainder of zero.</p>
+ <div class="example">
+  <strong>Example:</strong>
+  <div class="formula">3/5 = 0.6</div>
+  <p>The decimal ends, so it is terminating.</p>
+ </div>
+
+ <h3>Repeating Decimals</h3>
+ <p>A repeating decimal has one or more digits that repeat forever.</p>
+ <div class="example">
+  <strong>Examples:</strong>
+  <div class="formula">1/3 = 0.3333... = 0.3̅</div>
+  <div class="formula">23/99 = 0.232323... = 0.2̅3̅</div>
+ </div>
+
+ <h3>Converting Terminating Decimals into Fractions</h3>
+ <div class="example">
+  <strong>Example 1:</strong> Convert 7.3 into a fraction.
+  <p>There is one digit after the decimal point, so multiply by 10.</p>
+  <div class="formula">7.3 = 73/10</div>
+ </div>
+
+ <div class="example">
+  <strong>Example 2:</strong> Convert -0.18 into a fraction.
+  <div class="formula">-0.18 = -18/100 = -9/50</div>
+ </div>
+
+ <h3>Locating Rational Numbers on a Number Line</h3>
+ <p>Every rational number can be represented as a point on the number line.</p>
+ <div class="example">
+  <strong>Example:</strong> Locate -2.5, 0, 1.5 and 3.
+  <p>Arrange them from smallest to largest:</p>
+  <div class="formula">-2.5 &lt; 0 &lt; 1.5 &lt; 3</div>
+ </div>
+</div>
+</section>
+
+<section id="repeating">
+<div class="card">
+ <h2>2.2.2 Conversion of Repeating Decimals into Fractions</h2>
+ <p>We can convert a repeating decimal into a fraction by multiplying and subtracting to eliminate the repeating part.</p>
+
+ <div class="example">
+  <strong>Example:</strong> Convert 0.555... into a fraction.
+  <p>Let x = 0.555...</p>
+  <p>Multiply both sides by 10:</p>
+  <p>10x = 5.555...</p>
+  <p>Subtract the first equation:</p>
+  <p>10x - x = 5.555... - 0.555...</p>
+  <p>9x = 5</p>
+  <div class="formula">x = 5/9</div>
+ </div>
+
+ <div class="example">
+  <strong>Another example:</strong> Convert 0.121212... into a fraction.
+  <p>Let x = 0.121212...</p>
+  <p>100x = 12.121212...</p>
+  <p>100x - x = 12</p>
+  <p>99x = 12</p>
+  <div class="formula">x = 12/99 = 4/33</div>
+ </div>
+
+ <div class="tip">
+  If two digits repeat, multiply by 100. If three digits repeat, multiply by 1000.
+ </div>
+</div>
+</section>
+
+<section id="irrational">
+<div class="card">
+ <span class="tag">LESSON 2.3</span>
+ <h2>Irrational Numbers</h2>
+
+ <h3>Perfect Squares</h3>
+ <p>A perfect square is a number that can be expressed as the product of two equal integers.</p>
+ <div class="formula">1 = 1², 4 = 2², 9 = 3², 16 = 4²</div>
+
+ <h3>Square Roots</h3>
+ <p>A square root of a number x is a number y such that y² = x.</p>
+ <div class="example">
+  <strong>Example:</strong>
+  <p>√25 = 5 because 5² = 25.</p>
+  <p>Both 5 and -5 are square roots of 25, but √25 represents the principal square root, which is 5.</p>
+ </div>
+
+ <h3>What is an Irrational Number?</h3>
+ <p>A decimal number that is neither terminating nor repeating is called an irrational number.</p>
+
+ <div class="formula">Examples: √2, √3, √5, π</div>
+
+ <div class="example">
+  <strong>Example:</strong> Determine whether √25 is rational or irrational.
+  <p>√25 = 5.</p>
+  <p>5 can be written as 5/1.</p>
+  <div class="formula">Therefore, √25 is rational.</div>
+ </div>
+
+ <div class="example">
+  <strong>Example:</strong> Is √7 rational or irrational?
+  <p>7 is not a perfect square, so √7 is irrational.</p>
+ </div>
+
+ <div class="warning">
+  A square root of a positive integer that is not a perfect square is irrational.
+ </div>
+
+ <h3>Comparing Square Roots</h3>
+ <p>For positive numbers, if a is less than b, then √a is less than √b.</p>
+ <div class="formula">If 0 &lt; a &lt; b, then √a &lt; √b</div>
+ <div class="example">
+  <strong>Example:</strong> Compare √5 and √7.
+  <p>Since 5 is less than 7:</p>
+  <div class="formula">√5 &lt; √7</div>
+ </div>
+
+ <h3>Locating Irrational Numbers on the Number Line</h3>
+ <div class="example">
+  <strong>Example:</strong> Locate √2.
+  <p>Since 1² = 1 and 2² = 4:</p>
+  <div class="formula">1 &lt; √2 &lt; 2</div>
+  <p>Using a calculator, √2 ≈ 1.4142.</p>
+  <p>Therefore, √2 lies between 1 and 2.</p>
+ </div>
+</div>
+</section>
+
+<section id="irrational-operations">
+<div class="card">
+ <h2>2.3.2 Operations on Irrational Numbers</h2>
+
+ <h3>Multiplication of Radicals</h3>
+ <div class="formula">√a × √b = √(ab)</div>
+ <div class="example">
+  <strong>Example:</strong>
+  <p>√2 × √3 = √6</p>
+  <p>√5 × √5 = 5</p>
+ </div>
+
+ <h3>Division of Radicals</h3>
+ <div class="formula">√a / √b = √(a/b), where a,b &gt; 0</div>
+ <div class="example">
+  <strong>Example:</strong>
+  <p>√18 / √2 = √9 = 3</p>
+ </div>
+
+ <h3>Converting to a Single Radical</h3>
+ <div class="formula">a√b = √(a²b), for a ≥ 0</div>
+ <div class="example">
+  <strong>Example:</strong>
+  <p>3√2 = √(9 × 2) = √18</p>
+ </div>
+
+ <h3>Addition and Subtraction</h3>
+ <p>We can combine like radicals by adding or subtracting their coefficients.</p>
+ <div class="example">
+  <strong>Example 1:</strong>
+  <div class="formula">2√3 + 4√3 = 6√3</div>
+  <strong>Example 2:</strong>
+  <div class="formula">5√2 - 2√2 = 3√2</div>
+ </div>
+
+ <h3>Simplifying Radicals</h3>
+ <div class="example">
+  <strong>Example:</strong> Simplify √8 + √2.
+  <p>√8 = √(4 × 2) = 2√2</p>
+  <p>2√2 + √2 = 3√2</p>
+  <div class="formula">Answer = 3√2</div>
+ </div>
+
+ <h3>Rationalizing a Denominator</h3>
+ <p>Rationalization is the process of changing a fraction so that its denominator becomes rational.</p>
+ <div class="example">
+  <strong>Example:</strong> Rationalize 1/√2.
+  <p>Multiply the numerator and denominator by √2.</p>
+  <div class="formula">1/√2 × √2/√2 = √2/2</div>
+ </div>
+</div>
+</section>
+
+<section id="real">
+<div class="card">
+ <span class="tag">LESSON 2.4</span>
+ <h2>Real Numbers</h2>
+
+ <p>A real number is a number that is either rational or irrational.</p>
+ <div class="formula">ℝ = ℚ ∪ {irrational numbers}</div>
+
+ <h3>Classification of Numbers</h3>
+ <div class="example">
+  <ul>
+   <li>Natural numbers: 1, 2, 3, ...</li>
+   <li>Integers: ..., -2, -1, 0, 1, 2, ...</li>
+   <li>Rational numbers: 1/2, -3/4, 0.25</li>
+   <li>Irrational numbers: √2, √3, π</li>
+   <li>Real numbers: all rational and irrational numbers.</li>
+  </ul>
+ </div>
+
+ <h3>Comparing Real Numbers</h3>
+ <p>For two real numbers a and b, exactly one of the following is true:</p>
+ <div class="formula">a &lt; b, or a = b, or a &gt; b</div>
+
+ <p>This is called the trichotomy property.</p>
+
+ <h3>Transitive Property</h3>
+ <div class="formula">If a &lt; b and b &lt; c, then a &lt; c.</div>
+
+ <div class="example">
+  <strong>Example:</strong> Compare -8 and -2.
+  <p>On the number line, -8 is to the left of -2.</p>
+  <div class="formula">-8 &lt; -2</div>
+ </div>
+
+ <h3>Finding a Real Number Between Two Numbers</h3>
+ <p>One method is to calculate their average.</p>
+ <div class="formula">Average = (a + b) / 2</div>
+ <div class="example">
+  <strong>Example:</strong> Find a real number between 2 and 4.2.
+  <p>(2 + 4.2) / 2 = 3.1</p>
+  <div class="formula">2 &lt; 3.1 &lt; 4.2</div>
+  <p>There are infinitely many real numbers between any two distinct real numbers.</p>
+ </div>
+</div>
+</section>
+
+<section id="intervals">
+<div class="card">
+ <h2>2.4.1 Intervals</h2>
+ <p>A real interval is a set containing all real numbers between two given numbers, with the endpoints included or excluded as specified.</p>
+
+ <h3>Types of Intervals</h3>
+ <table>
+  <tr><th>Notation</th><th>Meaning</th></tr>
+  <tr><td>[a,b]</td><td>Includes both endpoints.</td></tr>
+  <tr><td>(a,b)</td><td>Excludes both endpoints.</td></tr>
+  <tr><td>[a,b)</td><td>Includes a, excludes b.</td></tr>
+  <tr><td>(a,b]</td><td>Excludes a, includes b.</td></tr>
+  <tr><td>(-∞,b)</td><td>All real numbers less than b.</td></tr>
+  <tr><td>[a,∞)</td><td>All real numbers greater than or equal to a.</td></tr>
+ </table>
+
+ <div class="tip">
+  <b>Remember:</b>
+  <ul>
+   <li>[ ] means the endpoint is included.</li>
+   <li>( ) means the endpoint is excluded.</li>
+   <li>Infinity always uses parentheses.</li>
+  </ul>
+ </div>
+
+ <div class="example">
+  <strong>Example 1:</strong> Real numbers between 3 and 5 including both endpoints.
+  <div class="formula">[3,5]</div>
+  <strong>Example 2:</strong> Numbers between -2 and 2 including -2 but excluding 2.
+  <div class="formula">[-2,2)</div>
+  <strong>Example 3:</strong> Numbers less than 2, excluding 2.
+  <div class="formula">(-∞,2)</div>
+  <strong>Example 4:</strong> Numbers greater than or equal to zero.
+  <div class="formula">[0,∞)</div>
+ </div>
+</div>
+</section>
+
+<section id="absolute">
+<div class="card">
+ <h2>2.4.2 Absolute Values</h2>
+ <p>The absolute value of a real number is its distance from zero on the number line.</p>
+
+ <div class="formula">
+ |x| = x, if x ≥ 0<br>
+ |x| = -x, if x &lt; 0
+ </div>
+
+ <div class="example">
+  <strong>Examples:</strong>
+  <p>|5| = 5</p>
+  <p>|-5| = 5</p>
+  <p>|0| = 0</p>
+  <p>|-0.4| = 0.4</p>
+ </div>
+
+ <h3>Distance Between Two Numbers</h3>
+ <div class="formula">Distance = |a - b|</div>
+
+ <div class="example">
+  <strong>Example:</strong> Find the distance between -3 and 4.
+  <p>|-3 - 4| = |-7| = 7</p>
+  <div class="formula">Distance = 7 units</div>
+ </div>
+
+ <div class="warning">
+  Absolute value is never negative.
+  <p>For example, |x| = -4 has no real solution.</p>
+ </div>
+</div>
+</section>
+
+<section id="exponents">
+<div class="card">
+ <h2>2.4.3 Exponents and Radicals</h2>
+
+ <h3>Exponents</h3>
+ <p>An exponential expression represents repeated multiplication of the same number.</p>
+ <div class="formula">aⁿ = a × a × a × ... × a</div>
+ <p>Here, a is the base and n is the exponent or power.</p>
+
+ <div class="example">
+  <strong>Examples:</strong>
+  <p>2³ = 2 × 2 × 2 = 8</p>
+  <p>(-3)² = (-3) × (-3) = 9</p>
+  <p>3⁴ = 81</p>
+ </div>
+
+ <h3>Zero Exponent</h3>
+ <div class="formula">a⁰ = 1, where a ≠ 0</div>
+
+ <h3>Negative Exponent</h3>
+ <div class="formula">a⁻ⁿ = 1/aⁿ, where a ≠ 0</div>
+
+ <div class="example">
+  <strong>Example:</strong>
+  <p>2⁻³ = 1/2³ = 1/8</p>
+ </div>
+
+ <h3>Roots</h3>
+ <ul>
+  <li>Square root: If a² = b, then a is a square root of b.</li>
+  <li>Cube root: If a³ = b, then a is a cube root of b.</li>
+  <li>nth root: If aⁿ = b, then a is an nth root of b.</li>
+ </ul>
+
+ <h3>Principal nth Root</h3>
+ <p>The principal nth root is written using the radical symbol.</p>
+ <div class="formula">ⁿ√b</div>
+ <p>The radical symbol is √, n is the index, and b is the radicand.</p>
+
+ <div class="example">
+  <strong>Examples:</strong>
+  <p>√9 = 3</p>
+  <p>³√8 = 2</p>
+  <p>⁴√81 = 3</p>
+  <p>⁵√(-32) = -2</p>
+ </div>
+
+ <h3>Fractional Exponents</h3>
+ <div class="formula">a^(1/n) = ⁿ√a</div>
+ <div class="example">
+  <p>9^(1/2) = √9 = 3</p>
+  <p>8^(1/3) = ³√8 = 2</p>
+ </div>
+
+ <h3>Laws of Exponents</h3>
+ <table>
+  <tr><th>Law</th><th>Formula</th></tr>
+  <tr><td>Multiplication</td><td>aⁿ × aᵐ = aⁿ⁺ᵐ</td></tr>
+  <tr><td>Division</td><td>aⁿ / aᵐ = aⁿ⁻ᵐ</td></tr>
+  <tr><td>Power of a power</td><td>(aⁿ)ᵐ = aⁿᵐ</td></tr>
+  <tr><td>Power of a product</td><td>(ab)ⁿ = aⁿbⁿ</td></tr>
+  <tr><td>Power of a quotient</td><td>(a/b)ⁿ = aⁿ/bⁿ</td></tr>
+ </table>
+ <p>For the division law, a ≠ 0. For the quotient law, b ≠ 0.</p>
+
+ <div class="example">
+  <strong>Example 1:</strong> Simplify 2³ × 2².
+  <p>= 2³⁺²</p>
+  <p>= 2⁵</p>
+  <div class="formula">= 32</div>
+ </div>
+
+ <div class="example">
+  <strong>Example 2:</strong> Simplify (3²)³.
+  <p>= 3²ˣ³</p>
+  <div class="formula">= 3⁶ = 729</div>
+ </div>
+
+ <div class="example">
+  <strong>Example 3:</strong> Simplify √50.
+  <p>= √(25 × 2)</p>
+  <p>= √25 × √2</p>
+  <div class="formula">= 5√2</div>
+ </div>
+</div>
+</section>
+
+<section id="applications">
+<div class="card">
+ <span class="tag">LESSON 2.5</span>
+ <h2>Applications</h2>
+ <p>We use the concepts learned in this unit to solve practical problems.</p>
+
+ <h3>Application 1: Euclid's Division Lemma</h3>
+ <div class="example">
+  <strong>Problem:</strong> A gardener has 530 flower pots. Each row must contain 21 pots. How many complete rows can be made, and how many pots remain?
+  <p>530 ÷ 21 = 25 remainder 5.</p>
+  <div class="formula">530 = 21 × 25 + 5</div>
+  <p><b>Answer:</b> 25 complete rows and 5 remaining pots.</p>
+ </div>
+
+ <h3>Application 2: GCF</h3>
+ <div class="example">
+  <strong>Problem:</strong> A board measures 50 cm by 20 cm. What is the largest possible side length of equal square pieces that can cover it completely, using natural-number lengths?
+  <p>We need GCF(50,20).</p>
+  <p>50 = 2 × 5²</p>
+  <p>20 = 2² × 5</p>
+  <p>GCF = 2 × 5 = 10.</p>
+  <div class="formula">Answer: 10 cm</div>
+ </div>
+
+ <h3>Application 3: LCM</h3>
+ <div class="example">
+  <strong>Problem:</strong> Two students complete one round of a sports field in 6 minutes and 14 minutes. After how many minutes will they meet at the starting point again?
+  <p>Find LCM(6,14).</p>
+  <p>6 = 2 × 3</p>
+  <p>14 = 2 × 7</p>
+  <p>LCM = 2 × 3 × 7 = 42.</p>
+  <div class="formula">Answer: 42 minutes</div>
+ </div>
+</div>
+</section>
+
+<section id="calculator">
+<div class="card">
+ <span class="tag">INTERACTIVE PRACTICE</span>
+ <h2>Practice Calculator 🧮</h2>
+ <p>Try the following tools to practice the concepts from Unit 2.</p>
+
+ <h3>1. Division Lemma Calculator</h3>
+ <div class="grid2">
+  <div><label>Dividend</label><input type="number" id="dividend" value="38"></div>
+  <div><label>Divisor</label><input type="number" id="divisor" value="4"></div>
+ </div>
+ <button onclick="divideNumbers()">Calculate</button>
+ <div class="result" id="divisionResult">Your result will appear here.</div>
+
+ <h3>2. GCF Calculator</h3>
+ <p>Enter two positive integers.</p>
+ <div class="grid2">
+  <input type="number" id="gcfA" value="12" placeholder="First number">
+  <input type="number" id="gcfB" value="18" placeholder="Second number">
+ </div>
+ <button onclick="calculateGCF()">Find GCF</button>
+ <div class="result" id="gcfResult">Your result will appear here.</div>
+
+ <h3>3. LCM Calculator</h3>
+ <div class="grid2">
+  <input type="number" id="lcmA" value="6" placeholder="First number">
+  <input type="number" id="lcmB" value="9" placeholder="Second number">
+ </div>
+ <button onclick="calculateLCM()">Find LCM</button>
+ <div class="result" id="lcmResult">Your result will appear here.</div>
+
+ <h3>4. Number Classifier</h3>
+ <p>Enter a number to see whether it is rational or irrational.</p>
+ <input type="text" id="classNumber" placeholder="Example: 25, 0.5, sqrt(2), pi">
+ <button onclick="classifyNumber()">Classify</button>
+ <div class="result" id="classResult">Your result will appear here.</div>
+ <p class="muted">For this classifier, try integers, terminating decimals, pi, or square roots of positive integers.</p>
+</div>
+</section>
+
+<section id="quiz">
+<div class="card">
+ <span class="tag">TEST YOUR KNOWLEDGE</span>
+ <h2>Unit 2 Revision Quiz 🎯</h2>
+ <p>Choose the correct answer for each question. Then press Submit.</p>
+
+ <form id="quizForm">
+
+ <div class="question">
+  <p><b>1. Which of the following is a natural number?</b></p>
+  <label><input type="radio" name="q1" value="a"> -5</label>
+  <label><input type="radio" name="q1" value="b"> 0</label>
+  <label><input type="radio" name="q1" value="c"> 7</label>
+  <label><input type="radio" name="q1" value="d"> -2</label>
+ </div>
+
+ <div class="question">
+  <p><b>2. What is the remainder when 38 is divided by 4?</b></p>
+  <label><input type="radio" name="q2" value="a"> 0</label>
+  <label><input type="radio" name="q2" value="b"> 1</label>
+  <label><input type="radio" name="q2" value="c"> 2</label>
+  <label><input type="radio" name="q2" value="d"> 3</label>
+ </div>
+
+ <div class="question">
+  <p><b>3. Which number is neither prime nor composite?</b></p>
+  <label><input type="radio" name="q3" value="a"> 1</label>
+  <label><input type="radio" name="q3" value="b"> 2</label>
+  <label><input type="radio" name="q3" value="c"> 3</label>
+  <label><input type="radio" name="q3" value="d"> 4</label>
+ </div>
+
+ <div class="question">
+  <p><b>4. What is the prime factorization of 12?</b></p>
+  <label><input type="radio" name="q4" value="a"> 2 × 6</label>
+  <label><input type="radio" name="q4" value="b"> 2² × 3</label>
+  <label><input type="radio" name="q4" value="c"> 3 × 4</label>
+  <label><input type="radio" name="q4" value="d"> 2 × 2</label>
+ </div>
+
+ <div class="question">
+  <p><b>5. What is GCF(12,18)?</b></p>
+  <label><input type="radio" name="q5" value="a"> 2</label>
+  <label><input type="radio" name="q5" value="b"> 3</label>
+  <label><input type="radio" name="q5" value="c"> 6</label>
+  <label><input type="radio" name="q5" value="d"> 9</label>
+ </div>
+
+ <div class="question">
+  <p><b>6. Which of these is an irrational number?</b></p>
+  <label><input type="radio" name="q6" value="a"> 1/2</label>
+  <label><input type="radio" name="q6" value="b"> 0.25</label>
+  <label><input type="radio" name="q6" value="c"> √2</label>
+  <label><input type="radio" name="q6" value="d"> 5</label>
+ </div>
+
+ <div class="question">
+  <p><b>7. What is √49?</b></p>
+  <label><input type="radio" name="q7" value="a"> 6</label>
+  <label><input type="radio" name="q7" value="b"> 7</label>
+  <label><input type="radio" name="q7" value="c"> 8</label>
+  <label><input type="radio" name="q7" value="d"> 9</label>
+ </div>
+
+ <div class="question">
+  <p><b>8. What is the value of |-8|?</b></p>
+  <label><input type="radio" name="q8" value="a"> -8</label>
+  <label><input type="radio" name="q8" value="b"> 0</label>
+  <label><input type="radio" name="q8" value="c"> 8</label>
+  <label><input type="radio" name="q8" value="d"> 16</label>
+ </div>
+
+ <div class="question">
+  <p><b>9. Simplify 2³ × 2².</b></p>
+  <label><input type="radio" name="q9" value="a"> 2⁶</label>
+  <label><input type="radio" name="q9" value="b"> 2⁵</label>
+  <label><input type="radio" name="q9" value="c"> 2¹</label>
+  <label><input type="radio" name="q9" value="d"> 2⁹</label>
+ </div>
+
+ <div class="question">
+  <p><b>10. Which interval includes both endpoints?</b></p>
+  <label><input type="radio" name="q10" value="a"> (2,5)</label>
+  <label><input type="radio" name="q10" value="b"> (2,5]</label>
+  <label><input type="radio" name="q10" value="c"> [2,5]</label>
+  <label><input type="radio" name="q10" value="d"> [2,5)</label>
+ </div>
+
+ <button type="button" onclick="submitQuiz()">Submit Answers</button>
+ <button type="reset" class="secondary" onclick="resetQuiz()">Try Again</button>
+ </form>
+
+ <div class="result" id="quizResult">Your score will appear here.</div>
+</div>
+</section>
+
+<footer>
+ <p>Grade 9 Mathematics · Unit 2: The Number System</p>
+ <p>Keep practicing. Mathematics becomes easier when you understand the rules.</p>
+</footer>
+
+</main>
+</div>
+
+<script>
+// Progress tracker
+const sections = [...document.querySelectorAll("main section")];
+const progress = document.getElementById("progress");
+const progressText = document.getElementById("progressText");
+
+function updateProgress(){
+ const completed = sections.filter(section =>
+  section.getBoundingClientRect().bottom < window.innerHeight
+ ).length;
+ const percentage = Math.round(completed / sections.length * 100);
+ progress.style.width = percentage + "%";
+ progressText.textContent = percentage + "% completed";
+}
+window.addEventListener("scroll", updateProgress);
+updateProgress();
+
+// Division calculator
+function divideNumbers(){
+ const a = Number(document.getElementById("dividend").value);
+ const b = Number(document.getElementById("divisor").value);
+ const result = document.getElementById("divisionResult");
+
+ if(!Number.isInteger(a) || !Number.isInteger(b) || a < 0 || b <= 0){
+  result.textContent = "Enter a non-negative integer and a positive divisor.";
+  return;
+ }
+
+ const q = Math.floor(a/b);
+ const r = a % b;
+ result.innerHTML =
+  `Quotient = ${q}<br>Remainder = ${r}<br><b>${a} = ${b} × ${q} + ${r}</b>`;
+}
+
+// GCF calculator
+function gcd(a,b){
+ while(b !== 0){
+  let temp = b;
+  b = a % b;
+  a = temp;
+ }
+ return a;
+}
+
+function calculateGCF(){
+ const a = Number(document.getElementById("gcfA").value);
+ const b = Number(document.getElementById("gcfB").value);
+ const result = document.getElementById("gcfResult");
+
+ if(!Number.isInteger(a) || !Number.isInteger(b) || a <= 0 || b <= 0){
+  result.textContent = "Enter two positive integers.";
+  return;
+ }
+ result.innerHTML = `GCF(${a}, ${b}) = <b>${gcd(a,b)}</b>`;
+}
+
+// LCM calculator
+function calculateLCM(){
+ const a = Number(document.getElementById("lcmA").value);
+ const b = Number(document.getElementById("lcmB").value);
+ const result = document.getElementById("lcmResult");
+
+ if(!Number.isInteger(a) || !Number.isInteger(b) || a <= 0 || b <= 0){
+  result.textContent = "Enter two positive integers.";
+  return;
+ }
+ const answer = (a / gcd(a,b)) * b;
+ result.innerHTML = `LCM(${a}, ${b}) = <b>${answer}</b>`;
+}
+
+// Number classifier
+function classifyNumber(){
+ const value = document.getElementById("classNumber").value.trim().toLowerCase();
+ const result = document.getElementById("classResult");
+
+ if(!value){
+  result.textContent = "Enter a number first.";
+  return;
+ }
+
+ if(value === "pi" || value === "π"){
+  result.innerHTML = "<b>π is irrational.</b>";
+  return;
+ }
+
+ const rootMatch = value.match(/^sqrt\((\d+)\)$/);
+
+ if(rootMatch){
+  const n = Number(rootMatch[1]);
+  const root = Math.sqrt(n);
+  const isSquare = Number.isInteger(root);
+  result.innerHTML = isSquare
+   ? `√${n} = ${root}. <b>Rational number.</b>`
+   : `√${n} is not a terminating or repeating decimal. <b>Irrational number.</b>`;
+  return;
+ }
+
+ const number = Number(value);
+
+ if(!Number.isFinite(number)){
+  result.textContent = "Enter a valid number, pi, or sqrt(number).";
+  return;
+ }
+
+ result.innerHTML = `<b>${value}</b> is a rational number.`;
+}
+
+// Quiz
+const answers = {
+ q1:"c",q2:"c",q3:"a",q4:"b",q5:"c",
+ q6:"c",q7:"b",q8:"c",q9:"b",q10:"c"
+};
+
+function submitQuiz(){
+ let score = 0;
+ let unanswered = 0;
+
+ for(const question in answers){
+  const selected = document.querySelector(
+   `input[name="${question}"]:checked`
+  );
+
+  if(!selected){
+   unanswered++;
+  }else if(selected.value === answers[question]){
+   score++;
+  }
+ }
+
+ const result = document.getElementById("quizResult");
+
+ if(unanswered > 0){
+  result.innerHTML = `You have ${unanswered} unanswered question(s). Please answer all questions.`;
+  return;
+ }
+
+ const percentage = score * 10;
+ let message = "";
+
+ if(score === 10) message = "Excellent! Perfect score! 🏆";
+ else if(score >= 8) message = "Great work! You understand this unit very well.";
+ else if(score >= 6) message = "Good effort! Review the questions you missed.";
+ else message = "Keep practicing. Review the lessons and try again.";
+
+ result.innerHTML =
+  `<h3>Your score: ${score}/10 (${percentage}%)</h3>
+   <p>${message}</p>`;
+}
+
+function resetQuiz(){
+ document.getElementById("quizResult").textContent =
+  "Your score will appear here.";
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,602 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grade 12 Mathematics | Unit 1</title>
+<style>
+:root {
+  --bg:#0b1020;
+  --panel:#141d32;
+  --panel2:#1b2942;
+  --text:#edf3ff;
+  --muted:#a5b4ce;
+  --accent:#64d8ff;
+  --green:#65e6ad;
+  --border:#293955;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:Arial,sans-serif;line-height:1.7;
+}
+header{
+  padding:24px 6%;background:linear-gradient(120deg,#142744,#102033);
+  border-bottom:1px solid var(--border);
+}
+header h1{margin:0;font-size:27px}
+header p{color:var(--muted);margin:5px 0}
+.container{max-width:1050px;margin:auto;padding:22px}
+.topnav{
+  display:flex;gap:9px;overflow-x:auto;padding:12px 0 18px;
+  position:sticky;top:0;background:var(--bg);z-index:5;
+}
+.topnav button{
+  flex-shrink:0;border:1px solid var(--border);
+  background:var(--panel);color:var(--text);
+  padding:10px 15px;border-radius:9px;cursor:pointer;
+}
+.topnav button.active{
+  background:var(--accent);color:#071522;border-color:var(--accent);
+  font-weight:bold;
+}
+.progress-wrap{
+  height:6px;background:var(--panel2);border-radius:10px;
+  overflow:hidden;margin-bottom:20px;
+}
+#progress{height:100%;width:0;background:var(--green);transition:.3s}
+.lesson{
+  background:var(--panel);border:1px solid var(--border);
+  border-radius:16px;padding:25px;min-height:400px;
+}
+.lesson-number{color:var(--accent);font-size:13px;font-weight:bold}
+h2{font-size:25px;margin:8px 0 18px}
+h3{color:var(--accent);margin-top:24px}
+p{color:#d4def0}
+.formula{
+  background:#0b1629;border-left:4px solid var(--accent);
+  border-radius:8px;padding:16px;margin:18px 0;
+  font-size:18px;overflow-x:auto;
+}
+.example{
+  background:#102b2a;border:1px solid #24574b;
+  border-radius:10px;padding:16px;margin:18px 0;
+}
+.example strong{color:var(--green)}
+.note{
+  background:#29233d;border-left:4px solid #b99aff;
+  padding:13px;border-radius:7px;margin:16px 0;
+}
+.controls{
+  display:flex;justify-content:space-between;gap:12px;
+  margin:20px 0;
+}
+.controls button,.action{
+  border:0;border-radius:9px;padding:12px 20px;
+  cursor:pointer;font-weight:bold;
+}
+.primary{background:var(--accent);color:#071522}
+.secondary{background:var(--panel2);color:var(--text)}
+button:disabled{opacity:.35;cursor:not-allowed}
+.quiz{
+  background:var(--panel);border:1px solid var(--border);
+  padding:20px;border-radius:14px;margin-top:25px;
+}
+.quiz-option{
+  display:block;width:100%;text-align:left;margin:9px 0;
+  padding:12px;background:var(--panel2);color:var(--text);
+  border:1px solid var(--border);border-radius:8px;cursor:pointer;
+}
+.quiz-option:hover{border-color:var(--accent)}
+#feedback{font-weight:bold;margin-top:12px}
+input{
+  width:100%;max-width:250px;padding:11px;
+  border-radius:8px;border:1px solid var(--border);
+  background:#091426;color:white;font-size:16px;
+}
+.calculator{
+  background:#0c192c;padding:17px;border-radius:10px;margin-top:20px;
+}
+.small{color:var(--muted);font-size:14px}
+@media(max-width:600px){
+  header h1{font-size:21px}
+  .container{padding:13px}
+  .lesson{padding:17px}
+  h2{font-size:21px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Grade 12 Mathematics</h1>
+  <p>Unit 1 — Sequences and Series</p>
+  <p class="small">Interactive learning • Examples • Practice</p>
+</header>
+
+<div class="container">
+  <nav class="topnav" id="topnav"></nav>
+
+  <div class="progress-wrap">
+    <div id="progress"></div>
+  </div>
+
+  <div class="small" id="lessonCount"></div>
+
+  <main class="lesson" id="lesson"></main>
+
+  <div class="controls">
+    <button class="secondary" id="previous">← Previous</button>
+    <button class="primary" id="next">Next →</button>
+  </div>
+
+  <section class="quiz">
+    <h2>Unit 1 — Final Quiz</h2>
+    <p>Test what you have learned in this unit.</p>
+    <div id="quizArea"></div>
+    <p id="feedback"></p>
+    <button class="action primary" onclick="restartQuiz()">Restart Quiz</button>
+  </section>
+</div>
+
+<script>
+const lessons = [
+{
+ section:0,title:"Revision on Sets and Functions",
+ content:`
+ <h3>1.1.1 Revision on Sets and Functions</h3>
+ <p>Before studying sequences, remember the mathematical ideas of sets and functions.</p>
+ <h3>Sets</h3>
+ <p>A set is a well-defined collection of distinct objects called elements.</p>
+ <div class="formula">A = {1, 2, 3, 4, 5}</div>
+ <p>Important types include finite sets, infinite sets, equal sets, equivalent sets and countable sets.</p>
+ <h3>Functions</h3>
+ <p>A function assigns exactly one output to every input in its domain.</p>
+ <div class="formula">f : A → B</div>
+ <p>The domain is the set of inputs. The range is the set of actual outputs.</p>
+ <div class="example"><strong>Example</strong>
+ <p>Let f(x) = 2x + 1, where the domain is {1, 2, 3}.</p>
+ <p>f(1)=3, f(2)=5, f(3)=7.</p>
+ <p>Range = {3, 5, 7}.</p></div>
+ <div class="note">Remember: A sequence can be defined as a function whose domain is the natural numbers.</div>`
+},
+{
+ section:0,title:"Meaning of Number Sequences",
+ content:`
+ <h3>1.1.2 Number Sequences</h3>
+ <p>A sequence is an ordered list of numbers arranged according to a particular rule or pattern.</p>
+ <div class="formula">2, 4, 6, 8, 10, ...</div>
+ <p>This sequence increases by 2 each time.</p>
+ <h3>Terms of a sequence</h3>
+ <p>Each number in a sequence is called a term.</p>
+ <ul>
+ <li>a₁ = first term</li><li>a₂ = second term</li>
+ <li>a₃ = third term</li><li>aₙ = nth term or general term</li>
+ </ul>
+ <div class="example"><strong>Example</strong>
+ <p>Consider 3, 6, 9, 12, 15, ...</p>
+ <p>The first term is 3, the second is 6, and the fifth is 15.</p></div>
+ <h3>Sequences as functions</h3>
+ <p>A sequence can be written using function notation. For example, a(n)=3n−1.</p>
+ <p>Its terms are obtained by substituting natural numbers for n.</p>
+ <div class="formula">aₙ = 3n − 1</div>
+ <div class="example"><strong>Calculate the first four terms</strong>
+ <p>a₁=2, a₂=5, a₃=8, a₄=11.</p></div>`
+},
+{
+ section:0,title:"General Term of a Sequence",
+ content:`
+ <h3>Finding the General Term</h3>
+ <p>The general term is a formula that allows us to calculate any term of a sequence without writing all the previous terms.</p>
+ <div class="formula">aₙ = 3n − 1</div>
+ <p>For example, to find the 10th term:</p>
+ <div class="formula">a₁₀ = 3(10) − 1 = 29</div>
+ <h3>Recognizing patterns</h3>
+ <p>Look at the relationship between the term number and the value of each term.</p>
+ <div class="example"><strong>Example</strong>
+ <p>Find a possible general term for 5, 10, 15, 20, ...</p>
+ <p>Each term is five times its position.</p>
+ <div class="formula">aₙ = 5n</div></div>
+ <div class="note">Not every sequence has a simple general-term formula. Always check that your proposed rule matches the given terms.</div>`
+},
+{
+ section:0,title:"Recursively Defined Sequences",
+ content:`
+ <h3>Recursively Defined Sequences</h3>
+ <p>A recursive sequence is defined by giving one or more starting terms and a rule for finding later terms from earlier terms.</p>
+ <div class="formula">a₁ = 2, &nbsp; aₙ₊₁ = aₙ + 3</div>
+ <p>The first term is 2. To get each next term, add 3.</p>
+ <div class="example"><strong>Example</strong>
+ <p>a₁=2</p><p>a₂=2+3=5</p><p>a₃=5+3=8</p>
+ <p>a₄=8+3=11</p>
+ <p>Sequence: 2, 5, 8, 11, ...</p></div>
+ <h3>Fibonacci sequence</h3>
+ <p>The Fibonacci sequence is formed by adding the two preceding terms to obtain the next term.</p>
+ <div class="formula">1, 1, 2, 3, 5, 8, 13, 21, ...</div>
+ <div class="formula">F₁=1, F₂=1, Fₙ=Fₙ₋₁+Fₙ₋₂</div>
+ <p>For example, 5+8=13.</p>`
+},
+{
+ section:1,title:"Arithmetic Sequences",
+ content:`
+ <h3>1.2.1 Arithmetic Sequences</h3>
+ <p>An arithmetic sequence is a sequence in which the difference between consecutive terms is constant.</p>
+ <div class="formula">2, 5, 8, 11, 14, ...</div>
+ <p>Common difference: d = 5−2 = 3.</p>
+ <h3>Common difference</h3>
+ <div class="formula">d = a₂ − a₁</div>
+ <h3>General term</h3>
+ <div class="formula">aₙ = a₁ + (n−1)d</div>
+ <p>Where a₁ is the first term, d is the common difference and n is the term position.</p>
+ <div class="example"><strong>Example</strong>
+ <p>Find the 10th term of 4, 7, 10, 13, ...</p>
+ <p>a₁=4, d=3, n=10</p>
+ <div class="formula">a₁₀ = 4 + (10−1)3 = 31</div></div>`
+},
+{
+ section:1,title:"Arithmetic Means",
+ content:`
+ <h3>Arithmetic Means</h3>
+ <p>An arithmetic mean is a number inserted between two numbers so that the resulting sequence is arithmetic.</p>
+ <h3>One arithmetic mean</h3>
+ <p>If A, M, B are in arithmetic sequence, then:</p>
+ <div class="formula">M = (A + B) / 2</div>
+ <div class="example"><strong>Example</strong>
+ <p>Find the arithmetic mean between 6 and 14.</p>
+ <div class="formula">M = (6 + 14)/2 = 10</div>
+ <p>Therefore, 6, 10, 14 is an arithmetic sequence.</p></div>
+ <h3>Inserting several arithmetic means</h3>
+ <p>When inserting k means between two endpoints, there are k+1 equal intervals.</p>
+ <div class="formula">d = (B − A)/(k + 1)</div>
+ <div class="example"><strong>Example</strong>
+ <p>Insert two arithmetic means between 3 and 12.</p>
+ <p>d=(12−3)/3=3.</p>
+ <p>The sequence is 3, 6, 9, 12.</p></div>`
+},
+{
+ section:1,title:"Geometric Sequences",
+ content:`
+ <h3>1.2.2 Geometric Sequences</h3>
+ <p>A geometric sequence is a sequence in which the ratio of consecutive terms is constant.</p>
+ <div class="formula">2, 6, 18, 54, 162, ...</div>
+ <p>Common ratio: r = 6/2 = 3.</p>
+ <h3>Common ratio</h3>
+ <div class="formula">r = a₂/a₁</div>
+ <h3>General term</h3>
+ <div class="formula">aₙ = a₁ × rⁿ⁻¹</div>
+ <div class="example"><strong>Example</strong>
+ <p>Find the 5th term of 3, 6, 12, 24, ...</p>
+ <p>a₁=3, r=2, n=5</p>
+ <div class="formula">a₅ = 3 × 2⁴ = 48</div></div>
+ <div class="note">An arithmetic sequence uses a constant difference. A geometric sequence uses a constant ratio.</div>`
+},
+{
+ section:1,title:"Geometric Means",
+ content:`
+ <h3>Geometric Means</h3>
+ <p>A geometric mean is a number inserted between two numbers so that the resulting terms form a geometric sequence.</p>
+ <h3>One geometric mean</h3>
+ <p>For positive numbers A and B, the positive geometric mean is:</p>
+ <div class="formula">M = √(AB)</div>
+ <div class="example"><strong>Example</strong>
+ <p>Find the positive geometric mean between 4 and 16.</p>
+ <div class="formula">M = √(4 × 16) = √64 = 8</div>
+ <p>Sequence: 4, 8, 16.</p></div>
+ <h3>Inserting several geometric means</h3>
+ <p>If k geometric means are inserted between A and B, then there are k+1 equal ratio steps.</p>
+ <div class="formula">r = (B/A)^(1/(k+1))</div>
+ <div class="example"><strong>Example</strong>
+ <p>Insert two positive geometric means between 2 and 54.</p>
+ <p>r = (54/2)^(1/3) = 3.</p>
+ <p>Sequence: 2, 6, 18, 54.</p></div>`
+},
+{
+ section:2,title:"Partial Sums of a Sequence",
+ content:`
+ <h3>1.3 The Sigma Notation and Partial Sums</h3>
+ <p>A partial sum is the sum of a finite number of terms from a sequence.</p>
+ <div class="formula">Sₙ = a₁ + a₂ + a₃ + ... + aₙ</div>
+ <div class="example"><strong>Example</strong>
+ <p>Find the first four partial sums of 2, 4, 6, 8, ...</p>
+ <p>S₁=2</p><p>S₂=2+4=6</p>
+ <p>S₃=2+4+6=12</p><p>S₄=2+4+6+8=20</p></div>
+ <p>Partial sums help us study the total of a sequence as more terms are added.</p>`
+},
+{
+ section:2,title:"Sigma Notation",
+ content:`
+ <h3>Sigma Notation</h3>
+ <p>Sigma notation is a short way of writing the sum of many terms. The Greek letter Σ means summation.</p>
+ <div class="formula">∑ᵢ₌₁ⁿ aᵢ</div>
+ <p>Here:</p>
+ <ul><li>i is the index.</li><li>1 is the starting value.</li>
+ <li>n is the ending value.</li><li>aᵢ is the general term.</li></ul>
+ <div class="example"><strong>Example</strong>
+ <p>Evaluate:</p>
+ <div class="formula">∑ᵢ₌₁⁴ i</div>
+ <p>= 1 + 2 + 3 + 4 = 10.</p></div>
+ <div class="example"><strong>Another example</strong>
+ <div class="formula">∑ᵢ₌₁³ 2i = 2 + 4 + 6 = 12</div></div>`
+},
+{
+ section:2,title:"Properties of Sigma Notation",
+ content:`
+ <h3>Properties of Sigma Notation</h3>
+ <p>Sigma notation follows useful algebraic properties.</p>
+ <div class="formula">∑(aᵢ + bᵢ) = ∑aᵢ + ∑bᵢ</div>
+ <div class="formula">∑(c aᵢ) = c∑aᵢ</div>
+ <div class="formula">∑ᵢ₌₁ⁿ c = nc</div>
+ <div class="example"><strong>Example</strong>
+ <p>Evaluate:</p>
+ <div class="formula">∑ᵢ₌₁⁴ (i + 2)</div>
+ <p>= (1+2)+(2+2)+(3+2)+(4+2)</p>
+ <p>= 3+4+5+6 = 18.</p></div>
+ <div class="note">You can separate a sum into simpler sums to make calculations easier.</div>`
+},
+{
+ section:2,title:"Sum of Arithmetic Progressions",
+ content:`
+ <h3>1.3.1 Sum of Arithmetic Progressions</h3>
+ <p>An arithmetic progression is an arithmetic sequence considered together with its sum.</p>
+ <h3>Sum formula</h3>
+ <div class="formula">Sₙ = n/2 (a₁ + aₙ)</div>
+ <p>Using the general term, another form is:</p>
+ <div class="formula">Sₙ = n/2 [2a₁ + (n−1)d]</div>
+ <div class="example"><strong>Example</strong>
+ <p>Find the sum of the first 10 terms of 2, 5, 8, 11, ...</p>
+ <p>a₁=2, d=3, n=10</p>
+ <p>a₁₀ = 2 + 9(3) = 29</p>
+ <div class="formula">S₁₀ = 10/2 (2+29) = 155</div></div>`
+},
+{
+ section:2,title:"Sum of Geometric Progressions",
+ content:`
+ <h3>1.3.2 Sum of Geometric Progressions</h3>
+ <p>A geometric progression is a geometric sequence considered together with its sum.</p>
+ <h3>Finite geometric sum</h3>
+ <div class="formula">Sₙ = a₁(1−rⁿ)/(1−r), &nbsp; r ≠ 1</div>
+ <p>If r=1:</p>
+ <div class="formula">Sₙ = na₁</div>
+ <div class="example"><strong>Example</strong>
+ <p>Find the sum of the first four terms of 2, 6, 18, 54, ...</p>
+ <p>a₁=2, r=3, n=4</p>
+ <div class="formula">S₄ = 2(1−3⁴)/(1−3) = 80</div></div>
+ <div class="note">Check the common ratio before applying the formula.</div>`
+},
+{
+ section:3,title:"Introduction to Infinite Series",
+ content:`
+ <h3>1.4 Infinite Series</h3>
+ <p>An infinite series is the sum of infinitely many terms of a sequence.</p>
+ <div class="formula">a₁ + a₂ + a₃ + a₄ + ...</div>
+ <p>Unlike a finite sum, an infinite series has no final term.</p>
+ <div class="example"><strong>Example</strong>
+ <div class="formula">1 + 1/2 + 1/4 + 1/8 + ...</div>
+ <p>This is an infinite geometric series.</p></div>
+ <p>To understand an infinite series, we study the behavior of its partial sums.</p>`
+},
+{
+ section:3,title:"Convergent and Divergent Series",
+ content:`
+ <h3>Convergent and Divergent Series</h3>
+ <p>An infinite series is convergent if its sequence of partial sums approaches a finite limit.</p>
+ <p>It is divergent if its partial sums do not approach a finite limit.</p>
+ <div class="example"><strong>Convergent example</strong>
+ <div class="formula">1 + 1/2 + 1/4 + 1/8 + ...</div>
+ <p>The partial sums approach 2.</p></div>
+ <div class="example"><strong>Divergent example</strong>
+ <div class="formula">1 + 1 + 1 + 1 + ...</div>
+ <p>The partial sums grow without bound.</p></div>
+ <div class="note">A series converges when its partial sums approach a finite number, not merely because its individual terms become small.</div>`
+},
+{
+ section:3,title:"Infinite Geometric Series",
+ content:`
+ <h3>Infinite Geometric Series</h3>
+ <p>An infinite geometric series has a constant common ratio between consecutive terms.</p>
+ <div class="formula">a₁ + a₁r + a₁r² + a₁r³ + ...</div>
+ <h3>Sum formula</h3>
+ <p>If the absolute value of the common ratio is less than 1, the infinite series converges.</p>
+ <div class="formula">S∞ = a₁/(1−r), &nbsp; |r| &lt; 1</div>
+ <div class="example"><strong>Example</strong>
+ <p>Find the sum:</p>
+ <div class="formula">8 + 4 + 2 + 1 + ...</div>
+ <p>a₁=8, r=1/2.</p>
+ <div class="formula">S∞ = 8/(1−1/2) = 16</div></div>
+ <div class="note">If |r| ≥ 1, the infinite geometric series does not converge.</div>`
+},
+{
+ section:3,title:"Telescoping Series",
+ content:`
+ <h3>Telescoping Series</h3>
+ <p>A telescoping series is a series in which many terms cancel when the sum is expanded.</p>
+ <div class="example"><strong>Example</strong>
+ <p>Consider:</p>
+ <div class="formula">1/2 + 1/6 + 1/12 + 1/20 + ...</div>
+ <p>Each term can be written as:</p>
+ <div class="formula">1/[n(n+1)] = 1/n − 1/(n+1)</div>
+ <p>Therefore, the partial sum becomes:</p>
+ <div class="formula">(1−1/2)+(1/2−1/3)+(1/3−1/4)+...</div>
+ <p>Most middle terms cancel.</p></div>
+ <p>Telescoping is useful because it can simplify a complicated-looking sum.</p>`
+},
+{
+ section:3,title:"Binomial Series",
+ content:`
+ <h3>Binomial Series</h3>
+ <p>The binomial theorem gives an expansion for a power of a sum.</p>
+ <h3>For a positive integer n</h3>
+ <div class="formula">(1+x)ⁿ = 1 + nx + n(n−1)x²/2! + ...</div>
+ <div class="example"><strong>Example</strong>
+ <p>Expand (1+x)³.</p>
+ <div class="formula">(1+x)³ = 1 + 3x + 3x² + x³</div></div>
+ <h3>Infinite binomial series</h3>
+ <p>For a general real exponent, the expansion can be an infinite series. The standard expansion is valid for |x| &lt; 1.</p>
+ <div class="formula">(1+x)ᵃ = 1 + ax + [a(a−1)/2!]x² + ...</div>
+ <div class="note">The convergence condition matters when using an infinite binomial expansion.</div>`
+},
+{
+ section:4,title:"Applications of Arithmetic Progressions",
+ content:`
+ <h3>1.5 Applications of Arithmetic Progressions</h3>
+ <p>Arithmetic progressions can model situations where a quantity increases or decreases by a fixed amount each time.</p>
+ <h3>Example: Savings</h3>
+ <p>A student saves 100 Birr in the first week and increases the amount saved by 20 Birr every week.</p>
+ <p>The weekly savings form:</p>
+ <div class="formula">100, 120, 140, 160, ...</div>
+ <p>Find the amount saved in week 10:</p>
+ <div class="formula">a₁₀ = 100 + 9(20) = 280 Birr</div>
+ <p>Total saved in 10 weeks:</p>
+ <div class="formula">S₁₀ = 10/2(100+280) = 1900 Birr</div>
+ <p>This model is useful for fixed increases in salary, savings, or production.</p>`
+},
+{
+ section:4,title:"Applications of Geometric Progressions",
+ content:`
+ <h3>Applications of Geometric Progressions</h3>
+ <p>Geometric progressions model situations where a quantity is multiplied by the same ratio repeatedly.</p>
+ <h3>Compound growth</h3>
+ <p>When money grows by the same percentage each period, its values form a geometric sequence.</p>
+ <div class="formula">A = P(1 + r)ⁿ</div>
+ <p>P is the initial amount, r is the growth rate per period, and n is the number of periods.</p>
+ <div class="example"><strong>Example</strong>
+ <p>An amount of 1,000 Birr increases by 10% each year.</p>
+ <p>After two years:</p>
+ <div class="formula">A = 1000(1.1)² = 1210 Birr</div></div>
+ <h3>Depreciation</h3>
+ <p>If a value decreases by a fixed percentage each period, it can also be modeled geometrically.</p>
+ <div class="formula">V = P(1−r)ⁿ</div>`
+},
+{
+ section:4,title:"Applications of Infinite Geometric Series",
+ content:`
+ <h3>Applications of Infinite Geometric Series</h3>
+ <p>Infinite geometric series can model repeated events where each new amount is a fixed fraction of the previous amount.</p>
+ <h3>Bouncing ball example</h3>
+ <p>A ball is dropped from a height of 20 metres. Each rebound reaches half the previous height.</p>
+ <p>The rebound heights are:</p>
+ <div class="formula">10 + 5 + 2.5 + 1.25 + ...</div>
+ <p>This is an infinite geometric series with a₁=10 and r=1/2.</p>
+ <div class="formula">S∞ = 10/(1−1/2) = 20 metres</div>
+ <p>The total distance traveled includes the initial 20-metre fall plus the upward and downward rebound distances.</p>
+ <div class="formula">Total distance = 20 + 2(20) = 60 metres</div>
+ <div class="note">The rebound heights form the infinite series. Each rebound contributes both an upward and a downward journey.</div>`
+}
+];
+
+const sections = [
+"1.1 Sequences",
+"1.2 Arithmetic & Geometric",
+"1.3 Sigma & Partial Sums",
+"1.4 Infinite Series",
+"1.5 Applications"
+];
+
+let current = 0;
+
+const lessonEl = document.getElementById("lesson");
+const navEl = document.getElementById("topnav");
+
+function renderNav(){
+ navEl.innerHTML = "";
+ sections.forEach((name,index)=>{
+  const btn=document.createElement("button");
+  btn.textContent=name;
+  btn.className=lessons[current].section===index?"active":"";
+  btn.onclick=()=>{
+   const first=lessons.findIndex(x=>x.section===index);
+   showLesson(first);
+  };
+  navEl.appendChild(btn);
+ });
+}
+
+function showLesson(index){
+ current=Math.max(0,Math.min(index,lessons.length-1));
+ const item=lessons[current];
+
+ lessonEl.innerHTML=`
+  <div class="lesson-number">SUBTOPIC ${current+1} OF ${lessons.length}</div>
+  <h2>${item.title}</h2>
+  ${item.content}
+ `;
+
+ document.getElementById("lessonCount").textContent=
+  `Lesson ${current+1} / ${lessons.length}`;
+
+ document.getElementById("progress").style.width=
+  `${((current+1)/lessons.length)*100}%`;
+
+ document.getElementById("previous").disabled=current===0;
+ document.getElementById("next").disabled=current===lessons.length-1;
+
+ renderNav();
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+
+document.getElementById("previous").onclick=()=>showLesson(current-1);
+document.getElementById("next").onclick=()=>showLesson(current+1);
+
+const questions=[
+ {q:"What is a sequence?",o:["An unordered set","An ordered list following a rule","A single number","A multiplication"],a:1},
+ {q:"Find the 5th term of 2, 4, 6, 8, ...",o:["8","9","10","12"],a:2},
+ {q:"What is the common difference of 5, 8, 11, 14, ...?",o:["2","3","4","5"],a:1},
+ {q:"What is the general term of an arithmetic sequence?",o:["a₁rⁿ","a₁+(n−1)d","a₁/n","a₁+dⁿ"],a:1},
+ {q:"What is the common ratio of 3, 6, 12, 24, ...?",o:["2","3","4","6"],a:0},
+ {q:"Find the 4th term of 2, 6, 18, ...",o:["36","48","54","64"],a:2},
+ {q:"What does the symbol Σ represent?",o:["Multiplication","Division","Summation","Subtraction"],a:2},
+ {q:"What is the sum of the first 5 positive integers?",o:["10","15","20","25"],a:1},
+ {q:"When does an infinite geometric series converge?",o:["r > 1","r = 1","|r| < 1","r < −1"],a:2},
+ {q:"What is the sum of 4 + 2 + 1 + ...?",o:["6","7","8","10"],a:2}
+];
+
+let qIndex=0,score=0,answered=false;
+
+function showQuestion(){
+ const area=document.getElementById("quizArea");
+ if(qIndex>=questions.length){
+  area.innerHTML=`<h3>Quiz completed!</h3><p>Your score: ${score}/${questions.length}</p>`;
+  document.getElementById("feedback").textContent=
+   score>=7?"Excellent work!":"Keep studying and try again.";
+  return;
+ }
+ answered=false;
+ const q=questions[qIndex];
+ area.innerHTML=`
+  <p><strong>Question ${qIndex+1} of ${questions.length}</strong></p>
+  <h3>${q.q}</h3>
+  ${q.o.map((option,i)=>`
+   <button class="quiz-option" onclick="answer(${i})">${option}</button>
+  `).join("")}
+ `;
+ document.getElementById("feedback").textContent="";
+}
+
+function answer(choice){
+ if(answered)return;
+ answered=true;
+ const correct=questions[qIndex].a;
+ if(choice===correct){
+  score++;
+  document.getElementById("feedback").textContent="Correct! Well done.";
+ }else{
+  document.getElementById("feedback").textContent=
+   "Not quite. Correct answer: "+questions[qIndex].o[correct];
+ }
+ const btn=document.createElement("button");
+ btn.className="action primary";
+ btn.textContent=qIndex===questions.length-1?"Finish":"Next question";
+ btn.onclick=()=>{qIndex++;showQuestion()};
+ document.getElementById("quizArea").appendChild(btn);
+}
+
+function restartQuiz(){
+ qIndex=0;score=0;showQuestion();
+}
+
+showLesson(0);
+showQuestion();
+</script>
+</body>
+</html>

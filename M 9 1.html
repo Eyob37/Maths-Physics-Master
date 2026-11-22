@@ -1,0 +1,1774 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grade 9 Mathematics | Unit 1</title>
+
+<style>
+:root {
+  --primary: #6757e8;
+  --secondary: #8c7cf7;
+  --bg: #f5f6fc;
+  --card: #ffffff;
+  --text: #20243a;
+  --muted: #73788d;
+  --border: #e7e8f0;
+  --green: #159b70;
+  --red: #e05252;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+
+button, input {
+  font: inherit;
+}
+
+header {
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+  padding: 15px 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.logo {
+  font-size: 19px;
+  font-weight: bold;
+  color: var(--primary);
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.layout {
+  display: flex;
+  max-width: 1450px;
+  margin: auto;
+  min-height: calc(100vh - 65px);
+}
+
+.sidebar {
+  width: 270px;
+  background: white;
+  padding: 25px 15px;
+  border-right: 1px solid var(--border);
+  flex-shrink: 0;
+  height: calc(100vh - 65px);
+  position: sticky;
+  top: 65px;
+  overflow-y: auto;
+}
+
+.sidebar h3 {
+  font-size: 13px;
+  color: var(--muted);
+  margin: 20px 10px 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.nav-btn {
+  display: block;
+  width: 100%;
+  text-align: left;
+  border: none;
+  padding: 12px;
+  border-radius: 9px;
+  margin: 4px 0;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.nav-btn:hover,
+.nav-btn.active {
+  background: #eeecff;
+  color: var(--primary);
+  font-weight: bold;
+}
+
+.progress-box {
+  padding: 15px;
+  margin: 25px 5px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.progress-track {
+  height: 7px;
+  background: #e9e9f2;
+  border-radius: 10px;
+  margin-top: 10px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  width: 0%;
+  height: 100%;
+  background: var(--primary);
+  transition: .3s;
+}
+
+main {
+  flex: 1;
+  max-width: 1000px;
+  padding: 35px;
+  min-width: 0;
+}
+
+.hero {
+  padding: 35px;
+  border-radius: 18px;
+  background: linear-gradient(120deg,#5143c9,#9283ff);
+  color: white;
+  margin-bottom: 30px;
+}
+
+.hero small {
+  opacity: .8;
+  letter-spacing: 2px;
+  font-weight: bold;
+}
+
+.hero h1 {
+  font-size: clamp(27px, 5vw, 43px);
+  margin: 10px 0;
+  line-height: 1.2;
+}
+
+.hero p {
+  max-width: 650px;
+  opacity: .9;
+}
+
+.hero-tag {
+  display: inline-block;
+  background: #ffffff25;
+  padding: 6px 13px;
+  border-radius: 20px;
+  font-size: 12px;
+  margin-top: 20px;
+}
+
+.lesson {
+  display: none;
+  animation: appear .3s ease;
+}
+
+.lesson.active {
+  display: block;
+}
+
+@keyframes appear {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.section-title {
+  font-size: 25px;
+  margin: 20px 0 8px;
+}
+
+.subtitle {
+  color: var(--muted);
+  margin-bottom: 22px;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 23px;
+  border-radius: 13px;
+  margin: 18px 0;
+}
+
+.card h3 {
+  margin-bottom: 12px;
+  font-size: 18px;
+}
+
+.card p {
+  margin: 9px 0;
+}
+
+.definition {
+  border-left: 4px solid var(--primary);
+  background: #f0efff;
+  padding: 17px;
+  border-radius: 5px 10px 10px 5px;
+  margin: 15px 0;
+}
+
+.formula {
+  background: #f6f5ff;
+  padding: 15px;
+  border-radius: 9px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  color: #5143c9;
+  margin: 14px 0;
+  overflow-x: auto;
+}
+
+.example {
+  border: 1px solid #dcefe7;
+  background: #f2fbf6;
+  border-radius: 10px;
+  padding: 18px;
+  margin: 15px 0;
+}
+
+.example h4 {
+  color: var(--green);
+  margin-bottom: 8px;
+}
+
+.note {
+  background: #fff9e9;
+  border-left: 4px solid #eab54a;
+  padding: 14px;
+  margin: 15px 0;
+  border-radius: 5px;
+}
+
+ul, ol {
+  padding-left: 25px;
+  margin: 10px 0;
+}
+
+li {
+  margin: 5px 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 15px;
+}
+
+.grid .card {
+  margin: 0;
+}
+
+button.primary {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 11px 19px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button.primary:hover {
+  background: #5143c9;
+}
+
+button.secondary {
+  background: #eeecff;
+  color: var(--primary);
+  border: none;
+  padding: 10px 17px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}
+
+.lesson-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 35px;
+}
+
+.quiz-question {
+  padding: 18px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.quiz-question label {
+  display: block;
+  padding: 9px;
+  cursor: pointer;
+  border-radius: 7px;
+}
+
+.quiz-question label:hover {
+  background: #f2f0ff;
+}
+
+.feedback {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.correct { color: var(--green); }
+.wrong { color: var(--red); }
+
+input[type="text"] {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px;
+  margin: 10px 0;
+  outline-color: var(--primary);
+}
+
+.diagram {
+  background: #fafaff;
+  border-radius: 12px;
+  padding: 15px;
+  overflow: hidden;
+}
+
+.diagram svg {
+  width: 100%;
+  max-width: 500px;
+  display: block;
+  margin: auto;
+}
+
+.calculator {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.calculator input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.calculator select {
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: white;
+  grid-column: 1 / -1;
+}
+
+.result {
+  grid-column: 1 / -1;
+  background: #eeecff;
+  padding: 18px;
+  border-radius: 10px;
+  overflow-wrap: anywhere;
+}
+
+footer {
+  text-align: center;
+  color: var(--muted);
+  padding: 30px;
+  font-size: 13px;
+}
+
+@media(max-width:750px) {
+  .layout {
+    display: block;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    padding: 12px;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .sidebar h3,
+  .progress-box {
+    display: none;
+  }
+
+  .nav-list {
+    display: flex;
+    overflow-x: auto;
+    gap: 5px;
+  }
+
+  .nav-btn {
+    width: auto;
+    white-space: nowrap;
+    font-size: 12px;
+    padding: 9px;
+  }
+
+  main {
+    padding: 18px;
+  }
+
+  .hero {
+    padding: 25px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  header {
+    padding: 12px 17px;
+  }
+
+  .header-right {
+    font-size: 11px;
+  }
+}
+
+@media(max-width:400px) {
+  .calculator {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">MathLearn.</div>
+  <div class="header-right">
+    <span>GRADE 9</span>
+    <span>MATHEMATICS</span>
+  </div>
+</header>
+
+<div class="layout">
+
+<aside class="sidebar">
+
+  <h3>Unit 1 Navigation</h3>
+
+  <div class="nav-list">
+    <button class="nav-btn active" onclick="showLesson(0)">
+      Introduction
+    </button>
+
+    <button class="nav-btn" onclick="showLesson(1)">
+      1.1 Sets and Elements
+    </button>
+
+    <button class="nav-btn" onclick="showLesson(2)">
+      1.2 Set Description
+    </button>
+
+    <button class="nav-btn" onclick="showLesson(3)">
+      1.3 Notion of Sets
+    </button>
+
+    <button class="nav-btn" onclick="showLesson(4)">
+      1.4 Operations
+    </button>
+
+    <button class="nav-btn" onclick="showLesson(5)">
+      1.5 Applications
+    </button>
+
+    <button class="nav-btn" onclick="showLesson(6)">
+      Revision Quiz
+    </button>
+  </div>
+
+  <div class="progress-box">
+    <b>Learning progress</b>
+    <p id="progressText">0 of 7 sections</p>
+    <div class="progress-track">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+  </div>
+
+</aside>
+
+<main>
+
+<div class="hero">
+  <small>GRADE 9 • MATHEMATICS</small>
+  <h1>Further on Sets</h1>
+  <p>
+    Discover sets, their properties, different ways of describing
+    them, set operations and their real mathematical applications.
+  </p>
+  <span class="hero-tag">UNIT 01 • MATHEMATICS</span>
+</div>
+
+<!-- INTRODUCTION -->
+
+<section class="lesson active">
+
+<h2 class="section-title">Welcome to Unit 1</h2>
+<p class="subtitle">Further on Sets</p>
+
+<div class="card">
+  <h3>Introduction</h3>
+  <p>
+    In Grade 7, you learned the basic definition and operations
+    involving sets. The concept of a set is a fundamental part
+    of modern mathematics.
+  </p>
+  <p>
+    Sets are used in almost every branch of mathematics,
+    including the study of relations and functions.
+  </p>
+  <p>
+    In this unit, you will learn further definitions,
+    operations and applications involving sets.
+  </p>
+</div>
+
+<div class="card">
+  <h3>Unit Outcomes</h3>
+  By the end of this unit, you should be able to:
+  <ul>
+    <li>Explain facts about sets.</li>
+    <li>Describe sets in different ways.</li>
+    <li>Define operations on sets.</li>
+    <li>Demonstrate set operations using Venn diagrams.</li>
+    <li>Apply rules and principles of set theory to practical situations.</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h3>Unit Contents</h3>
+  <ol>
+    <li>Sets and Elements</li>
+    <li>Set Description</li>
+    <li>The Notion of Sets</li>
+    <li>Operations on Sets</li>
+    <li>Application</li>
+  </ol>
+</div>
+
+<div class="note">
+  <b>Important:</b> Try to understand each definition and
+  solve the examples yourself before checking the solutions.
+</div>
+
+<div class="lesson-nav">
+  <span></span>
+  <button class="primary" onclick="showLesson(1)">
+    Start Learning →
+  </button>
+</div>
+
+</section>
+
+<!-- 1.1 -->
+
+<section class="lesson">
+
+<h2 class="section-title">1.1 Sets and Elements</h2>
+<p class="subtitle">Understanding sets and their elements.</p>
+
+<div class="card">
+  <h3>What is a Set?</h3>
+
+  <div class="definition">
+    A set is a collection of well-defined objects or elements.
+  </div>
+
+  <p>
+    A set is well-defined when we can clearly determine
+    whether a particular object belongs to the set or not.
+  </p>
+</div>
+
+<div class="card">
+  <h3>Examples of Sets</h3>
+
+  <div class="example">
+    <h4>Example 1: Well-defined set</h4>
+    <p>The collection of all students in your class.</p>
+    <p>
+      This is well-defined because we can identify
+      exactly who belongs to the class.
+    </p>
+  </div>
+
+  <div class="example">
+    <h4>Example 2: Not well-defined</h4>
+    <p>The collection of beautiful girls in your class.</p>
+    <p>
+      This is not well-defined because beauty is subjective.
+      Different people may have different opinions.
+    </p>
+  </div>
+</div>
+
+<div class="card">
+  <h3>Representation of Sets</h3>
+
+  <p>Sets are usually represented by capital letters:</p>
+
+  <div class="formula">
+    A, B, C, X, Y, Z
+  </div>
+
+  <p>Elements are usually represented by small letters:</p>
+
+  <div class="formula">
+    a, b, c, x, y, z
+  </div>
+
+  <p>Example:</p>
+
+  <div class="formula">
+    A = {1, 2, 3, 4, 5}
+  </div>
+
+  <p>
+    Here, A is the set and 1, 2, 3, 4 and 5 are
+    its elements.
+  </p>
+</div>
+
+<div class="card">
+  <h3>Membership Symbols</h3>
+
+  <div class="grid">
+    <div class="card">
+      <h3>∈</h3>
+      <p>Belongs to a set.</p>
+      <div class="formula">2 ∈ A</div>
+    </div>
+
+    <div class="card">
+      <h3>∉</h3>
+      <p>Does not belong to a set.</p>
+      <div class="formula">8 ∉ A</div>
+    </div>
+  </div>
+</div>
+
+<div class="example">
+  <h4>Worked Example</h4>
+  <p>Suppose A is the set of positive even numbers.</p>
+
+  <div class="formula">
+    A = {2, 4, 6, 8, 10, ...}
+  </div>
+
+  <p>Determine whether the following elements belong to A.</p>
+
+  <ul>
+    <li>4 ∈ A</li>
+    <li>5 ∉ A</li>
+    <li>-2 ∉ A</li>
+    <li>0 ∉ A</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h3>Check Your Understanding</h3>
+  <p>Let A = {1, 2, 3, 4, 5, 6}.</p>
+
+  <div class="quiz-question">
+    <p>Does 5 belong to A?</p>
+    <label><input type="radio" name="q11" value="a"> 5 ∉ A</label>
+    <label><input type="radio" name="q11" value="b"> 5 ∈ A</label>
+    <button class="secondary" onclick="checkSimple('q11','b','f11')">Check</button>
+    <p id="f11" class="feedback"></p>
+  </div>
+
+  <div class="quiz-question">
+    <p>Does 8 belong to A?</p>
+    <label><input type="radio" name="q12" value="a"> 8 ∈ A</label>
+    <label><input type="radio" name="q12" value="b"> 8 ∉ A</label>
+    <button class="secondary" onclick="checkSimple('q12','b','f12')">Check</button>
+    <p id="f12" class="feedback"></p>
+  </div>
+</div>
+
+<div class="lesson-nav">
+  <button class="secondary" onclick="showLesson(0)">← Previous</button>
+  <button class="primary" onclick="showLesson(2)">Next Lesson →</button>
+</div>
+
+</section>
+
+<!-- 1.2 -->
+
+<section class="lesson">
+
+<h2 class="section-title">1.2 Set Description</h2>
+<p class="subtitle">Different methods of describing sets.</p>
+
+<div class="card">
+  <h3>Introduction</h3>
+  <p>
+    Sets can be described in different ways.
+    The textbook discusses verbal description and listing methods.
+  </p>
+</div>
+
+<div class="card">
+  <h3>1. Verbal Method (Statement Form)</h3>
+
+  <div class="definition">
+    In this method, the elements of a set are described
+    using ordinary English words.
+  </div>
+
+  <div class="example">
+    <h4>Example</h4>
+    <p>The set of whole numbers greater than 1 and less than 6.</p>
+
+    <div class="formula">
+      A = {whole numbers greater than 1 and less than 6}
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <h3>2. Listing Methods</h3>
+
+  <p>There are two listing methods:</p>
+
+  <h3>2.1 Complete Listing Method (Roster Method)</h3>
+
+  <div class="definition">
+    All elements of the set are listed, separated by commas
+    and enclosed within braces { }.
+  </div>
+
+  <div class="example">
+    <h4>Example 1</h4>
+    <p>Set of positive even integers less than 7.</p>
+
+    <div class="formula">
+      A = {2, 4, 6}
+    </div>
+
+    <h4>Example 2</h4>
+    <p>Set of vowels in the English alphabet.</p>
+
+    <div class="formula">
+      V = {a, e, i, o, u}
+    </div>
+  </div>
+
+  <h3>2.2 Partial Listing Method</h3>
+
+  <div class="definition">
+    This method is used when listing every element is difficult
+    or impossible. A few elements and dots (...) are used
+    to represent the remaining elements.
+  </div>
+
+  <div class="example">
+    <h4>Example 1</h4>
+    <p>Natural numbers:</p>
+    <div class="formula">
+      A = {1, 2, 3, 4, ...}
+    </div>
+
+    <h4>Example 2</h4>
+    <p>Positive even numbers:</p>
+    <div class="formula">
+      B = {2, 4, 6, 8, ...}
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <h3>Compare the Methods</h3>
+
+  <div class="grid">
+    <div class="card">
+      <h3>Verbal</h3>
+      <p>Describes elements using words.</p>
+      <p><b>Example:</b> Natural numbers less than 5.</p>
+    </div>
+
+    <div class="card">
+      <h3>Complete Listing</h3>
+      <p>Lists every element.</p>
+      <p><b>Example:</b> {1, 2, 3, 4}</p>
+    </div>
+
+    <div class="card">
+      <h3>Partial Listing</h3>
+      <p>Lists some elements and uses dots.</p>
+      <p><b>Example:</b> {1, 2, 3, ...}</p>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <h3>Practice</h3>
+  <p>Which method is used in the following?</p>
+  <p>A = {2, 4, 6, 8, ...}</p>
+
+  <label><input type="radio" name="q21" value="a"> Verbal method</label><br>
+  <label><input type="radio" name="q21" value="b"> Complete listing method</label><br>
+  <label><input type="radio" name="q21" value="c"> Partial listing method</label><br>
+
+  <button class="secondary" onclick="checkSimple('q21','c','f21')">Check</button>
+  <p id="f21" class="feedback"></p>
+</div>
+
+<div class="lesson-nav">
+  <button class="secondary" onclick="showLesson(1)">← Previous</button>
+  <button class="primary" onclick="showLesson(3)">Next Lesson →</button>
+</div>
+
+</section>
+
+<!-- 1.3 -->
+
+<section class="lesson">
+
+<h2 class="section-title">1.3 The Notion of Sets</h2>
+<p class="subtitle">Important types and relationships of sets.</p>
+
+<div class="card">
+  <h3>1. Empty Set</h3>
+
+  <div class="definition">
+    A set that does not contain any element is called an
+    empty set, void set or null set.
+  </div>
+
+  <div class="formula">
+    ∅ or { }
+  </div>
+
+  <div class="example">
+    <h4>Example</h4>
+    Let:
+
+    <div class="formula">
+      A = {x ∈ ℕ | 1 < x < 2}
+    </div>
+
+    There is no natural number between 1 and 2.
+
+    Therefore:
+
+    <div class="formula">A = ∅</div>
+  </div>
+</div>
+
+<div class="card">
+  <h3>2. Finite and Infinite Sets</h3>
+
+  <div class="definition">
+    A finite set contains a definite number of elements.
+    An infinite set does not have a finite number of elements.
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <h3>Finite Set</h3>
+      <div class="formula">{1, 2, 3, 4, 5}</div>
+      <p>It has five elements.</p>
+    </div>
+
+    <div class="card">
+      <h3>Infinite Set</h3>
+      <div class="formula">{1, 2, 3, ...}</div>
+      <p>It continues without end.</p>
+    </div>
+  </div>
+
+  <p>The number of elements of A is represented by n(A).</p>
+
+  <div class="formula">
+    If A = {1, 2, 3, 4}, then n(A) = 4
+  </div>
+</div>
+
+<div class="card">
+  <h3>3. Equal Sets</h3>
+
+  <div class="definition">
+    Two sets A and B are equal if and only if they contain
+    exactly the same elements.
+  </div>
+
+  <div class="formula">
+    A = B
+  </div>
+
+  <div class="example">
+    <h4>Example</h4>
+    A = {1, 2, 3, 4}<br>
+    B = {4, 3, 2, 1}
+
+    <p>Therefore, A = B.</p>
+
+    <p><b>Remember:</b> The order of elements does not matter.</p>
+  </div>
+</div>
+
+<div class="card">
+  <h3>4. Equivalent Sets</h3>
+
+  <div class="definition">
+    Two sets are equivalent if there is a one-to-one
+    correspondence between their elements.
+  </div>
+
+  <div class="formula">
+    n(A) = n(B)
+  </div>
+
+  <div class="example">
+    A = {1, 2, 3}<br>
+    B = {Red, Blue, Green}
+
+    <p>Both sets contain three elements.</p>
+    <p>Therefore, A and B are equivalent.</p>
+  </div>
+</div>
+
+<div class="card">
+  <h3>5. Universal Set</h3>
+
+  <div class="definition">
+    A universal set, usually denoted by U, contains all
+    elements of the related sets under discussion.
+  </div>
+
+  <div class="formula">
+    U = {1, 2, 3, 4, 5, 6}
+  </div>
+
+  <p>
+    For example, if A = {2, 4, 6} and B = {1, 3, 5},
+    then U contains all elements of A and B.
+  </p>
+</div>
+
+<div class="card">
+  <h3>6. Subset</h3>
+
+  <div class="definition">
+    A set A is a subset of B if every element of A
+    is also an element of B.
+  </div>
+
+  <div class="formula">
+    A ⊆ B
+  </div>
+
+  <div class="example">
+    A = {1, 2}<br>
+    B = {1, 2, 3, 4}
+
+    <p>Every element of A belongs to B.</p>
+    <p>Therefore, A ⊆ B.</p>
+  </div>
+</div>
+
+<div class="card">
+  <h3>7. Proper Subset</h3>
+
+  <div class="definition">
+    A is a proper subset of B if every element of A
+    belongs to B and B contains at least one additional element.
+  </div>
+
+  <div class="formula">
+    A ⊂ B
+  </div>
+
+  <div class="example">
+    A = {1, 2}<br>
+    B = {1, 2, 3}
+
+    <p>Therefore, A is a proper subset of B.</p>
+  </div>
+</div>
+
+<div class="note">
+  <b>Important distinction:</b>
+  Equal sets have exactly the same elements.
+  Equivalent sets have the same number of elements
+  (for finite sets), even if their elements differ.
+</div>
+
+<div class="card">
+  <h3>Practice Question</h3>
+
+  <p>A = {1, 2, 3} and B = {3, 2, 1}.</p>
+
+  <p>Which statement is correct?</p>
+
+  <label><input type="radio" name="q31" value="a"> A and B are different sets.</label><br>
+  <label><input type="radio" name="q31" value="b"> A and B are equal sets.</label><br>
+  <label><input type="radio" name="q31" value="c"> A is empty.</label><br>
+
+  <button class="secondary" onclick="checkSimple('q31','b','f31')">Check</button>
+  <p id="f31" class="feedback"></p>
+</div>
+
+<div class="lesson-nav">
+  <button class="secondary" onclick="showLesson(2)">← Previous</button>
+  <button class="primary" onclick="showLesson(4)">Next Lesson →</button>
+</div>
+
+</section>
+
+<!-- 1.4 -->
+
+<section class="lesson">
+
+<h2 class="section-title">1.4 Operations on Sets</h2>
+<p class="subtitle">Creating new sets using mathematical operations.</p>
+
+<div class="card">
+  <h3>Introduction</h3>
+  <p>
+    Set operations are processes used to form new sets
+    from existing sets.
+  </p>
+
+  <p>The textbook discusses:</p>
+
+  <ul>
+    <li>Union</li>
+    <li>Intersection</li>
+    <li>Complement</li>
+    <li>Difference</li>
+    <li>Symmetric Difference</li>
+    <li>Cartesian Product</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h3>Venn Diagrams</h3>
+
+  <div class="definition">
+    A Venn diagram is a schematic or pictorial representation
+    of sets involved in a discussion.
+  </div>
+
+  <p>
+    Sets are usually represented by circles enclosed
+    in a rectangle representing the universal set.
+  </p>
+
+  <div class="diagram">
+    <svg viewBox="0 0 400 220">
+      <rect x="20" y="20" width="360" height="180"
+        rx="10" fill="none" stroke="#777" stroke-width="2"/>
+      <text x="32" y="43" font-size="15" fill="#555">U</text>
+
+      <circle cx="165" cy="110" r="65"
+        fill="#6757e8" fill-opacity=".4"
+        stroke="#6757e8" stroke-width="2"/>
+
+      <circle cx="235" cy="110" r="65"
+        fill="#22a77b" fill-opacity=".4"
+        stroke="#159b70" stroke-width="2"/>
+
+      <text x="125" y="115" fill="#222" font-size="20">A</text>
+      <text x="263" y="115" fill="#222" font-size="20">B</text>
+    </svg>
+  </div>
+</div>
+
+<div class="card">
+  <h3>1. Union (∪)</h3>
+
+  <div class="definition">
+    The union of two sets A and B is the set of all elements
+    that belong to A or B or both.
+  </div>
+
+  <div class="formula">
+    A ∪ B
+  </div>
+
+  <div class="example">
+    <h4>Example</h4>
+
+    A = {1, 2, 3}<br>
+    B = {3, 4, 5}
+
+    <div class="formula">
+      A ∪ B = {1, 2, 3, 4, 5}
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <h3>2. Intersection (∩)</h3>
+
+  <div class="definition">
+    The intersection of A and B is the set of elements
+    that belong to both sets.
+  </div>
+
+  <div class="formula">
+    A ∩ B
+  </div>
+
+  <div class="example">
+    <h4>Example</h4>
+
+    A = {1, 2, 3}<br>
+    B = {3, 4, 5}
+
+    <div class="formula">
+      A ∩ B = {3}
+    </div>
+  </div>
+
+  <div class="note">
+    Two sets are disjoint if their intersection is empty.
+    That is A ∩ B = ∅.
+  </div>
+</div>
+
+<div class="card">
+  <h3>3. Complement (′)</h3>
+
+  <div class="definition">
+    The complement of A is the set of all elements
+    of the universal set U that are not in A.
+  </div>
+
+  <div class="formula">
+    A′ = U − A
+  </div>
+
+  <div class="example">
+    <h4>Example</h4>
+
+    U = {0, 1, 2, 3, 4}<br>
+    A = {3, 4}
+
+    <div class="formula">
+      A′ = {0, 1, 2}
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <h3>4. Difference (−)</h3>
+
+  <div class="definition">
+    The difference A − B contains all elements
+    that belong to A but do not belong to B.
+  </div>
+
+  <div class="formula">
+    A − B = {x | x ∈ A and x ∉ B}
+  </div>
+
+  <div class="example">
+    <h4>Example</h4>
+
+    A = {0, 1, 2, 3, 4}<br>
+    B = {3, 4}
+
+    <div class="formula">
+      A − B = {0, 1, 2}
+    </div>
+
+    <div class="formula">
+      B − A = ∅
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <h3>5. De Morgan's Laws</h3>
+
+  <p>There are two important statements:</p>
+
+  <div class="formula">
+    (A ∪ B)′ = A′ ∩ B′
+  </div>
+
+  <div class="formula">
+    (A ∩ B)′ = A′ ∪ B′
+  </div>
+</div>
+
+<div class="card">
+  <h3>6. Symmetric Difference (∆)</h3>
+
+  <div class="definition">
+    The symmetric difference contains elements that
+    belong to A or B but not to both.
+  </div>
+
+  <div class="formula">
+    A ∆ B = (A − B) ∪ (B − A)
+  </div>
+
+  <div class="example">
+    <h4>Example</h4>
+
+    A = {1, 2, 4, 5}<br>
+    B = {2, 3, 5, 7}
+
+    <p>A − B = {1, 4}</p>
+    <p>B − A = {3, 7}</p>
+
+    <div class="formula">
+      A ∆ B = {1, 3, 4, 7}
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <h3>7. Cartesian Product (×)</h3>
+
+  <div class="definition">
+    The Cartesian product of A and B is the set of all
+    ordered pairs (a, b), where a belongs to A
+    and b belongs to B.
+  </div>
+
+  <div class="formula">
+    A × B = {(a,b) | a ∈ A and b ∈ B}
+  </div>
+
+  <div class="example">
+    <h4>Example</h4>
+
+    A = {1, 2}<br>
+    B = {a, b}
+
+    <div class="formula">
+      A × B = {(1,a), (1,b), (2,a), (2,b)}
+    </div>
+
+    <div class="formula">
+      n(A × B) = n(A) × n(B)
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <h3>Set Operations Calculator</h3>
+
+  <p>Enter numbers separated by commas.</p>
+
+  <div class="calculator">
+    <div>
+      <label>Set A</label>
+      <input id="setA" type="text" value="1,2,3">
+    </div>
+
+    <div>
+      <label>Set B</label>
+      <input id="setB" type="text" value="3,4,5">
+    </div>
+
+    <select id="operation">
+      <option value="union">Union (A ∪ B)</option>
+      <option value="intersection">Intersection (A ∩ B)</option>
+      <option value="difference">Difference (A − B)</option>
+      <option value="difference2">Difference (B − A)</option>
+      <option value="symmetric">Symmetric Difference (A ∆ B)</option>
+      <option value="product">Cartesian Product (A × B)</option>
+    </select>
+
+    <button class="primary" onclick="calculate()">Calculate</button>
+
+    <div class="result" id="calcResult">
+      Result will appear here.
+    </div>
+  </div>
+</div>
+
+<div class="lesson-nav">
+  <button class="secondary" onclick="showLesson(3)">← Previous</button>
+  <button class="primary" onclick="showLesson(5)">Next Lesson →</button>
+</div>
+
+</section>
+
+<!-- 1.5 -->
+
+<section class="lesson">
+
+<h2 class="section-title">1.5 Application</h2>
+<p class="subtitle">Number of elements in the union of two sets.</p>
+
+<div class="card">
+  <h3>Number of Elements of a Union</h3>
+
+  <p>
+    When two sets have common elements, we must avoid
+    counting those elements twice.
+  </p>
+
+  <div class="formula">
+    n(A ∪ B) = n(A) + n(B) − n(A ∩ B)
+  </div>
+
+  <p>Where:</p>
+
+  <ul>
+    <li>n(A) = number of elements in A.</li>
+    <li>n(B) = number of elements in B.</li>
+    <li>n(A ∩ B) = number of common elements.</li>
+    <li>n(A ∪ B) = number of elements in the union.</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h3>Special Case: Disjoint Sets</h3>
+
+  <p>
+    If A and B have no common elements,
+    their intersection is empty.
+  </p>
+
+  <div class="formula">
+    A ∩ B = ∅
+  </div>
+
+  <div class="formula">
+    n(A ∪ B) = n(A) + n(B)
+  </div>
+</div>
+
+<div class="example">
+  <h4>Worked Example</h4>
+
+  <p>Suppose:</p>
+
+  <ul>
+    <li>n(A) = 20</li>
+    <li>n(B) = 28</li>
+    <li>n(A ∪ B) = 36</li>
+  </ul>
+
+  <p>Find n(A ∩ B).</p>
+
+  <p><b>Solution:</b></p>
+
+  <p>Using the formula:</p>
+
+  <div class="formula">
+    n(A ∪ B) = n(A) + n(B) − n(A ∩ B)
+  </div>
+
+  <p>Substitute the given values:</p>
+
+  <div class="formula">
+    36 = 20 + 28 − n(A ∩ B)
+  </div>
+
+  <p>Therefore:</p>
+
+  <div class="formula">
+    n(A ∩ B) = 48 − 36 = 12
+  </div>
+
+  <b>Answer: 12</b>
+</div>
+
+<div class="card">
+  <h3>Real-life Application</h3>
+
+  <p>
+    Suppose 60 students are in a classroom.
+    35 students like Mathematics, 30 like Physics,
+    and 15 like both subjects.
+  </p>
+
+  <p>How many students like at least one subject?</p>
+
+  <div class="formula">
+    n(M ∪ P) = 35 + 30 − 15
+  </div>
+
+  <div class="formula">
+    n(M ∪ P) = 50
+  </div>
+
+  <p>Therefore, 50 students like at least one subject.</p>
+</div>
+
+<div class="card">
+  <h3>Practice Question</h3>
+
+  <p>
+    If n(A) = 34, n(B) = 46 and n(A ∪ B) = 70,
+    find n(A ∩ B).
+  </p>
+
+  <input type="text" id="applicationAnswer" placeholder="Enter your answer">
+
+  <button class="secondary" onclick="checkApplication()">Check Answer</button>
+
+  <p id="applicationFeedback" class="feedback"></p>
+</div>
+
+<div class="lesson-nav">
+  <button class="secondary" onclick="showLesson(4)">← Previous</button>
+  <button class="primary" onclick="showLesson(6)">Take Revision Quiz →</button>
+</div>
+
+</section>
+
+<!-- REVISION QUIZ -->
+
+<section class="lesson">
+
+<h2 class="section-title">Unit 1 Revision Quiz</h2>
+<p class="subtitle">Test what you have learned from Further on Sets.</p>
+
+<div class="card">
+  <h3>Instructions</h3>
+  <ul>
+    <li>Read each question carefully.</li>
+    <li>Select one answer for each question.</li>
+    <li>Submit your answers to see your score.</li>
+  </ul>
+</div>
+
+<form id="finalQuiz">
+
+<div class="card">
+
+<div class="quiz-question">
+  <p><b>1.</b> What is a set?</p>
+  <label><input type="radio" name="q1" value="a"> A collection of well-defined objects.</label>
+  <label><input type="radio" name="q1" value="b"> A collection of random opinions.</label>
+  <label><input type="radio" name="q1" value="c"> A single number.</label>
+</div>
+
+<div class="quiz-question">
+  <p><b>2.</b> Which symbol means belongs to?</p>
+  <label><input type="radio" name="q2" value="a"> ∉</label>
+  <label><input type="radio" name="q2" value="b"> ∈</label>
+  <label><input type="radio" name="q2" value="c"> ∪</label>
+</div>
+
+<div class="quiz-question">
+  <p><b>3.</b> Which is an empty set?</p>
+  <label><input type="radio" name="q3" value="a"> {0}</label>
+  <label><input type="radio" name="q3" value="b"> {1, 2}</label>
+  <label><input type="radio" name="q3" value="c"> ∅</label>
+</div>
+
+<div class="quiz-question">
+  <p><b>4.</b> What is the union of {1,2} and {2,3}?</p>
+  <label><input type="radio" name="q4" value="a"> {2}</label>
+  <label><input type="radio" name="q4" value="b"> {1,2,3}</label>
+  <label><input type="radio" name="q4" value="c"> {1,3}</label>
+</div>
+
+<div class="quiz-question">
+  <p><b>5.</b> What is the intersection of {1,2,3} and {2,3,4}?</p>
+  <label><input type="radio" name="q5" value="a"> {1,4}</label>
+  <label><input type="radio" name="q5" value="b"> {1,2,3,4}</label>
+  <label><input type="radio" name="q5" value="c"> {2,3}</label>
+</div>
+
+<div class="quiz-question">
+  <p><b>6.</b> If A = {1,2} and B = {1,2,3}, which is true?</p>
+  <label><input type="radio" name="q6" value="a"> A ⊆ B</label>
+  <label><input type="radio" name="q6" value="b"> B ⊆ A</label>
+  <label><input type="radio" name="q6" value="c"> A = B</label>
+</div>
+
+<div class="quiz-question">
+  <p><b>7.</b> What is the complement of A if U={1,2,3,4} and A={1,2}?</p>
+  <label><input type="radio" name="q7" value="a"> {1,2}</label>
+  <label><input type="radio" name="q7" value="b"> {3,4}</label>
+  <label><input type="radio" name="q7" value="c"> {1,2,3,4}</label>
+</div>
+
+<div class="quiz-question">
+  <p><b>8.</b> Which formula represents De Morgan's first law?</p>
+  <label><input type="radio" name="q8" value="a"> (A ∪ B)′ = A′ ∩ B′</label>
+  <label><input type="radio" name="q8" value="b"> A ∪ B = A ∩ B</label>
+  <label><input type="radio" name="q8" value="c"> A − B = B − A</label>
+</div>
+
+<div class="quiz-question">
+  <p><b>9.</b> What is the Cartesian product of {1} and {a,b}?</p>
+  <label><input type="radio" name="q9" value="a"> {1,a,b}</label>
+  <label><input type="radio" name="q9" value="b"> {(1,a),(1,b)}</label>
+  <label><input type="radio" name="q9" value="c"> {(a,1)}</label>
+</div>
+
+<div class="quiz-question">
+  <p><b>10.</b> If n(A)=10, n(B)=8 and n(A∩B)=3, find n(A∪B).</p>
+  <label><input type="radio" name="q10" value="a"> 21</label>
+  <label><input type="radio" name="q10" value="b"> 15</label>
+  <label><input type="radio" name="q10" value="c"> 18</label>
+</div>
+
+</div>
+
+<button class="primary" type="button" onclick="submitQuiz()">
+  Submit Quiz
+</button>
+
+</form>
+
+<div class="card" id="quizResult" style="display:none">
+  <h3>Your Results</h3>
+  <h1 id="score" style="color:var(--primary)">0/10</h1>
+  <p id="resultMessage"></p>
+  <button class="secondary" onclick="resetQuiz()">Try Again</button>
+</div>
+
+<div class="lesson-nav">
+  <button class="secondary" onclick="showLesson(5)">← Previous</button>
+  <button class="primary" onclick="showLesson(0)">Back to Introduction</button>
+</div>
+
+</section>
+
+</main>
+</div>
+
+<footer>
+  Grade 9 Mathematics • Unit 1: Further on Sets
+  <br>
+  Interactive learning resource
+</footer>
+
+<script>
+
+const lessons = document.querySelectorAll(".lesson");
+const navButtons = document.querySelectorAll(".nav-btn");
+
+let completed = new Set();
+
+function showLesson(index) {
+
+  lessons.forEach((lesson,i) => {
+    lesson.classList.toggle("active", i === index);
+  });
+
+  navButtons.forEach((button,i) => {
+    button.classList.toggle("active", i === index);
+  });
+
+  completed.add(index);
+  updateProgress();
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+}
+
+function updateProgress() {
+  const total = lessons.length;
+  const value = completed.size;
+
+  document.getElementById("progressText").textContent =
+    value + " of " + total + " sections";
+
+  document.getElementById("progressFill").style.width =
+    (value / total * 100) + "%";
+}
+
+function checkSimple(name,correct,feedbackId) {
+
+  const selected = document.querySelector(
+    'input[name="' + name + '"]:checked'
+  );
+
+  const feedback = document.getElementById(feedbackId);
+
+  if(!selected) {
+    feedback.textContent = "Please select an answer.";
+    feedback.className = "feedback wrong";
+    return;
+  }
+
+  if(selected.value === correct) {
+    feedback.textContent = "Correct! Well done.";
+    feedback.className = "feedback correct";
+  } else {
+    feedback.textContent = "Incorrect. Try again.";
+    feedback.className = "feedback wrong";
+  }
+}
+
+function getSet(id) {
+
+  const value = document.getElementById(id).value.trim();
+
+  if(!value) return [];
+
+  return [...new Set(
+    value.split(",").map(x => x.trim()).filter(x => x !== "")
+  )];
+}
+
+function calculate() {
+
+  const A = getSet("setA");
+  const B = getSet("setB");
+
+  const operation = document.getElementById("operation").value;
+
+  let result = [];
+
+  if(operation === "union") {
+    result = [...new Set([...A,...B])];
+  }
+
+  if(operation === "intersection") {
+    result = A.filter(x => B.includes(x));
+  }
+
+  if(operation === "difference") {
+    result = A.filter(x => !B.includes(x));
+  }
+
+  if(operation === "difference2") {
+    result = B.filter(x => !A.includes(x));
+  }
+
+  if(operation === "symmetric") {
+    result = [
+      ...A.filter(x => !B.includes(x)),
+      ...B.filter(x => !A.includes(x))
+    ];
+  }
+
+  if(operation === "product") {
+    result = [];
+
+    A.forEach(a => {
+      B.forEach(b => {
+        result.push("(" + a + ", " + b + ")");
+      });
+    });
+  }
+
+  document.getElementById("calcResult").innerHTML =
+    "<b>Result:</b><br>" +
+    (result.length ? "{ " + result.join(", ") + " }" : "∅");
+}
+
+function checkApplication() {
+
+  const answer = document
+    .getElementById("applicationAnswer")
+    .value.trim();
+
+  const feedback = document.getElementById("applicationFeedback");
+
+  if(answer === "10") {
+    feedback.textContent = "Correct! 34 + 46 − 70 = 10.";
+    feedback.className = "feedback correct";
+  } else {
+    feedback.textContent = "Not quite. Use n(A∩B) = n(A) + n(B) − n(A∪B).";
+    feedback.className = "feedback wrong";
+  }
+}
+
+function submitQuiz() {
+
+  const answers = {
+    q1:"a",
+    q2:"b",
+    q3:"c",
+    q4:"b",
+    q5:"c",
+    q6:"a",
+    q7:"b",
+    q8:"a",
+    q9:"b",
+    q10:"b"
+  };
+
+  let score = 0;
+  let unanswered = 0;
+
+  for(const question in answers) {
+
+    const selected = document.querySelector(
+      'input[name="' + question + '"]:checked'
+    );
+
+    if(!selected) {
+      unanswered++;
+      continue;
+    }
+
+    if(selected.value === answers[question]) {
+      score++;
+    }
+  }
+
+  if(unanswered > 0) {
+    alert("Please answer all 10 questions before submitting.");
+    return;
+  }
+
+  document.getElementById("quizResult").style.display = "block";
+
+  document.getElementById("score").textContent =
+    score + " / 10";
+
+  let message = "";
+
+  if(score === 10) {
+    message = "Excellent! You have mastered this unit.";
+  } else if(score >= 7) {
+    message = "Very good! Review the questions you missed.";
+  } else if(score >= 5) {
+    message = "Good effort. Keep practicing.";
+  } else {
+    message = "Review the lessons and try again.";
+  }
+
+  document.getElementById("resultMessage").textContent = message;
+
+  document.getElementById("quizResult").scrollIntoView({
+    behavior:"smooth"
+  });
+}
+
+function resetQuiz() {
+
+  document.getElementById("finalQuiz").reset();
+
+  document.getElementById("quizResult").style.display = "none";
+
+}
+
+updateProgress();
+
+</script>
+
+</body>
+</html>
